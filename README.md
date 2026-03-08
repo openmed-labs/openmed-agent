@@ -1,22 +1,21 @@
 # OpenMed Agent
 
-> **AI-powered medical assistant with interactive TUI, agentic workflows, and remote NLP inference**
+> **AI-powered medical assistant for the terminal — private, sandboxed, and built for clinical workflows**
 
-OpenMed Agent provides an intelligent terminal interface for clinical workflows — entity extraction, PII de-identification, and medical reasoning — powered by LLMs and remote NLP inference.
+An intelligent command-line agent for healthcare professionals and developers. Automate clinical documentation, research medical evidence, and process patient data — all within a sandboxed environment designed for privacy and regulatory compliance.
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 ---
 
 ## Install
 
-### Binary (recommended)
-
 ```bash
 curl -fsSL https://agent.openmed.life/install.sh | bash
 ```
 
-### pip
+Or via pip:
 
 ```bash
 pip install openmed-agent[tui]
@@ -24,34 +23,84 @@ pip install openmed-agent[tui]
 
 ---
 
-## Features
+## What It Does
 
-- **Interactive Agent TUI** — Rich terminal interface for clinical analysis and medical reasoning
-- **Remote NLP Inference** — NER and PII tools connect to remote inference endpoints
-- **MCP Server Integration** — Connect to medical data sources (PubMed, ICD-10, NPI, CMS)
-- **Agentic Workflows** — Plan-based execution with skill-driven task automation
-- **PHI Handling Modes** — Full, de-identified, and strict modes for HIPAA-aware workflows
-- **Self-Update** — Binary releases with built-in update mechanism
-
----
-
-## Usage
+OpenMed Agent is an interactive terminal application that combines LLM reasoning with medical tools. You describe what you need in natural language, and the agent executes multi-step clinical workflows — generating PA letters, extracting entities from clinical notes, looking up drug interactions, checking LCD coverage criteria, and more.
 
 ```bash
-openmed            # Launch interactive agent TUI
-openmed agent      # Explicit agent command
-openmed login      # Authenticate via OAuth
+openmed            # Launch the agent
+openmed agent      # Launch with options (model, reasoning effort, skill)
 openmed --help     # Full CLI reference
 ```
 
 ---
 
-## Documentation
+## Key Features
 
-Visit [agent.openmed.life](https://agent.openmed.life) for full documentation and CLI reference.
+### Privacy & Safety
+
+- **Sandboxed Execution** — All tool calls run in a controlled environment with explicit user approval
+- **PHI Handling Modes** — `full`, `deid`, and `strict` modes for HIPAA/GDPR-aware workflows
+- **Local-First Architecture** — Patient data stays on your machine; nothing leaves without explicit consent
+- **No Telemetry** — Zero data collection, no analytics, no phone-home
+
+### Clinical Workflows
+
+- **Prior Authorization** — Generate PA letters with clinical evidence and LCD/NCD criteria
+- **Entity Extraction** — Identify diseases, medications, procedures, and anatomy from clinical text
+- **Medical Research** — Query PubMed, ICD-10, NPI, and CMS databases via MCP servers
+- **PDF Export** — Produce clinical documents, appeal packets, and visit prep reports
+
+### Agent Capabilities
+
+- **Interactive TUI** — Rich terminal interface with conversation history, themes, and session management
+- **Agentic Workflows** — Plan-based execution with automatic step progression
+- **Skill System** — Pre-built clinical skills that guide the agent through complex multi-step tasks
+- **MCP Integration** — Connect to remote medical data sources for real-time evidence lookup
+- **Self-Update** — Built-in binary update mechanism with SHA-256 verification
+
+---
+
+## CLI Reference
+
+```bash
+openmed                    # Launch agent TUI (default)
+openmed agent              # Launch with model/skill options
+openmed config show        # Show current configuration
+openmed config profiles    # List available profiles
+openmed mcp list           # List MCP server configuration
+openmed mcp enable         # Enable MCP servers
+openmed mcp doctor         # Check MCP server connectivity
+openmed update             # Update to latest version
+openmed login              # Authenticate via OAuth
+```
+
+Visit [agent.openmed.life](https://agent.openmed.life) for full documentation.
 
 ---
 
 ## License
 
 Released under the [Apache-2.0 License](LICENSE).
+
+---
+
+## Citation
+
+If you use OpenMed in your research, please cite:
+
+```bibtex
+@misc{panahi2025openmedneropensourcedomainadapted,
+      title={OpenMed NER: Open-Source, Domain-Adapted State-of-the-Art Transformers for Biomedical NER Across 12 Public Datasets},
+      author={Maziyar Panahi},
+      year={2025},
+      eprint={2508.01630},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2508.01630},
+}
+```
+
+---
+
+[Website](https://openmed.life) | [Documentation](https://agent.openmed.life) | [X/Twitter](https://x.com/openmed_ai) | [LinkedIn](https://www.linkedin.com/company/openmed-ai/)
