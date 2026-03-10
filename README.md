@@ -15,12 +15,6 @@ An intelligent command-line agent for healthcare professionals and developers. A
 curl -fsSL https://agent.openmed.life/install.sh | bash
 ```
 
-Or via pip:
-
-```bash
-pip install openmed-agent[tui]
-```
-
 ---
 
 ## What It Does
@@ -61,20 +55,6 @@ openmed --help     # Full CLI reference
 
 ---
 
-## CLI Reference
-
-```bash
-openmed                    # Launch agent TUI (default)
-openmed agent              # Launch with model/skill options
-openmed config show        # Show current configuration
-openmed config profiles    # List available profiles
-openmed mcp list           # List MCP server configuration
-openmed mcp enable         # Enable MCP servers
-openmed mcp doctor         # Check MCP server connectivity
-openmed update             # Update to latest version
-openmed login              # Authenticate via OAuth
-```
-
 Visit [agent.openmed.life](https://agent.openmed.life) for full documentation.
 
 ---
@@ -85,22 +65,4 @@ Released under the [Apache-2.0 License](LICENSE).
 
 ---
 
-## Citation
-
-If you use OpenMed in your research, please cite:
-
-```bibtex
-@misc{panahi2025openmedneropensourcedomainadapted,
-      title={OpenMed NER: Open-Source, Domain-Adapted State-of-the-Art Transformers for Biomedical NER Across 12 Public Datasets},
-      author={Maziyar Panahi},
-      year={2025},
-      eprint={2508.01630},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2508.01630},
-}
-```
-
----
-
-[Website](https://openmed.life) | [Documentation](https://agent.openmed.life) | [X/Twitter](https://x.com/openmed_ai) | [LinkedIn](https://www.linkedin.com/company/openmed-ai/)
+[Website](https://agent.openmed.life) | [Documentation](https://agent.openmed.life/docs) | [X/Twitter](https://x.com/openmed_ai) | [LinkedIn](https://www.linkedin.com/company/openmed-ai/)
