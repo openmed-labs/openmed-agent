@@ -4,7 +4,6 @@
 
 OpenMed Agent is currently in preview. It gives clinicians, healthcare operators, and technical teams a terminal-native workspace for clinical and operational workflows such as prior authorization review, appeal review, coding audit, consumer health summaries, care coordination, and clinical documentation.
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 ---
@@ -108,12 +107,6 @@ openmed --help     # Full CLI reference
 ---
 
 Visit [agent.openmed.life](https://agent.openmed.life) for full documentation.
-
----
-
-## License
-
-Released under the [Apache-2.0 License](LICENSE).
 
 ---
 
