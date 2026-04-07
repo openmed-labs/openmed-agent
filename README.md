@@ -56,6 +56,7 @@ openmed --help     # Full CLI reference
 - `13` deterministic workflows with draft/finalize
 - `13` built-in skills
 - `4` agent modes: `clinical`, `consumer`, `coordination`, `plan`
+- `104` demo scenarios covering all capability areas
 
 ---
 
@@ -76,11 +77,21 @@ openmed --help     # Full CLI reference
 - **Care coordination** — inbox triage, reviewer-safe patient drafts, discharge handoff, PCP handoff, and follow-up tasks
 - **Consumer health** — imported health-record normalization, timeline/trend analysis, visit-prep questions, narratives, reconciliation, optional education topics, and optional FHIR output
 
+### Agent Runtime
+
+- **Project instructions** — drop an `OPENMED.md` file in your project root to customize agent behavior per workspace
+- **Permission policy** — rule-based `auto`/`acceptall`/`denyall`/`plan` modes with per-tool allow/deny/ask rules from project or user settings
+- **Tool safety classification** — every tool carries `is_read_only`, `is_concurrent_safe`, and `is_destructive` metadata used by the permission system
+- **Oversized result handling** — large tool outputs automatically persisted to disk with compact in-context stubs
+- **Runtime diagnostics** — `/config` command shows effective settings, loaded sources, and active project instructions
+
 ### Agent Experience
 
 - **Interactive TUI** — terminal interface with sessions, themes, model switching, skill switching, and workflow execution
 - **Draft/finalize workflow lifecycle** — reviewable cards, artifacts, provenance, and workflow diffs
 - **Skill system** — built-in clinical skills that bias how the agent approaches domain-specific work
+- **Plan auto-advance** — structured plans with deterministic tool-based progress tracking
+- **Session persistence** — save, restore, fork, and rollback conversation sessions
 - **Optional MCP integration** — connect external medical or institutional systems without changing the native tool surface
 - **Self-update** — built-in binary update path with release checks
 - **No telemetry** — OpenMed does not ship built-in analytics or phone-home tracking
