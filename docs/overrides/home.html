@@ -1,0 +1,241 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="om-docs-home">
+  <section class="om-docs-hero">
+    <span class="om-badge">
+      <span class="om-badge__dot"></span>
+      Documentation · product, workflows, and trust model
+    </span>
+    <h1>OpenMed docs for builders and clinical teams.</h1>
+    <p>
+      Install the CLI once preview access is granted, move from first prompt to deterministic
+      workflows, import consumer records, run care-coordination reviews, and wire hybrid medical
+      service endpoints without losing the terminal-native experience.
+    </p>
+    <div class="om-docs-hero__actions">
+      <a class="om-btn om-btn--primary" href="getting-started/">Start with installation</a>
+      <div class="om-install-pill">
+        <code>curl -fsSL "&lt;install.sh URL shared during preview&gt;" | bash</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="om-home-paths">
+    <div class="om-home-paths__intro">
+      <span class="om-kicker">Choose your path</span>
+      <h2>Use the docs the way you adopt the product.</h2>
+      <p>
+        The builder track focuses on installation, native service wiring, MCP,
+        configuration, profiles, and CLI behavior. The clinical track focuses on workflows,
+        skills, consumer imports, care coordination, privacy, and the actual runtime boundary.
+      </p>
+    </div>
+    <div class="om-home-path-grid">
+      <a class="om-home-path om-card" href="cli/">
+        <div class="om-kicker">For builders</div>
+        <h3>CLI, config, and integrations</h3>
+        <p>Start with setup, profiles, native service wiring, and optional MCP.</p>
+        <ul>
+          <li>Install and authenticate quickly</li>
+          <li>Configure models and profiles</li>
+          <li>Point native services at hosted, private, or on-prem endpoints</li>
+        </ul>
+      </a>
+      <a class="om-home-path om-card" href="skills/">
+        <div class="om-kicker">For clinical teams</div>
+        <h3>Workflows, skills, and trust</h3>
+        <p>Learn how OpenMed handles prior auth, coding, care coordination, consumer summaries, FHIR, and reviewable workflow output.</p>
+        <ul>
+          <li>Start from pre-built clinical skills</li>
+          <li>Choose the right agent mode for the job</li>
+          <li>Add your own local markdown skills</li>
+          <li>Review privacy and approval boundaries</li>
+          <li>Run native medical tools from natural language</li>
+        </ul>
+      </a>
+    </div>
+  </section>
+
+  <section class="om-home-native-services">
+    <div class="om-section-heading">
+      <h2>Hybrid medical services are part of the product story.</h2>
+      <p>
+        OpenMed does not route every clinical task through a generic frontier model. The operator runtime stays
+        inspectable while sensitive or high-volume extraction, de-identification, terminology, and HCC work can
+        run on protected clinical service planes designed for speed and cost efficiency.
+      </p>
+    </div>
+    <div class="om-hybrid-frame om-hybrid-frame--docs om-card">
+      <div class="om-hybrid-flow">
+        <div class="om-hybrid-flow__header">
+          <span class="om-kicker">Native service boundary</span>
+          <h2>Private extraction and coding endpoints, separate from the operator runtime.</h2>
+          <p>
+            The extraction plane covers NER, PII detection, and de-identification. The coding plane covers
+            terminology, LOINC, RxNorm, MedlinePlus, PubMed, HCC mapping, and RAF scoring. General agent reasoning stays on the configured
+            model-provider path; these service planes are for the clinical workloads that should be governed separately.
+          </p>
+        </div>
+        <div class="om-hybrid-stage-grid">
+          <article class="om-hybrid-stage">
+            <div class="om-hybrid-stage__eyebrow">Plane 01</div>
+            <h3>Operator runtime</h3>
+            <p>CLI, TUI, sessions, plans, cards, and workflow artifacts stay on the operator machine.</p>
+            <div class="om-hybrid-stage__meta">
+              <span class="om-hybrid-pill">Operator-controlled</span>
+              <span class="om-hybrid-pill">Visible review</span>
+            </div>
+          </article>
+          <article class="om-hybrid-stage">
+            <div class="om-hybrid-stage__eyebrow">Plane 02</div>
+            <h3>Clinical extraction</h3>
+            <p>NER, PII, and de-identification run on a protected Hugging Face-hosted accelerated service during preview.</p>
+            <div class="om-hybrid-stage__meta">
+              <span class="om-hybrid-pill">Protected extraction</span>
+              <span class="om-hybrid-pill">PII-aware processing</span>
+            </div>
+          </article>
+          <article class="om-hybrid-stage">
+            <div class="om-hybrid-stage__eyebrow">Plane 03</div>
+            <h3>Terminology and HCC</h3>
+            <p>ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, PubMed, HCC, and RAF can run behind a separate service boundary.</p>
+            <div class="om-hybrid-stage__meta">
+              <span class="om-hybrid-pill">Medical terminology</span>
+              <span class="om-hybrid-pill">LOINC / RxNorm / Education</span>
+              <span class="om-hybrid-pill">HCC / RAF</span>
+            </div>
+          </article>
+        </div>
+      </div>
+      <aside class="om-hybrid-aside">
+        <span class="om-kicker">Deployment posture</span>
+        <h3>Portable by design.</h3>
+        <p>
+          During preview, OpenMed operates these endpoints privately on Hugging Face accelerated infrastructure
+          so evaluators do not need to self-host the clinical service layer. The same service planes can later move
+          to customer cloud or on-prem environments without changing the OpenMed workflow surface.
+        </p>
+        <div class="om-hybrid-pill-list">
+          <span class="om-hybrid-pill">Private preview infrastructure</span>
+          <span class="om-hybrid-pill">Protected endpoints</span>
+          <span class="om-hybrid-pill">API key auth</span>
+          <span class="om-hybrid-pill">Accelerated hardware</span>
+          <span class="om-hybrid-pill">Portable deployment</span>
+          <span class="om-hybrid-pill">Local / cloud / on-prem</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section>
+    <div class="om-section-heading">
+      <h2>Shipped feature surface</h2>
+      <p>The current release is broader than extraction and terminology alone.</p>
+    </div>
+    <div class="om-home-guide-grid">
+      <article class="om-home-guide om-card">
+        <div class="om-home-guide__eyebrow">Workflows</div>
+        <h3>Deterministic review loops</h3>
+        <p>Run 13 deterministic workflows with draft preview, finalize, provenance, case-run history, and workflow diffs.</p>
+      </article>
+      <article class="om-home-guide om-card">
+        <div class="om-home-guide__eyebrow">Consumer</div>
+        <h3>Multi-source health imports</h3>
+        <p>Import Apple Health, Health Connect, C-CDA, FHIR exports, and labs files into one consumer-summary path with timeline, trends, reconciliation, optional education, and optional FHIR.</p>
+      </article>
+      <article class="om-home-guide om-card">
+        <div class="om-home-guide__eyebrow">Coordination</div>
+        <h3>Inbox and discharge workflows</h3>
+        <p>Prepare local message-thread and discharge packs, triage inbox messages, build discharge handoffs, and require reviewer metadata before care-coordination finalization.</p>
+      </article>
+      <article class="om-home-guide om-card">
+        <div class="om-home-guide__eyebrow">Clinical Ops</div>
+        <h3>Payer, coding, claims, and FHIR</h3>
+        <p>Prior auth, appeals, coding audit, HCC / RAF, claims explanation, med-rec discrepancy review, clinical documentation, and structured extraction plus FHIR diff all ship today.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="om-section-heading">
+      <h2>Core guides</h2>
+      <p>Everything needed to get operational without digging through raw markdown.</p>
+    </div>
+    <div class="om-home-guide-grid">
+      <a class="om-home-guide om-card" href="getting-started/">
+        <div class="om-home-guide__eyebrow">Overview</div>
+        <h3>Getting Started</h3>
+        <p>Install, authenticate, choose a lane, and run the first clinical, consumer, or care-coordination workflow.</p>
+      </a>
+      <a class="om-home-guide om-card" href="cli/">
+        <div class="om-home-guide__eyebrow">Product</div>
+        <h3>CLI Reference</h3>
+        <p>Commands, options, model selection, updates, and workflow-facing behavior.</p>
+      </a>
+      <a class="om-home-guide om-card" href="tui/">
+        <div class="om-home-guide__eyebrow">Product</div>
+        <h3>Agent TUI</h3>
+        <p>Conversation flow, sessions, shortcuts, plans, cards, and slash commands.</p>
+      </a>
+      <a class="om-home-guide om-card" href="skills/">
+        <div class="om-home-guide__eyebrow">Product</div>
+        <h3>Skills</h3>
+        <p>See how built-in and user-installed skills steer the agent through specialized work.</p>
+      </a>
+      <a class="om-home-guide om-card" href="mcp/">
+        <div class="om-home-guide__eyebrow">Integrations</div>
+        <h3>MCP Connectors</h3>
+        <p>Add your own remote MCP servers and expose them as namespaced OpenMed tools.</p>
+      </a>
+      <a class="om-home-guide om-card" href="native-medical-services/">
+        <div class="om-home-guide__eyebrow">Integrations</div>
+        <h3>Native Medical Services</h3>
+        <p>See the hybrid deployment model for extraction, de-identification, terminology, HCC, and RAF services.</p>
+      </a>
+      <a class="om-home-guide om-card" href="privacy/">
+        <div class="om-home-guide__eyebrow">Trust</div>
+        <h3>Privacy & Security</h3>
+        <p>Runtime boundaries, PHI mode meaning, token storage, and when network access happens.</p>
+      </a>
+    </div>
+    <p class="om-home-guide-grid__more">
+      Also useful:
+      <a href="configuration/">Configuration</a>
+      and
+      <a href="profiles/">Profiles</a>.
+    </p>
+  </section>
+
+  <section class="om-home-callout om-card">
+    <div class="om-home-callout__grid">
+      <div>
+        <span class="om-kicker">Current product boundary</span>
+        <h3>Protected clinical endpoints, inspectable workflows, explicit service boundaries.</h3>
+        <p>
+          OpenMed keeps the TUI, sessions, plans, and generated artifacts inspectable while
+          many medical capabilities call configured model, inference, terminology, or MCP
+          services. The durable review surfaces are visible plans, tool traces, workflow
+          previews, and explicit artifacts, with protected extraction and HCC service planes
+          separated from the general model-provider path.
+        </p>
+        <div class="om-home-callout__meta">
+          <span class="om-home-callout__label">Primary auth command</span>
+          <code>openmed login</code>
+        </div>
+      </div>
+      <div>
+        <ul>
+          <li>62 built-in native tools, 13 deterministic workflows, 13 built-in skills, 4 built-in agent modes</li>
+          <li>Consumer imports for Apple Health, Health Connect, C-CDA, FHIR exports, and labs files</li>
+          <li>Care-coordination workflows with reviewer metadata on finalize</li>
+          <li>Hybrid medical services for NER, PII/de-id, ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, HCC, and RAF</li>
+          <li>Local-only consumer and care-coordination import paths with no outbound send or writeback</li>
+          <li>No telemetry, analytics, or background usage reporting</li>
+          <li>Optional MCP access only when explicitly configured</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
