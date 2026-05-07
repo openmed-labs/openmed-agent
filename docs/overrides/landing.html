@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Terminal-native medical AI for inspectable workflows, hybrid medical services, and configurable protected clinical endpoints.">
+  <meta name="color-scheme" content="light dark">
+  <title>OpenMed Agent</title>
+  <link rel="icon" href="docs/assets/images/favicon.png">
+  <script>
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem("openmed-theme");
+      } catch (error) {
+        theme = null;
+      }
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="preload" href="assets/vendor/fonts/ibm-plex-sans-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/vendor/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/vendor/fonts/space-grotesk-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/styles/fonts.css" as="style">
+  <link rel="stylesheet" href="assets/styles/fonts.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="assets/styles/fonts.css"></noscript>
+  <style>${landing_critical_css}</style>
+  <link rel="preload" href="overrides/shared.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="overrides/shared.css"></noscript>
+  <link rel="preload" href="overrides/landing.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="overrides/landing.css"></noscript>
+  ${demo_assets_html}
+</head>
+<body class="om-site">
+  <header class="om-site-nav-wrap">
+    <nav class="om-site-nav">
+      <a class="om-site-nav__brand" href="/">
+        <span class="om-site-nav__mark">OM</span>
+        <span>OpenMed Agent</span>
+      </a>
+      <div class="om-site-nav__links">
+        <a href="/docs/">Docs</a>
+        <a href="#install">Install</a>
+      </div>
+      <button class="om-theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark theme">
+        <span class="om-theme-toggle__icon om-theme-toggle__icon--sun" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 1.11133V2.00022" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12.8711 3.12891L12.2427 3.75735" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M14.8889 8H14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12.8711 12.8711L12.2427 12.2427" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M8 14.8889V14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M3.12891 12.8711L3.75735 12.2427" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M1.11133 8H2.00022" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M3.12891 3.12891L3.75735 3.75735" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M8.00043 11.7782C10.0868 11.7782 11.7782 10.0868 11.7782 8.00043C11.7782 5.91402 10.0868 4.22266 8.00043 4.22266C5.91402 4.22266 4.22266 5.91402 4.22266 8.00043C4.22266 10.0868 5.91402 11.7782 8.00043 11.7782Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+        <span class="om-theme-toggle__icon om-theme-toggle__icon--moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="om-site-main">
+    <section class="om-site-hero">
+      <div class="om-shell om-site-hero__inner">
+        <span class="om-badge">
+          <span class="om-badge__dot"></span>
+          Inspectable workflows · consumer + coordination · terminal-native
+        </span>
+        <h1 class="om-site-hero__title">Terminal-native AI for clinical workflows that need control.</h1>
+        <p class="om-site-hero__lede">
+          OpenMed gives builders and clinical teams one inspectable agent for prior auth,
+          appeals, coding, claims explanation, care coordination, consumer record imports,
+          clinical documentation, FHIR work, literature search, and structured artifacts across
+          an inspectable operator runtime with protected hybrid medical services.
+        </p>
+        <div class="om-site-hero__actions">
+          <a class="om-btn om-btn--primary" href="/docs/getting-started/">Get Started</a>
+          <a class="om-btn om-btn--secondary" href="/docs/">Browse Docs</a>
+        </div>
+        <div class="om-site-hero__meta">
+          <div class="om-install-pill" id="install">
+            <code>curl -fsSL "&lt;install.sh URL shared during preview&gt;" | bash</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="om-site-terminal">
+      <div class="om-shell">
+        <div class="om-section-heading">
+          <h2>One prompt, one plan, visible execution.</h2>
+          <p>The product story should match the product: structured, terminal-native, and inspectable.</p>
+        </div>
+        ${demo_panel_html}
+      </div>
+    </section>
+
+    <section class="om-site-proof">
+      <div class="om-shell">
+        <div class="om-proof-grid">
+          ${trust_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="om-site-hybrid">
+      <div class="om-shell">
+        <div class="om-section-heading">
+          <h2>Hybrid medical services, not a black-box healthcare prompt.</h2>
+          <p>
+            OpenMed separates the operator runtime, the model-provider path, and the medical service tier. That makes
+            extraction, de-identification, terminology, LOINC, RxNorm, MedlinePlus, and HCC infrastructure visible, configurable, and better suited
+            to sensitive or high-volume clinical processing than a single undifferentiated model path.
+          </p>
+        </div>
+        <div class="om-hybrid-frame om-card">
+          <div class="om-hybrid-flow">
+            <div class="om-hybrid-flow__header">
+              <span class="om-kicker">Deployment model</span>
+              <h2>Keep the workflow inspectable. Put the medical services where you need them.</h2>
+              <p>
+                During preview, OpenMed operates these service planes on private Hugging Face accelerated
+                infrastructure behind protected endpoints so evaluators do not need to self-host clinical services.
+                The same service planes can later move to customer VPC, private cloud, or on-prem infrastructure
+                without changing the CLI or TUI experience.
+              </p>
+            </div>
+            <div class="om-hybrid-stage-grid">
+              <article class="om-hybrid-stage">
+                <div class="om-hybrid-stage__eyebrow">Plane 01</div>
+                <h3>Operator runtime</h3>
+                <p>Sessions, plans, tool traces, provenance, and workflow artifacts stay on the machine running OpenMed.</p>
+                <div class="om-hybrid-stage__meta">
+                  <span class="om-hybrid-pill">Operator-controlled</span>
+                  <span class="om-hybrid-pill">Visible review</span>
+                </div>
+              </article>
+              <article class="om-hybrid-stage">
+                <div class="om-hybrid-stage__eyebrow">Plane 02</div>
+                <h3>Clinical extraction and de-identification</h3>
+                <p>NER, PII detection, and de-identification run through a dedicated native service endpoint.</p>
+                <div class="om-hybrid-stage__meta">
+                  <span class="om-hybrid-pill">Protected extraction</span>
+                  <span class="om-hybrid-pill">PII-aware processing</span>
+                </div>
+              </article>
+              <article class="om-hybrid-stage">
+                <div class="om-hybrid-stage__eyebrow">Plane 03</div>
+                <h3>Terminology, coding, and HCC</h3>
+                <p>PubMed, ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, HCC mapping, and RAF scoring run through a separate protected service plane.</p>
+                <div class="om-hybrid-stage__meta">
+                  <span class="om-hybrid-pill">Medical terminology</span>
+                  <span class="om-hybrid-pill">LOINC / RxNorm / Education</span>
+                  <span class="om-hybrid-pill">HCC / RAF</span>
+                </div>
+              </article>
+            </div>
+          </div>
+          <aside class="om-hybrid-aside">
+            <span class="om-kicker">Why this wins</span>
+            <h3>Healthcare teams can see and choose the actual deployment boundary.</h3>
+            <p>
+              OpenMed does not force every page of clinical data through the same frontier-model path. Protected
+              clinical service planes handle extraction and coding-heavy work, which improves throughput and cost
+              efficiency while preserving a clear service boundary for the workloads that matter most.
+            </p>
+            <div class="om-hybrid-pill-list">
+              <span class="om-hybrid-pill">Private preview infrastructure</span>
+              <span class="om-hybrid-pill">Protected endpoints</span>
+              <span class="om-hybrid-pill">API key auth</span>
+              <span class="om-hybrid-pill">Accelerated hardware</span>
+              <span class="om-hybrid-pill">Portable deployment</span>
+              <span class="om-hybrid-pill">Local / cloud / on-prem</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="om-site-audience">
+      <div class="om-shell">
+        <div class="om-section-heading">
+          <h2>Designed for the people shipping it and the teams using it.</h2>
+          <p>OpenMed serves infrastructure-minded adopters and clinical operators in the same workflow surface.</p>
+        </div>
+        <div class="om-audience-grid">
+          ${audience_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="om-site-capabilities">
+      <div class="om-shell">
+        <div class="om-section-heading">
+          <h2>Capabilities grounded in the current product.</h2>
+          <p>Everything on this page maps to workflows, tools, skills, or documentation already present in the repo.</p>
+        </div>
+        <div class="om-capability-grid">
+          ${capabilities_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="om-site-steps">
+      <div class="om-shell">
+        <div class="om-section-heading">
+          <h2>Install, authenticate, ask.</h2>
+          <p>Three steps from a fresh machine to a live workflow in the terminal across clinical, consumer, or care-coordination lanes.</p>
+        </div>
+        <div class="om-step-grid">
+          ${steps_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="om-site-docs">
+      <div class="om-shell">
+        <div class="om-section-heading">
+          <h2>Docs that behave like product onboarding.</h2>
+          <p>Start at the route you need instead of scanning one long index page.</p>
+        </div>
+        <div class="om-docs-grid">
+          ${docs_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="om-site-cta">
+      <div class="om-shell">
+        <div class="om-site-cta__panel om-card">
+          <h2>Start with the CLI and choose the lane you need.</h2>
+          <p>
+            The product boundary today is straightforward: local sessions and artifacts,
+            four built-in agent modes, configurable model and medical-service endpoints,
+            optional MCP, and workflow outputs you can inspect before you depend on them.
+            Consumer-import and care-coordination lanes remain local review flows with no
+            outbound send or external-system writeback path.
+          </p>
+          <div class="om-site-hero__actions">
+            <a class="om-btn om-btn--primary" href="/docs/getting-started/">Install OpenMed</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="om-site-footer">
+    <div>
+      <a href="/docs/">Docs</a>
+      ·
+      <a href="https://x.com/openmed_ai">X</a>
+      ·
+      <a href="https://www.linkedin.com/company/openmed-ai/">LinkedIn</a>
+    </div>
+    <div>${footer_meta}</div>
+  </footer>
+
+  <script src="overrides/landing.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1788 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+      
+      
+      
+        <link rel="canonical" href="https://agent.openmed.life/docs/tui/">
+      
+      
+        <link rel="prev" href="../cli/">
+      
+      
+        <link rel="next" href="../skills/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Agent TUI - OpenMed Agent</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../assets/styles/fonts.css">
+    
+      <link rel="stylesheet" href="../overrides/shared.css">
+    
+      <link rel="stylesheet" href="../overrides/docs.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent-tui" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="OpenMed Agent" class="md-header__button md-logo" aria-label="OpenMed Agent" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 8c.56 0 1 .43 1 1a1 1 0 0 1-1 1c-.57 0-1-.45-1-1 0-.57.43-1 1-1M2 2v9c0 2.96 2.19 5.5 5.14 5.91.62 3.01 3.28 5.09 6.36 5.09a6.5 6.5 0 0 0 6.5-6.5v-3.69c1.16-.42 2-1.52 2-2.81a3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 1.29.84 2.4 2 2.81v3.6c0 2.5-2 4.5-4.5 4.5-2 0-3.68-1.21-4.28-3.01C12 16.3 14 13.8 14 11V2h-4v3h2v6a4 4 0 0 1-4 4 4 4 0 0 1-4-4V5h2V2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OpenMed Agent
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Agent TUI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../cli/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Product
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../mcp/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Integrations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../privacy/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Trust
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OpenMed Agent" class="md-nav__button md-logo" aria-label="OpenMed Agent" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 8c.56 0 1 .43 1 1a1 1 0 0 1-1 1c-.57 0-1-.45-1-1 0-.57.43-1 1-1M2 2v9c0 2.96 2.19 5.5 5.14 5.91.62 3.01 3.28 5.09 6.36 5.09a6.5 6.5 0 0 0 6.5-6.5v-3.69c1.16-.42 2-1.52 2-2.81a3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 1.29.84 2.4 2 2.81v3.6c0 2.5-2 4.5-4.5 4.5-2 0-3.68-1.21-4.28-3.01C12 16.3 14 13.8 14 11V2h-4v3h2v6a4 4 0 0 1-4 4 4 4 0 0 1-4-4V5h2V2z"/></svg>
+
+    </a>
+    OpenMed Agent
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href=".." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Product
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent TUI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent TUI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-interface-shows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the interface shows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyboard-shortcuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keyboard shortcuts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-picker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model picker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plans-tools-and-workflow-cards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plans, tools, and workflow cards
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review surfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slash-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slash commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-in-the-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills in the TUI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-tools-web-search-and-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native tools, web search, and MCP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-settings-and-project-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime settings and project instructions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Runtime settings and project instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openmedmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OPENMED.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-safety-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool safety classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oversized-tool-result-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oversized tool result persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../native-medical-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Native Medical Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy & Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-interface-shows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the interface shows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyboard-shortcuts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keyboard shortcuts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-picker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model picker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plans-tools-and-workflow-cards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plans, tools, and workflow cards
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review surfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slash-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slash commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-in-the-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills in the TUI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-tools-web-search-and-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native tools, web search, and MCP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-settings-and-project-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime settings and project instructions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Runtime settings and project instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openmedmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OPENMED.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-safety-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool safety classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oversized-tool-result-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oversized tool result persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="agent-tui">Agent TUI<a class="headerlink" href="#agent-tui" title="Permanent link">&para;</a></h1>
+<p>OpenMed's TUI is the main operator interface: a terminal chat surface with visible plans, tool calls, structured workflow cards, local session persistence, and model/skill switching.</p>
+<h2 id="launch">Launch<a class="headerlink" href="#launch" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openmed
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--model<span class="w"> </span>claude-sonnet-4-6<span class="w"> </span>--reasoning-effort<span class="w"> </span>low
+</span></code></pre></div>
+<h2 id="what-the-interface-shows">What the interface shows<a class="headerlink" href="#what-the-interface-shows" title="Permanent link">&para;</a></h2>
+<p>A normal run can include:</p>
+<ul>
+<li>your prompt and attached files</li>
+<li>a visible plan</li>
+<li>inline tool calls and results</li>
+<li>model text and optional reasoning summary</li>
+<li>workflow cards and artifact references</li>
+</ul>
+<p>The key idea is that work stays inspectable in the conversation instead of disappearing behind a background job.</p>
+<h2 id="input-model">Input model<a class="headerlink" href="#input-model" title="Permanent link">&para;</a></h2>
+<p>The input box supports four modes:</p>
+<table>
+<thead>
+<tr>
+<th>Prefix or action</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>plain text</td>
+<td>Normal chat request</td>
+</tr>
+<tr>
+<td><code>@</code></td>
+<td>Attach file paths inline</td>
+</tr>
+<tr>
+<td><code>#</code></td>
+<td>MCP autocomplete</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Skill autocomplete</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Slash-command autocomplete</td>
+</tr>
+</tbody>
+</table>
+<p>Useful behaviors:</p>
+<ul>
+<li><code>Enter</code> sends a message</li>
+<li><code>Shift+Enter</code> or <code>Ctrl+J</code> inserts a newline</li>
+<li><code>Up</code> and <code>Down</code> browse input history</li>
+<li><code>Enter</code> while a run is active steers the current run</li>
+<li><code>Tab</code> while a run is active queues a follow-up to send after the current run finishes</li>
+<li>drag/drop files or folders pastes absolute paths</li>
+</ul>
+<h2 id="keyboard-shortcuts">Keyboard shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl+Q</code></td>
+<td>Quit</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code> or <code>Esc</code></td>
+<td>Interrupt the current run</td>
+</tr>
+<tr>
+<td><code>Ctrl+L</code></td>
+<td>Clear the current conversation view</td>
+</tr>
+<tr>
+<td><code>Ctrl+P</code></td>
+<td>Open the command palette</td>
+</tr>
+<tr>
+<td><code>Ctrl+O</code></td>
+<td>Switch or create a session</td>
+</tr>
+<tr>
+<td><code>Ctrl+M</code></td>
+<td>Open the model picker</td>
+</tr>
+<tr>
+<td><code>Shift+Tab</code></td>
+<td>Cycle agent mode</td>
+</tr>
+<tr>
+<td><code>F1</code></td>
+<td>Open help</td>
+</tr>
+</tbody>
+</table>
+<p><code>Ctrl+K</code> exists in the app bindings, but the tools panel is currently a placeholder rather than a finished operator surface.</p>
+<h2 id="model-picker">Model picker<a class="headerlink" href="#model-picker" title="Permanent link">&para;</a></h2>
+<p>The model picker is a three-step flow:</p>
+<ol>
+<li>Choose a model</li>
+<li>Choose <code>low</code>, <code>medium</code>, <code>high</code>, or <code>extra_high</code> reasoning</li>
+<li>On supported models, choose whether to show reasoning summaries</li>
+</ol>
+<p>You can open it with <code>Ctrl+M</code> or <code>/model</code>.</p>
+<p><code>gpt-5.3-codex-spark</code> skips the reasoning-summary step.
+<code>gpt-5.5</code> applies low reasoning with thinking display off.</p>
+<h2 id="agent-modes">Agent modes<a class="headerlink" href="#agent-modes" title="Permanent link">&para;</a></h2>
+<p>The TUI can switch among four runtime agent profiles:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Current behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clinical</code></td>
+<td>Full registered tool access</td>
+</tr>
+<tr>
+<td><code>consumer</code></td>
+<td>Restricted safety-first allowlist for personal health workflows</td>
+</tr>
+<tr>
+<td><code>coordination</code></td>
+<td>Restricted care-coordination lane for inbox triage, discharge handoff, and reviewer-safe patient drafts</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td>Read-only planning mode with <code>shell</code> and <code>grep</code> only</td>
+</tr>
+</tbody>
+</table>
+<p>You can switch modes with <code>Shift+Tab</code> or <code>/agent</code>.</p>
+<p>The same four modes are available from the CLI with <code>openmed agent --agent ...</code>.</p>
+<h2 id="sessions">Sessions<a class="headerlink" href="#sessions" title="Permanent link">&para;</a></h2>
+<p>Sessions persist locally and keep:</p>
+<ul>
+<li>conversation history</li>
+<li>model and reasoning settings</li>
+<li>active skill</li>
+<li>agent mode</li>
+<li>PHI mode label</li>
+<li>plan history</li>
+<li>tool and card output</li>
+</ul>
+<p>Use <code>Ctrl+O</code> or <code>/session</code> to switch sessions or create a new one.</p>
+<h2 id="plans-tools-and-workflow-cards">Plans, tools, and workflow cards<a class="headerlink" href="#plans-tools-and-workflow-cards" title="Permanent link">&para;</a></h2>
+<p>When the agent decides on a multi-step path, it records a plan in the chat and advances it as tools complete.</p>
+<p>Tool execution shows up inline with start/end states. Deterministic workflows can also emit cards using the current card types:</p>
+<ul>
+<li><code>info</code></li>
+<li><code>evidence</code></li>
+<li><code>suggestion</code></li>
+<li><code>uncertainty</code></li>
+</ul>
+<p>Cards are part of the persisted session history and replay when you reopen the session.</p>
+<h2 id="review-surfaces">Review surfaces<a class="headerlink" href="#review-surfaces" title="Permanent link">&para;</a></h2>
+<p>There are three different review surfaces to understand:</p>
+<ol>
+<li>The inline conversation itself: plans, tool calls, results, and cards stay visible</li>
+<li>Deterministic workflows: draft previews can be inspected before finalization, final writes require <code>approval_token</code>, and care-coordination finalization also requires <code>review_metadata</code></li>
+<li>Approval-gated tools: the approval callback is wired on the OpenAI SDK path for tools such as <code>edit_file</code></li>
+</ol>
+<p>That means you should not assume every tool pauses for a modal approval, especially if you are using the Codex SDK path. The stable, universal review surface is the visible conversation and the workflow draft/finalize pattern.</p>
+<h2 id="slash-commands">Slash commands<a class="headerlink" href="#slash-commands" title="Permanent link">&para;</a></h2>
+<p>Core slash commands currently handled by the app:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/clear</code></td>
+<td>Clear the current conversation view</td>
+</tr>
+<tr>
+<td><code>/help</code></td>
+<td>Open help</td>
+</tr>
+<tr>
+<td><code>/model</code></td>
+<td>Open the model picker</td>
+</tr>
+<tr>
+<td><code>/skill</code></td>
+<td>Open the skill switcher</td>
+</tr>
+<tr>
+<td><code>/agent</code></td>
+<td>Open the agent-mode switcher</td>
+</tr>
+<tr>
+<td><code>/session</code></td>
+<td>Open the session switcher</td>
+</tr>
+<tr>
+<td><code>/theme</code></td>
+<td>Open the theme picker</td>
+</tr>
+<tr>
+<td><code>/phi</code></td>
+<td>Cycle PHI mode label</td>
+</tr>
+<tr>
+<td><code>/compact</code></td>
+<td>Compact older context</td>
+</tr>
+<tr>
+<td><code>/compact thinking</code></td>
+<td>Remove thinking blocks only</td>
+</tr>
+<tr>
+<td><code>/fork</code></td>
+<td>Fork the current session</td>
+</tr>
+<tr>
+<td><code>/rollback N</code></td>
+<td>Undo the last <code>N</code> user turns</td>
+</tr>
+<tr>
+<td><code>/undo</code></td>
+<td>Undo the last user turn</td>
+</tr>
+<tr>
+<td><code>/mcp</code></td>
+<td>Show MCP server status</td>
+</tr>
+<tr>
+<td><code>/workflows</code></td>
+<td>List deterministic workflows and required inputs</td>
+</tr>
+<tr>
+<td><code>/config</code></td>
+<td>Show effective runtime configuration — permission mode, allow/deny/ask rules, project root, loaded settings sources, and persistence threshold</td>
+</tr>
+<tr>
+<td><code>/reset</code></td>
+<td>Reset agent state</td>
+</tr>
+</tbody>
+</table>
+<p>The command palette and autocomplete currently show a few entries that are not fully wired yet, such as <code>/export</code>, <code>/audit</code>, and <code>/history</code>. Treat the table above as the stable slash-command surface.</p>
+<h2 id="skills-in-the-tui">Skills in the TUI<a class="headerlink" href="#skills-in-the-tui" title="Permanent link">&para;</a></h2>
+<p>Type <code>$</code> or use <code>/skill</code> to browse built-in and user-provided skills.</p>
+<p>The current built-in library has 13 skills:</p>
+<ul>
+<li><code>analyzing-clinical-text</code></li>
+<li><code>analyzing-health-data</code></li>
+<li><code>auditing-medical-codes</code></li>
+<li><code>care-coordination</code></li>
+<li><code>developing-fhir</code></li>
+<li><code>documenting-clinical-visits</code></li>
+<li><code>drafting-trial-protocols</code></li>
+<li><code>explaining-eob-claims</code></li>
+<li><code>processing-pii</code></li>
+<li><code>researching-literature</code></li>
+<li><code>reviewing-appeals</code></li>
+<li><code>reviewing-prior-auth</code></li>
+<li><code>running-clinical-workflows</code></li>
+</ul>
+<p>See <a href="../skills/">Skills</a> for how they work and where custom skills live.</p>
+<h2 id="native-tools-web-search-and-mcp">Native tools, web search, and MCP<a class="headerlink" href="#native-tools-web-search-and-mcp" title="Permanent link">&para;</a></h2>
+<p>The default registry currently includes 62 native tools. On supported Responses API models, OpenMed can also expose built-in <code>web_search</code>, which is separate from the 62 registered native tools.</p>
+<p>Those native tools cover:</p>
+<ul>
+<li>file and artifact operations</li>
+<li>extraction and PII tooling</li>
+<li>consumer health imports and analysis</li>
+<li>PubMed</li>
+<li>ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, HCC, RAF, and crosswalks</li>
+<li>workflow orchestration</li>
+<li>planning and skill loading</li>
+</ul>
+<p>Many of the medical tools call configured remote services such as <code>OPENMED_INFERENCE_URL</code> and <code>OPENMED_MED_CODES_API_URL</code>. They are still native OpenMed tools from the model's perspective, not MCP tools.</p>
+<p>MCP remains optional. Use <code>#</code> or <code>/mcp</code> when you want to bring in external systems that are not already part of the native tool surface.</p>
+<p>The newer consumer-import and care-coordination adapter paths remain local-only review flows. OpenMed does not auto-send patient messages or write back into external systems from those lanes.</p>
+<h2 id="runtime-settings-and-project-instructions">Runtime settings and project instructions<a class="headerlink" href="#runtime-settings-and-project-instructions" title="Permanent link">&para;</a></h2>
+<h3 id="openmedmd">OPENMED.md<a class="headerlink" href="#openmedmd" title="Permanent link">&para;</a></h3>
+<p>Drop an <code>OPENMED.md</code> file in your project root (or git root) to inject per-project instructions into the system prompt. The file is loaded at SDK initialization and appended as a <code>## Project Instructions (OPENMED.md)</code> section. This is useful for customizing agent behavior per workspace without modifying the built-in prompts.</p>
+<h3 id="permission-policy">Permission policy<a class="headerlink" href="#permission-policy" title="Permanent link">&para;</a></h3>
+<p>OpenMed supports rule-based permission modes that control how tools are gated before execution:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code></td>
+<td>Tools with <code>requires_approval</code> or <code>is_destructive</code> prompt for approval; others run freely</td>
+</tr>
+<tr>
+<td><code>acceptall</code></td>
+<td>All tools run without approval, except destructive tools which still prompt</td>
+</tr>
+<tr>
+<td><code>denyall</code></td>
+<td>All tools are blocked outright</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td>Only read-only, concurrent-safe tools are allowed; everything else is blocked</td>
+</tr>
+</tbody>
+</table>
+<p>Set the mode in <code>.openmed/settings.json</code> at the project root or in <code>~/.openmed/settings.json</code> for user-level defaults:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;permission_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;allow_tools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;read_file&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;grep&quot;</span><span class="p">],</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;deny_tools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;edit_*&quot;</span><span class="p">],</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;ask_tools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;write_file&quot;</span><span class="p">]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Settings cascade: CLI arguments take highest priority, then project settings, then user settings.</p>
+<p>Use <code>/config</code> in the TUI to see the effective runtime configuration at any time.</p>
+<h3 id="tool-safety-classification">Tool safety classification<a class="headerlink" href="#tool-safety-classification" title="Permanent link">&para;</a></h3>
+<p>Every registered tool carries safety metadata:</p>
+<ul>
+<li><code>is_read_only</code> — tool does not modify state</li>
+<li><code>is_concurrent_safe</code> — tool can run in parallel with others</li>
+<li><code>is_destructive</code> — tool may cause data loss (file writes, deletes)</li>
+</ul>
+<p>These flags are used by the permission policy and will be used by future concurrent execution support.</p>
+<h3 id="oversized-tool-result-persistence">Oversized tool result persistence<a class="headerlink" href="#oversized-tool-result-persistence" title="Permanent link">&para;</a></h3>
+<p>When a tool produces output exceeding the configured threshold (default 50,000 characters), the result is automatically written to disk. The model receives a compact stub with the file path, size, content type, and a 500-character preview, plus a hint to use <code>read_file</code> for the full content. Configure the threshold in project or user settings:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;tool_result_persist_threshold_chars&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CLI Reference">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                CLI Reference
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../skills/" class="md-footer__link md-footer__link--next" aria-label="Next: Skills">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Skills
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tabs.link", "navigation.instant", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../overrides/theme-sync.js"></script>
+      
+    
+  </body>
+</html>
