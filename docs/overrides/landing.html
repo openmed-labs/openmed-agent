@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Terminal-native medical AI for inspectable workflows, hybrid medical services, and protected clinical service planes.">
+  <link rel="canonical" href="https://${cname_domain}/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenMed Agent">
+  <meta property="og:title" content="OpenMed Agent — terminal-native clinical workflow AI">
+  <meta property="og:description" content="Terminal-native medical AI for visible plans, inspectable workflow execution, and auditable clinical artifacts.">
+  <meta property="og:url" content="https://${cname_domain}/">
+  <meta property="og:image" content="https://${cname_domain}/og.png?v=${version_tag}">
+  <meta property="og:image:secure_url" content="https://${cname_domain}/og.png?v=${version_tag}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="${cname_domain}">
+  <meta name="twitter:url" content="https://${cname_domain}/">
+  <meta name="twitter:title" content="OpenMed Agent — terminal-native clinical workflow AI">
+  <meta name="twitter:description" content="Visible plans, inspectable clinical workflow execution, and auditable artifacts in one TUI.">
+  <meta name="twitter:image" content="https://${cname_domain}/og.png?v=${version_tag}">
+  <meta name="twitter:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+  <meta name="color-scheme" content="light dark">
+  <title>OpenMed Agent</title>
+  <link rel="icon" href="docs/assets/images/favicon.png">
+  <script>
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem("openmed-theme");
+      } catch (error) {
+        theme = null;
+      }
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="preload" href="assets/vendor/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/vendor/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/vendor/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/styles/fonts.css" as="style">
+  <link rel="stylesheet" href="assets/styles/fonts.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="assets/styles/fonts.css"></noscript>
+  <style>${landing_critical_css}</style>
+  <link rel="preload" href="overrides/shared.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="overrides/shared.css"></noscript>
+  <link rel="preload" href="overrides/landing.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="overrides/landing.css"></noscript>
+  ${demo_assets_html}
+</head>
+<body class="om-site" data-density="comfortable">
+
+  <!-- =================== NAV =================== -->
+  <header class="site-nav">
+    <div class="shell site-nav__inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-word">open<span>med</span></span>
+        <span class="brand-tag">v${version_tag}</span>
+      </a>
+      <nav class="site-nav__links" aria-label="Primary">
+        <a href="/docs/">Docs</a>
+        <a href="#runtime">Runtime</a>
+        <a href="#services">Services</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#install">Install</a>
+      </nav>
+      <div class="site-nav__actions">
+        <button class="om-theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark theme">
+          <span class="om-theme-toggle__icon om-theme-toggle__icon--sun" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 1.11133V2.00022" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M12.8711 3.12891L12.2427 3.75735" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M14.8889 8H14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M12.8711 12.8711L12.2427 12.2427" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M8 14.8889V14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M3.12891 12.8711L3.75735 12.2427" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M1.11133 8H2.00022" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M3.12891 3.12891L3.75735 3.75735" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M8.00043 11.7782C10.0868 11.7782 11.7782 10.0868 11.7782 8.00043C11.7782 5.91402 10.0868 4.22266 8.00043 4.22266C5.91402 4.22266 4.22266 5.91402 4.22266 8.00043C4.22266 10.0868 5.91402 11.7782 8.00043 11.7782Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <span class="om-theme-toggle__icon om-theme-toggle__icon--moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+        </button>
+        <a class="om-btn om-btn--secondary site-nav__cta-secondary" href="/docs/">Docs</a>
+        <a class="om-btn om-btn--primary" href="${waitlist_url}" target="_blank" rel="noopener noreferrer">Request Preview</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="om-site-main">
+
+    <!-- =================== HERO =================== -->
+    <section class="hero">
+      <div class="shell">
+        <div class="hero-body">
+          <div class="hero-meta">
+            <span class="hero-meta__pip" aria-hidden="true"></span>
+            <span>OpenMed Agent</span>
+            <span class="hero-meta__dot" aria-hidden="true">·</span>
+            <span>Preview ${version_tag}</span>
+            <span class="hero-meta__dot" aria-hidden="true">·</span>
+            <span>Apache 2.0</span>
+          </div>
+
+          <h1 class="hero-title">
+            Terminal-native AI for <span class="italic">clinical workflows</span> that need <span class="underline">control</span>.
+          </h1>
+
+          <p class="hero-lead">
+            One <em>inspectable agent</em> for prior auth, appeals, coding, claims explanation, care
+            coordination, consumer record imports, clinical documentation, FHIR work, literature search,
+            and structured artifacts — across an inspectable operator runtime with protected hybrid
+            medical services.
+          </p>
+
+          <div class="hero-actions">
+            <a class="om-btn om-btn--primary om-btn--lg" href="/docs/getting-started/">
+              Get Started
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="om-btn om-btn--secondary om-btn--lg" href="${waitlist_url}" target="_blank" rel="noopener noreferrer">Request Preview</a>
+          </div>
+
+          <div class="om-install-pill hero-install" id="install-hero">
+            <code>curl -fsSL "&lt;install.sh URL shared during preview&gt;" | bash</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== TERMINAL DEMO =================== -->
+    <section class="terminal-section">
+      <div class="shell">
+        <div class="terminal-section__head">
+          <span class="eyebrow">Live execution</span>
+          <h2 class="terminal-section__title">One prompt, one plan, <em>visible execution.</em></h2>
+        </div>
+        ${demo_panel_html}
+      </div>
+    </section>
+
+    <!-- =================== §I RUNTIME =================== -->
+    <section id="runtime" class="section section--runtime">
+      <div class="shell">
+        <header class="section__head">
+          <div class="section__num">§I</div>
+          <div class="section__head-body">
+            <div class="section__eyebrow">Runtime Boundary</div>
+            <h2 class="section__title">
+              Protected clinical services, <em>inspectable</em> runtime, explicit review before action.
+            </h2>
+            <p class="section__lead">
+              OpenMed keeps the operator review loop visible, separates medical-service endpoints from the
+              model-provider path, and routes sensitive or high-volume clinical processing to dedicated
+              services when those paths are invoked.
+            </p>
+          </div>
+        </header>
+
+        <div class="section__body">
+          <div class="runtime-grid">
+            ${trust_html}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== §II HYBRID SERVICES =================== -->
+    <section id="services" class="section section--inset">
+      <div class="shell">
+        <header class="section__head">
+          <div class="section__num">§II</div>
+          <div class="section__head-body">
+            <div class="section__eyebrow">Deployment Model</div>
+            <h2 class="section__title">
+              Hybrid medical services, <em>not</em> a black-box healthcare prompt.
+            </h2>
+            <p class="section__lead">
+              OpenMed separates the operator runtime, the model-provider path, and the medical service tier.
+              Extraction, de-identification, terminology, LOINC, RxNorm, MedlinePlus, and HCC infrastructure
+              stay visible, configurable, and better suited to sensitive or high-volume clinical processing
+              than a single undifferentiated model path.
+            </p>
+          </div>
+        </header>
+
+        <div class="section__body">
+          <div class="planes">
+            <article class="plane">
+              <div class="plane__num">Plane 01 · Local</div>
+              <h3 class="plane__title">Operator <em>runtime</em></h3>
+              <p class="plane__desc">Sessions, plans, tool traces, provenance, and workflow artifacts stay on the machine running OpenMed.</p>
+              <div class="plane__tags">
+                <span class="plane-tag">operator-controlled</span>
+                <span class="plane-tag">visible-review</span>
+              </div>
+              <div class="plane__arrow" aria-hidden="true">
+                <svg width="32" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="0" y1="10" x2="28" y2="10"/><polyline points="22 4 28 10 22 16"/></svg>
+              </div>
+            </article>
+            <article class="plane plane--boundary">
+              <div class="plane__num">Plane 02 · Protected</div>
+              <h3 class="plane__title">Clinical extraction &amp; <em>de-identification</em></h3>
+              <p class="plane__desc">NER, PII detection, and de-identification run through a dedicated native service endpoint.</p>
+              <div class="plane__tags">
+                <span class="plane-tag">protected-extraction</span>
+                <span class="plane-tag">PII-aware</span>
+              </div>
+              <div class="plane__arrow" aria-hidden="true">
+                <svg width="32" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="0" y1="10" x2="28" y2="10"/><polyline points="22 4 28 10 22 16"/></svg>
+              </div>
+            </article>
+            <article class="plane plane--boundary">
+              <div class="plane__num">Plane 03 · Protected</div>
+              <h3 class="plane__title">Terminology, coding &amp; <em>HCC</em></h3>
+              <p class="plane__desc">PubMed, ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, HCC mapping, and RAF scoring run through a separate protected service plane.</p>
+              <div class="plane__tags">
+                <span class="plane-tag">terminology</span>
+                <span class="plane-tag">LOINC / RxNorm</span>
+                <span class="plane-tag">HCC / RAF</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== §III AUDIENCE =================== -->
+    <section class="section">
+      <div class="shell">
+        <header class="section__head">
+          <div class="section__num">§III</div>
+          <div class="section__head-body">
+            <div class="section__eyebrow">For Whom</div>
+            <h2 class="section__title">
+              Designed for the people <em>shipping it</em> and the teams <em>using it</em>.
+            </h2>
+            <p class="section__lead">
+              OpenMed serves infrastructure-minded adopters and clinical operators in the same workflow surface.
+            </p>
+          </div>
+        </header>
+
+        <div class="section__body">
+          <div class="audience">
+            ${audience_html}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== §IV CAPABILITIES =================== -->
+    <section id="capabilities" class="section section--inset">
+      <div class="shell">
+        <header class="section__head">
+          <div class="section__num">§IV</div>
+          <div class="section__head-body">
+            <div class="section__eyebrow">Capabilities</div>
+            <h2 class="section__title">
+              Capabilities grounded in the <em>current product</em>.
+            </h2>
+            <p class="section__lead">
+              Everything on this page maps to workflows, tools, skills, or documentation already present in the
+              repo. No vapor; if it's listed, it ships.
+            </p>
+          </div>
+        </header>
+
+        <div class="section__body">
+          <div class="cap-table">
+            ${capabilities_html}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== §V INSTALL =================== -->
+    <section id="install" class="section">
+      <div class="shell">
+        <header class="section__head">
+          <div class="section__num">§V</div>
+          <div class="section__head-body">
+            <div class="section__eyebrow">Quickstart</div>
+            <h2 class="section__title">
+              Install, <em>authenticate</em>, ask.
+            </h2>
+            <p class="section__lead">
+              Three steps from a fresh machine to a live workflow in the terminal across clinical, consumer, or
+              care-coordination lanes.
+            </p>
+          </div>
+        </header>
+
+        <div class="section__body">
+          <div class="install-steps">
+            ${steps_html}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== §VI DOCS =================== -->
+    <section class="section section--inset">
+      <div class="shell">
+        <header class="section__head">
+          <div class="section__num">§VI</div>
+          <div class="section__head-body">
+            <div class="section__eyebrow">Documentation</div>
+            <h2 class="section__title">
+              Docs that behave like <em>product onboarding</em>.
+            </h2>
+            <p class="section__lead">
+              Start at the route you need instead of scanning one long index page.
+            </p>
+          </div>
+        </header>
+
+        <div class="section__body">
+          <div class="docs-grid">
+            ${docs_html}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== §VII CTA =================== -->
+    <section class="cta">
+      <div class="shell">
+        <div class="cta__body">
+          <h2 class="cta__title">
+            Start with the <em>CLI</em> and choose the lane you need.
+          </h2>
+          <p class="cta__lead">
+            Local sessions and artifacts, four built-in agent modes, configurable model and medical-service
+            endpoints, optional MCP, and workflow outputs you can inspect before you depend on them.
+            Consumer-import and care-coordination lanes remain local review flows with no outbound send or
+            external-system writeback path.
+          </p>
+          <div class="cta__actions">
+            <a class="om-btn om-btn--primary om-btn--lg" href="${waitlist_url}" target="_blank" rel="noopener noreferrer">
+              Request Preview Access
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="om-btn om-btn--ghost om-btn--lg" href="/docs/">Read the Docs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer class="site-footer">
+    <div class="shell site-footer__inner">
+      <div class="site-footer__meta">${footer_meta}</div>
+      <div class="site-footer__links">
+        <a href="/docs/">Docs</a>
+        <a href="${waitlist_url}" target="_blank" rel="noopener noreferrer">Preview</a>
+        <a href="https://x.com/openmed_ai">X</a>
+        <a href="https://www.linkedin.com/company/openmed-ai/">LinkedIn</a>
+        <a href="https://github.com/openmed-labs/openmed-agents">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="overrides/landing.js" defer></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"e87540559ece4a6abd994e004098b26a"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

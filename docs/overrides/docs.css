@@ -1,0 +1,1309 @@
+/* ============================================================
+   OpenMed docs — MkDocs Material overrides (editorial direction)
+   Pipes the new design system through Material's chrome and
+   typography slots, and provides the .om-home-* widgets used
+   inside docs/overrides/home.html.
+   ============================================================ */
+
+/* ============================================================
+   1. Document root
+   ============================================================ */
+
+.md-grid {
+  max-width: var(--om-doc-shell);
+}
+
+html,
+body,
+.md-main,
+.md-container {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   2. Header chrome
+   ============================================================ */
+
+/* Material's "primary: black" injects [data-md-color-primary="black"] rules
+   that override --md-primary-fg-color back to pure black. Re-override here
+   with the same-or-higher specificity so the header reads as paper, not ink. */
+[data-md-color-primary="black"],
+[data-md-color-primary="black"] .md-header,
+[data-md-color-primary="black"] .md-tabs {
+  --md-primary-fg-color: var(--bg);
+  --md-primary-fg-color--light: var(--bg-panel);
+  --md-primary-fg-color--dark: var(--ink-2);
+  --md-primary-bg-color: var(--fg);
+}
+
+[data-md-color-primary="black"] .md-header,
+[data-md-color-primary="black"] .md-tabs,
+.md-header,
+.md-tabs {
+  background-color: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: none;
+  color: var(--fg);
+}
+
+.md-header {
+  border-bottom: 1px solid var(--border);
+}
+
+.md-header__inner,
+.md-tabs__list {
+  max-width: var(--om-doc-shell);
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+}
+
+.md-header__inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.md-header__title,
+.md-header__button,
+.md-header__topic,
+.md-header__ellipsis,
+.md-logo,
+.md-search__icon,
+.md-tabs__link,
+.md-nav__title,
+.md-nav__link,
+.md-search__input,
+.md-source__repository {
+  color: var(--fg);
+}
+
+.md-header__button,
+.md-header__topic,
+.md-header__ellipsis,
+.md-logo,
+.md-search__icon,
+.md-search__icon svg,
+.md-header__title,
+.md-header__source {
+  color: var(--fg);
+  fill: currentColor;
+}
+
+.md-header__button:hover,
+.md-logo:hover {
+  color: var(--accent);
+}
+
+.md-header__topic:first-child,
+.md-header__topic:last-child {
+  color: var(--fg);
+}
+
+.md-header__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-size: 1.05rem;
+}
+
+.md-header__title .md-ellipsis {
+  font-family: inherit;
+}
+
+/* Hide Material's native palette toggles entirely.
+   theme-sync.js injects our own .om-theme-toggle--docs button into the
+   header which controls the theme; Material's pair of icon-labels would
+   only duplicate the control (and a known Material quirk shows both
+   labels when no palette preference is stored yet). */
+.md-header__option[data-md-component="palette"],
+.md-header [data-md-component="palette"] {
+  display: none !important;
+}
+
+/* Our injected docs theme toggle (matches the landing nav style). */
+.om-theme-toggle--docs {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: border-color var(--dur-micro) var(--ease-out),
+              color var(--dur-micro) var(--ease-out),
+              background var(--dur-micro) var(--ease-out);
+}
+.om-theme-toggle--docs:hover {
+  border-color: var(--fg);
+  background: var(--bg-panel);
+}
+.om-theme-toggle--docs .om-theme-toggle__icon {
+  width: 16px;
+  height: 16px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.om-theme-toggle--docs .om-theme-toggle__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+}
+[data-md-color-scheme="default"] .om-theme-toggle--docs .om-theme-toggle__icon--sun,
+html[data-theme="light"] .om-theme-toggle--docs .om-theme-toggle__icon--sun {
+  display: inline-flex;
+}
+[data-md-color-scheme="slate"] .om-theme-toggle--docs .om-theme-toggle__icon--moon,
+html[data-theme="dark"] .om-theme-toggle--docs .om-theme-toggle__icon--moon {
+  display: inline-flex;
+}
+
+/* ============================================================
+   3. Nav tabs
+   ============================================================ */
+
+.md-tabs {
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 64px;
+}
+
+.md-tabs__list {
+  height: 48px;
+  gap: 1.4rem;
+}
+
+.md-tabs__item {
+  height: 100%;
+}
+
+.md-tabs__link {
+  opacity: 1;
+  color: var(--fg-muted);
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin: 0;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+
+.md-tabs__link:hover,
+.md-tabs__link--active {
+  color: var(--fg);
+  border-bottom-color: var(--accent);
+}
+
+.md-tabs__item--active .md-tabs__link {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ============================================================
+   4. Search input
+   ============================================================ */
+
+.md-search__form {
+  background: transparent;
+  box-shadow: none;
+}
+
+.md-search {
+  align-items: center;
+}
+
+.md-search__form,
+.md-search__input,
+.md-search__output {
+  background: var(--bg-panel);
+  color: var(--fg);
+}
+
+.md-search__input {
+  background: var(--bg-panel);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  height: 38px;
+  padding-left: 2.4rem;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  transition: border-color var(--dur-micro) var(--ease-out);
+}
+
+[dir="ltr"] .md-search__input {
+  padding-left: 2.4rem;
+}
+
+.md-search__input:focus {
+  border-color: var(--accent);
+}
+
+.md-search__input::placeholder {
+  color: var(--fg-muted);
+}
+
+.md-search__icon svg {
+  fill: currentColor;
+  color: var(--fg-muted);
+}
+
+.md-search-result__article {
+  background: var(--bg-elevated);
+  color: var(--fg);
+}
+
+.md-search-result mark {
+  color: var(--accent);
+  background: transparent;
+}
+
+/* ============================================================
+   5. Main layout & sidebar nav
+   ============================================================ */
+
+.md-main__inner {
+  padding-top: 1.4rem;
+  margin-top: 0;
+}
+
+.md-content {
+  max-width: var(--om-doc-content);
+}
+
+.md-content__inner {
+  padding: 0 1.5rem 4rem;
+  margin: 0;
+}
+
+.md-sidebar {
+  padding-top: 1rem;
+}
+
+.md-sidebar--primary,
+.md-sidebar--secondary {
+  background: transparent;
+}
+
+.md-sidebar__scrollwrap {
+  scrollbar-width: thin;
+}
+
+.md-nav {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+}
+
+.md-nav__title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  font-weight: 500;
+  padding: 0.6rem 0.6rem 0.6rem 0;
+}
+
+.md-nav__list {
+  padding: 0;
+}
+
+.md-nav__item {
+  padding: 0;
+}
+
+.md-nav__link {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--fg-muted);
+  padding: 0.34rem 0.6rem;
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out);
+  line-height: 1.5;
+}
+
+.md-nav__link:hover {
+  color: var(--fg);
+  border-left-color: var(--border-strong);
+}
+
+.md-nav__link--active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 500;
+}
+
+.md-nav__link--active code {
+  color: var(--accent);
+}
+
+.md-nav--secondary .md-nav__title {
+  padding-left: 0;
+}
+
+/* Right rail (table of contents) */
+.md-sidebar--secondary {
+  border-left: 1px solid var(--border);
+  padding-left: 1.5rem;
+}
+
+.md-sidebar--secondary .md-nav__title {
+  padding-left: 0;
+}
+
+/* ============================================================
+   6. Typography (the editorial heart of the docs)
+   ============================================================ */
+
+.md-typeset {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--fg);
+}
+
+.md-typeset h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  margin: 0 0 1rem;
+  color: var(--fg);
+}
+
+.md-typeset h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.md-typeset h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 36px);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  color: var(--fg);
+  margin: 3rem 0 1rem;
+  scroll-margin-top: 8rem;
+}
+
+.md-typeset h2 em { font-style: italic; }
+
+.md-typeset h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+  margin: 2rem 0 0.7rem;
+  color: var(--fg);
+  scroll-margin-top: 8rem;
+}
+
+.md-typeset h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 1.6rem 0 0.6rem;
+  color: var(--fg);
+  letter-spacing: -0.005em;
+}
+
+.md-typeset p,
+.md-typeset li,
+.md-typeset td {
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+}
+
+.md-typeset p {
+  margin: 0 0 1rem;
+  max-width: 72ch;
+}
+
+.md-typeset strong,
+.md-typeset th,
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--fg);
+}
+
+.md-typeset a {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+.md-typeset a:hover {
+  color: var(--accent-hover);
+  text-decoration-color: var(--accent);
+}
+
+.md-typeset hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.md-typeset blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.3rem 0 0.3rem 1.1rem;
+  margin: 1.4rem 0;
+  color: var(--fg-muted);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+/* Lists */
+.md-typeset ul,
+.md-typeset ol {
+  margin: 0 0 1.1rem 1.1rem;
+  padding: 0;
+}
+
+.md-typeset ul li,
+.md-typeset ol li {
+  margin: 0.35rem 0;
+  max-width: 72ch;
+}
+
+.md-typeset ul li::marker {
+  color: var(--accent);
+}
+
+/* ============================================================
+   7. Inline code and code blocks
+   ============================================================ */
+
+.md-typeset code,
+.md-typeset kbd {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  color: var(--fg);
+}
+
+.md-typeset kbd {
+  box-shadow: var(--shadow-1);
+  font-weight: 500;
+}
+
+.md-typeset h2 code,
+.md-typeset h3 code,
+.md-typeset h4 code {
+  font-size: 0.78em;
+  background: var(--bg-panel);
+}
+
+/* Block-level code */
+.md-typeset pre {
+  margin: 1.3rem 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-inverse-2);
+  background: var(--surface-inverse);
+  overflow: hidden;
+}
+
+.md-typeset pre > code {
+  background: transparent;
+  border: 0;
+  padding: 1rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--fg-on-inverse);
+  overflow-x: auto;
+  display: block;
+}
+
+.md-typeset .highlight {
+  position: relative;
+  background: transparent;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* The .md-clipboard is a sibling of .highlight in Material's output; lift
+   it onto the highlight via the wrapping <pre> when needed. */
+.md-typeset .highlight + .md-clipboard,
+.md-typeset .highlight .md-clipboard,
+.md-typeset pre > .md-clipboard {
+  position: absolute;
+}
+
+.md-typeset .highlight pre {
+  margin: 0;
+}
+
+.md-typeset .highlight > pre > code,
+.md-typeset .highlight code {
+  background: transparent;
+  color: var(--fg-on-inverse);
+}
+
+/* Code-block copy button. Material 9 wraps the copy button in a
+   <nav class="md-code__nav"> absolutely positioned at top:4px right:4px
+   of the <pre>. The nav inherits Material's default paper bg by default,
+   which paints a light square over the dark code surface. Strip that
+   wrapper background and restyle the inner button as a subtle outlined
+   chip that sits on the dark terminal. */
+.md-code__nav,
+:hover > .md-code__nav {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.md-code__button,
+.md-clipboard {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--border-on-inverse);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--fg-on-inverse-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color var(--dur-micro) var(--ease-out),
+              border-color var(--dur-micro) var(--ease-out),
+              background var(--dur-micro) var(--ease-out);
+  opacity: 1;
+}
+
+.md-code__button:hover,
+.md-code__button:focus-visible,
+.md-clipboard:hover,
+.md-clipboard:focus-visible {
+  color: var(--accent-on-inverse);
+  border-color: var(--accent-on-inverse);
+  background: rgba(111, 181, 181, 0.08);
+}
+
+/* "Copied to clipboard" toast (.md-dialog). Material sets its bg to
+   var(--md-default-fg-color) (the inverted body color) but the inner
+   .md-dialog__inner.md-typeset re-inherits color from our typeset rule
+   (which forces --fg). Result: text and bg both resolve to --fg in dark
+   mode and the toast reads blank. Pin both to the inverted side. */
+.md-dialog,
+.md-dialog--active {
+  background-color: var(--fg) !important;
+  color: var(--bg) !important;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+}
+
+.md-dialog .md-dialog__inner,
+.md-dialog .md-dialog__inner.md-typeset {
+  color: var(--bg) !important;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 10px 16px;
+}
+
+.md-code__button > svg,
+.md-code__button::after,
+.md-clipboard::after {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  background-color: currentColor;
+}
+
+/* Pygments token colors are bound to --md-code-hl-* in shared.css */
+
+/* Filename header on code blocks */
+.md-typeset .highlighttable {
+  background: var(--surface-inverse);
+  border: 1px solid var(--surface-inverse-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 1.3rem 0;
+}
+
+.md-typeset .highlighttable .filename {
+  background: var(--surface-inverse-2);
+  color: var(--fg-on-inverse-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--border-on-inverse);
+}
+
+.md-typeset .highlighttable .linenos {
+  background: var(--surface-inverse-2);
+  color: var(--fg-on-inverse-muted);
+}
+
+/* ============================================================
+   8. Admonitions (callouts)
+   ============================================================ */
+
+.md-typeset .admonition,
+.md-typeset details {
+  border: 0;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-panel);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: 1.3rem 0;
+  box-shadow: none;
+  font-size: 0.92rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+.md-typeset .admonition > .admonition-title,
+.md-typeset details > summary {
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 0;
+  padding: 0.85rem 1.2rem 0.4rem;
+  margin: 0;
+}
+
+.md-typeset .admonition > .admonition-title::before,
+.md-typeset details > summary::before {
+  background: var(--accent);
+  height: 14px;
+  width: 14px;
+  top: 0.85rem;
+}
+
+.md-typeset .admonition > :not(.admonition-title),
+.md-typeset details > :not(summary) {
+  padding: 0 1.2rem 1rem;
+  color: var(--fg-muted);
+}
+
+.md-typeset .admonition.warning,
+.md-typeset details.warning,
+.md-typeset .admonition.danger,
+.md-typeset details.danger {
+  border-left-color: var(--signal);
+}
+
+.md-typeset .admonition.warning > .admonition-title,
+.md-typeset .admonition.danger > .admonition-title,
+.md-typeset details.warning > summary,
+.md-typeset details.danger > summary {
+  color: var(--signal);
+}
+
+.md-typeset .admonition.warning > .admonition-title::before,
+.md-typeset .admonition.danger > .admonition-title::before,
+.md-typeset details.warning > summary::before,
+.md-typeset details.danger > summary::before {
+  background: var(--signal);
+}
+
+/* ============================================================
+   9. Tables
+   ============================================================ */
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: var(--bg);
+  font-size: 14px;
+  margin: 1.4rem 0;
+  display: table;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--bg-panel);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--fg);
+}
+
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ============================================================
+   10. Tabs (content.tabs)
+   ============================================================ */
+
+.md-typeset .tabbed-set {
+  margin: 1.3rem 0;
+  border-radius: var(--radius-md);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.md-typeset .tabbed-set > input {
+  display: none;
+}
+
+.md-typeset .tabbed-labels {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1.1rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.md-typeset .tabbed-labels::after,
+.md-typeset .tabbed-labels > label::before,
+.md-typeset .tabbed-labels > label::after {
+  display: none;
+}
+
+.md-typeset .tabbed-labels::before {
+  display: none;
+}
+
+.md-typeset .tabbed-labels > label {
+  padding: 0.7rem 0;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+  font-weight: 500;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+
+.md-typeset .tabbed-labels > label:hover {
+  color: var(--fg);
+}
+
+.md-typeset .tabbed-set > input:checked + label {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.md-typeset .tabbed-content {
+  padding: 1rem 1.2rem;
+}
+
+.md-typeset .tabbed-content > * {
+  margin-top: 0;
+}
+
+/* ============================================================
+   11. Footer
+   ============================================================ */
+
+.md-footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  color: var(--fg-muted);
+}
+
+.md-footer-meta {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.md-footer-meta__inner {
+  max-width: var(--om-doc-shell);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.md-footer-meta .md-footer__inner,
+.md-footer__inner {
+  max-width: var(--om-doc-shell);
+  margin: 0 auto;
+  padding-inline: 1.5rem;
+}
+
+.md-copyright,
+.md-social__link {
+  color: var(--fg-muted);
+}
+
+/* Prev/next page block */
+.md-footer__link {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  transition: border-color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out);
+  margin: 0.4rem;
+}
+
+.md-footer__link:hover {
+  border-color: var(--accent);
+  background: var(--bg-panel);
+}
+
+.md-footer__direction {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.md-footer__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--fg);
+  letter-spacing: -0.005em;
+}
+
+/* ============================================================
+   12. Reusable cards/widgets for home.html and embedded markdown
+   ============================================================ */
+
+.om-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  padding: 1.5rem;
+}
+
+.om-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: -0.012em;
+  margin: 0.4rem 0 0.6rem;
+  color: var(--fg);
+}
+
+.om-card p {
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+[data-theme="dark"] .om-card,
+body[data-md-color-scheme="slate"] .om-card {
+  background: var(--bg-panel);
+  border-color: var(--border);
+}
+
+/* Buttons inside markdown content (.md-typeset reset) */
+.md-typeset a.om-btn,
+.md-typeset .om-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: background var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+
+.md-typeset a.om-btn--primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+.md-typeset a.om-btn--primary:hover {
+  background: var(--stone-600);
+  border-color: var(--stone-600);
+  color: var(--bg);
+  text-decoration: none;
+}
+
+.md-typeset a.om-btn--secondary {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--border-strong);
+}
+.md-typeset a.om-btn--secondary:hover {
+  background: var(--bg-panel);
+  border-color: var(--fg);
+  color: var(--fg);
+  text-decoration: none;
+}
+
+/* ============================================================
+   13. Home page widgets (home.html)
+   ============================================================ */
+
+.om-docs-home {
+  display: grid;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+
+.om-docs-hero {
+  padding: 1.5rem 0 0.5rem;
+}
+
+.om-docs-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  margin: 1rem 0 1.2rem;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.om-docs-hero p {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+  margin: 0 0 1.6rem;
+  max-width: 60ch;
+}
+
+.om-docs-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.om-docs-hero__actions .om-install-pill {
+  flex: 1 1 360px;
+  max-width: 720px;
+}
+
+.om-home-paths,
+.om-home-native-services {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.om-home-paths__intro h2,
+.om-home-native-services .om-section-heading h2 {
+  text-align: left;
+}
+
+.om-home-paths__intro {
+  max-width: 56rem;
+}
+
+.om-home-paths__intro h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.08;
+  margin: 0 0 0.85rem;
+}
+
+.om-home-paths__intro p {
+  color: var(--fg-muted);
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.om-home-path-grid,
+.om-home-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.om-home-path,
+.om-home-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--fg);
+  transition: border-color var(--dur-micro) var(--ease-out), background var(--dur-micro) var(--ease-out);
+}
+
+a.om-home-path:hover,
+a.om-home-guide:hover {
+  border-color: var(--accent);
+  background: var(--bg-panel);
+  text-decoration: none;
+}
+
+.om-home-path h3,
+.om-home-guide h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.om-home-path p,
+.om-home-guide p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+
+.om-home-path ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.om-home-path ul li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 13.5px;
+  color: var(--fg-muted);
+}
+
+.om-home-path ul li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.om-home-guide__eyebrow,
+.om-capability-card__eyebrow,
+.om-doc-card__eyebrow,
+.om-home-guide .om-home-guide__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.om-home-callout {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .om-home-callout,
+body[data-md-color-scheme="slate"] .om-home-callout {
+  background: var(--bg-panel);
+}
+
+.om-home-callout__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.om-home-callout__grid > div {
+  padding: 2rem;
+}
+
+.om-home-callout__grid > div + div {
+  border-left: 1px solid var(--border);
+}
+
+.om-home-callout h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0.6rem 0 0.8rem;
+  letter-spacing: -0.01em;
+}
+
+.om-home-callout p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+  margin: 0 0 1rem;
+}
+
+.om-home-callout ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.om-home-callout ul li {
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--fg);
+}
+
+.om-home-callout ul li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.om-home-callout code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  color: var(--fg);
+}
+
+.om-home-callout__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1.2rem;
+}
+
+.om-home-callout__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.om-home-guide-grid__more {
+  font-size: 0.92rem;
+  color: var(--fg-muted);
+}
+
+.om-home-guide-grid__more a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.om-home-guide-grid__more a:hover {
+  text-decoration: underline;
+}
+
+/* Section heading helper inside docs home */
+.om-section-heading {
+  margin: 0 0 1rem;
+  max-width: none;
+  text-align: left;
+}
+
+.om-section-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  margin: 0 0 0.8rem;
+  text-wrap: balance;
+}
+
+.om-section-heading p {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* ============================================================
+   14. Responsive
+   ============================================================ */
+
+@media (max-width: 1219px) {
+  .md-sidebar--secondary {
+    display: none;
+  }
+}
+
+@media (max-width: 959px) {
+  .md-header__inner,
+  .md-tabs__list {
+    padding-inline: 1rem;
+  }
+  .md-content__inner {
+    padding: 0 1rem 3rem;
+  }
+  .om-home-callout__grid {
+    grid-template-columns: 1fr;
+  }
+  .om-home-callout__grid > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .om-docs-hero h1 {
+    font-size: clamp(32px, 7.5vw, 44px);
+  }
+}
+
+@media (max-width: 600px) {
+  .md-typeset h1 {
+    font-size: clamp(32px, 8vw, 42px);
+  }
+  .md-typeset h2 {
+    font-size: clamp(22px, 5.5vw, 28px);
+  }
+  .om-home-callout__grid > div {
+    padding: 1.4rem;
+  }
+}
