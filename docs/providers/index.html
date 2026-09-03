@@ -1,0 +1,2212 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+      
+      
+      
+        <link rel="canonical" href="https://agent.openmed.life/docs/providers/">
+      
+      
+        <link rel="prev" href="../profiles/">
+      
+      
+        <link rel="next" href="../configuration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Providers - OpenMed Agent</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../assets/styles/fonts.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/colors.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/typography.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/surfaces.css">
+    
+      <link rel="stylesheet" href="../overrides/docs.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("openmed-theme"); } catch (error) { theme = null; }
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      var root = document.documentElement;
+      root.setAttribute("data-theme", theme);
+      root.setAttribute("data-md-color-scheme", theme === "dark" ? "slate" : "default");
+    })();
+  </script>
+  
+  
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenMed Agent">
+  <meta property="og:title" content="Providers — OpenMed Agent">
+  <meta property="og:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta property="og:url" content="https://agent.openmed.life/docs/providers/">
+  <meta property="og:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:secure_url" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="agent.openmed.life">
+  <meta name="twitter:url" content="https://agent.openmed.life/docs/providers/">
+  <meta name="twitter:title" content="Providers — OpenMed Agent">
+  <meta name="twitter:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta name="twitter:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta name="twitter:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#providers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <header class="md-header om-nav" data-md-component="header">
+  <nav class="om-wrap om-nav__in" aria-label="Header">
+    <label class="om-drawerbtn" for="__drawer" aria-label="Open navigation">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </label>
+    <a href="/" class="om-brand" title="OpenMed Agent" data-md-component="logo">
+      <img class="om-logo" src="/assets/images/logo.svg" width="28" height="28" alt="OpenMed">
+      <span class="om-brand__word">openmed</span>
+      <span class="om-brand__ver om-mono">v0.3.0 preview</span>
+    </a>
+    <div class="om-nav__links">
+      <a class="om-nav__on" href="..">Docs</a>
+      <a href="/#runtime">Runtime</a>
+      <a href="/#services">Services</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#install">Install</a>
+    </div>
+    <div class="om-nav__acts">
+      
+        
+        
+          <label class="om-themebtn om-searchbtn" for="__search" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          </label>
+          <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      
+      <button class="om-themebtn" data-theme-toggle type="button" aria-label="Switch theme">
+        <svg class="om-themebtn__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+        <svg class="om-themebtn__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <a class="om-btn om-btn--accent om-btn--sm" href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Request Preview</a>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OpenMed Agent" class="md-nav__button md-logo" aria-label="OpenMed Agent" data-md-component="logo">
+      
+  <img src="../assets/images/logo.svg" alt="logo">
+
+    </a>
+    OpenMed Agent
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Product
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent TUI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a provider
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-credentials-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where credentials live
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openrouter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenRouter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-openai-compatible-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom OpenAI-compatible endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-an-endpoint-before-you-trust-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking an endpoint before you trust it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-a-provider-is-selected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a provider is selected
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../native-medical-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Native Medical Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy & Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit Trail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a provider
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-credentials-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where credentials live
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openrouter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenRouter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-openai-compatible-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom OpenAI-compatible endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-an-endpoint-before-you-trust-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking an endpoint before you trust it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-a-provider-is-selected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a provider is selected
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+    
+    <div class="om-mono om-crumb">DOCS — PRODUCT · PROVIDERS</div>
+  
+  
+                  
+
+
+
+<h1 id="providers">Providers<a class="headerlink" href="#providers" title="Permanent link">&para;</a></h1>
+<p>A <strong>provider</strong> is the service that runs the language model driving the agent. OpenMed supports four: OpenAI (via an API key or a ChatGPT OAuth sign-in), Anthropic, and OpenRouter. Everything else in OpenMed — the medical tools, workflows, and audit trail — behaves identically regardless of which one you choose.</p>
+<p>This page covers credentials, model selection, and the behaviour specific to each provider. For runtime settings that are not provider-related, see <a href="../configuration/">Configuration</a>.</p>
+<h2 id="choosing-a-provider">Choosing a provider<a class="headerlink" href="#choosing-a-provider" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Auth</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OpenAI</strong></td>
+<td>ChatGPT OAuth (<code>openmed login</code>) or <code>OPENAI_API_KEY</code></td>
+<td>The default path. GPT-5.5 and GPT-5.6 models.</td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong></td>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td>Claude models, with prompt caching enabled by default.</td>
+</tr>
+<tr>
+<td><strong>OpenRouter</strong></td>
+<td><code>OPENROUTER_API_KEY</code></td>
+<td>Models OpenMed does not host itself — Gemini, Kimi, GLM, Qwen, Llama and several hundred more, on one key.</td>
+</tr>
+<tr>
+<td><strong>Custom</strong></td>
+<td>optional key</td>
+<td>One OpenAI-compatible server you operate — vLLM, SGLang, llama.cpp, Ollama, LM Studio, or a gateway.</td>
+</tr>
+</tbody>
+</table>
+<p>Provider keys are never mixed: an OpenRouter key is only ever sent to OpenRouter, and an OpenAI or Anthropic key is never sent there.</p>
+<p>You can configure more than one at a time. Which provider handles a request is decided by the model you select — see <a href="#how-a-provider-is-selected">How a provider is selected</a>.</p>
+<h2 id="where-credentials-live">Where credentials live<a class="headerlink" href="#where-credentials-live" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.openmed/auth.json</code></td>
+<td>ChatGPT OAuth tokens, written by <code>openmed login</code></td>
+</tr>
+<tr>
+<td><code>~/.openmed/provider_secrets.json</code></td>
+<td>OpenAI / Anthropic / OpenRouter API keys, and the OpenRouter model list</td>
+</tr>
+<tr>
+<td><code>~/.openmed/settings.json</code></td>
+<td>Runtime behaviour such as permission mode — <strong>not</strong> secrets</td>
+</tr>
+</tbody>
+</table>
+<p>Store keys without hand-editing JSON:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openai<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-..."</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>anthropic<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-ant-..."</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openrouter<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-or-..."</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-show
+</span></code></pre></div>
+<p><code>provider-show</code> reports which providers are configured without printing secret values. To remove a stored key, use <code>--unset-api-key</code> with the same command.</p>
+<h3 id="editing-the-file-directly">Editing the file directly<a class="headerlink" href="#editing-the-file-directly" title="Permanent link">&para;</a></h3>
+<p><code>~/.openmed/provider_secrets.json</code> is written with <code>0600</code> permissions. Values may be literal strings, or <code>{env:VAR_NAME}</code> references that resolve at load time — useful when the file is synced between machines and you would rather not store the secret in it:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">"openai"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{env:OPENAI_API_KEY}"</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">"anthropic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{env:ANTHROPIC_API_KEY}"</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">"openrouter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sk-or-v1-..."</span><span class="p">,</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="nt">"models"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"qwen/qwen3.8-27b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"z-ai/glm-5.2"</span><span class="p">]</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="nt">"custom"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="nt">"endpoints"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">          </span><span class="p">{</span><span class="nt">"baseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8000/v1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qwen/Qwen3.8-27B"</span><span class="p">,</span><span class="w"> </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{env:MY_SERVER_KEY}"</span><span class="p">}</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Only the <code>custom</code> section carries endpoint URLs (inside its <code>endpoints</code>
+list) — hosted provider endpoints are fixed, and a stored <code>baseURL</code> on them
+is ignored and stripped.</p>
+<div class="admonition warning">
+<p class="admonition-title">One JSON object, one <code>provider</code> map</p>
+<p>Every provider is a key <strong>inside</strong> the single <code>provider</code> object above. A
+common mistake is to paste a second example after the first, which produces
+two objects and makes the whole file invalid — at which point <em>all</em> your
+keys are ignored and every provider shows as not configured. If that
+happens, <code>openmed config provider-show</code> now names the file and the line.</p>
+</div>
+<p>A flatter shape is accepted as an <strong>alternative to</strong> the block above — use one
+or the other, never both in the same file:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">"openrouter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">"api_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{env:OPENROUTER_API_KEY}"</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">"models"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"qwen/qwen3.8-27b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"x-ai/grok-4.6"</span><span class="p">]</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Check the file is valid at any time:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-show
+</span></code></pre></div>
+<p>It prints which providers are configured, and exits non-zero with the parse
+error if the file is malformed.</p>
+<p><strong>Precedence is explicit runtime config → environment variable → this file → default.</strong> Provider config is read once per process, so restart OpenMed after editing the file by hand.</p>
+<p>Provider base URLs for OpenAI and Anthropic are intentionally not part of this config surface during preview; OpenMed controls those endpoints internally. OpenRouter is the supported path for running models OpenMed does not host itself.</p>
+<hr />
+<h2 id="openai">OpenAI<a class="headerlink" href="#openai" title="Permanent link">&para;</a></h2>
+<p>The default provider. Two independent auth paths — OAuth, or an API key.</p>
+<h3 id="sign-in-with-chatgpt-oauth">Sign in with ChatGPT (OAuth)<a class="headerlink" href="#sign-in-with-chatgpt-oauth" title="Permanent link">&para;</a></h3>
+<p>Uses your ChatGPT subscription rather than API billing:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>openmed<span class="w"> </span>login<span class="w">             </span><span class="c1"># writes ~/.openmed/auth.json</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>openmed<span class="w"> </span>oauth<span class="w"> </span>status
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>openmed<span class="w"> </span>oauth<span class="w"> </span><span class="nb">logout</span>
+</span></code></pre></div>
+<p>Credentials are reused until they expire. If auth status reports the token is no longer valid, <code>openmed login -f</code> refreshes the single global auth file. <code>openmed login --no-browser</code> prints the authorization URL instead of opening a browser, and <code>--timeout &lt;seconds&gt;</code> extends the default five-minute wait.</p>
+<p>An interactive sign-in can only be started by <code>openmed login</code> — never implicitly from inside the TUI. If you sign in from another terminal while the TUI is open, your next message picks up the new credentials without a restart.</p>
+<h3 id="api-key">API key<a class="headerlink" href="#api-key" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openai<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-..."</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># or</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</span></code></pre></div>
+<p>No <code>openmed login</code> step is required when using a key.</p>
+<h3 id="models">Models<a class="headerlink" href="#models" title="Permanent link">&para;</a></h3>
+<p><code>gpt-5.6-sol</code>, <code>gpt-5.6-terra</code> (default), <code>gpt-5.6-luna</code>, and <code>gpt-5.5</code>. <code>gpt-5.6</code> is an alias for <code>gpt-5.6-terra</code>. When both OAuth and an API key are present, these models use OAuth first and fall back to the key.</p>
+<hr />
+<h2 id="anthropic">Anthropic<a class="headerlink" href="#anthropic" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>anthropic<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-ant-..."</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># or</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--provider<span class="w"> </span>anthropic<span class="w"> </span>--model<span class="w"> </span>claude-sonnet-4-6
+</span></code></pre></div>
+<p>Anthropic has no OAuth path — an API key is the only option.</p>
+<h3 id="models_1">Models<a class="headerlink" href="#models_1" title="Permanent link">&para;</a></h3>
+<p><code>claude-opus-4-8</code>, <code>claude-opus-4-7</code>, <code>claude-sonnet-4-6</code> (the Anthropic default), and <code>claude-haiku-4-5-20251001</code>. Selecting any <code>claude-*</code> model routes to Anthropic when Anthropic credentials are available.</p>
+<h3 id="prompt-caching">Prompt caching<a class="headerlink" href="#prompt-caching" title="Permanent link">&para;</a></h3>
+<p>Enabled by default. OpenMed marks the stable tool schema block and the system prompt as 5-minute cache breakpoints, and enables Anthropic's top-level automatic cache control for the growing conversation, so long tool runs do not resend the entire prior transcript as fresh input every turn.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENMED_ANTHROPIC_PROMPT_CACHE</code></td>
+<td>Enable caching for stable tool/system prefixes</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>OPENMED_ANTHROPIC_PROMPT_CACHE_TTL</code></td>
+<td>Cache TTL — <code>5m</code> or <code>1h</code></td>
+<td><code>5m</code></td>
+</tr>
+<tr>
+<td><code>OPENMED_ANTHROPIC_AUTOMATIC_CACHE</code></td>
+<td>Top-level automatic caching for multi-turn conversations</td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="rate-limit-guard">Rate-limit guard<a class="headerlink" href="#rate-limit-guard" title="Permanent link">&para;</a></h3>
+<p>OpenMed also guards Claude's input-token-per-minute limits locally. Cache reads are excluded from Anthropic's rate-limit accounting, but cache writes and uncached conversation growth still count. The Anthropic SDK tracks uncached input usage, paces requests near the local budget, compacts stale history when a cache miss would make a request too large, and retries transient <code>429</code> responses using Claude's <code>retry-after</code> header.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENMED_ANTHROPIC_RATE_LIMIT_GUARD</code></td>
+<td>Pace and compact before ITPM limits are exceeded</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>OPENMED_ANTHROPIC_ITPM_LIMIT</code></td>
+<td>Override the input-token-per-minute limit</td>
+<td>model default</td>
+</tr>
+<tr>
+<td><code>OPENMED_ANTHROPIC_ITPM_SAFETY_RATIO</code></td>
+<td>Fraction of the limit to use before pacing</td>
+<td><code>0.85</code></td>
+</tr>
+<tr>
+<td><code>OPENMED_ANTHROPIC_RATE_LIMIT_RETRIES</code></td>
+<td>Automatic retries after a <code>429</code></td>
+<td><code>2</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="openrouter">OpenRouter<a class="headerlink" href="#openrouter" title="Permanent link">&para;</a></h2>
+<p>OpenRouter gives you models OpenMed does not host itself — Gemini, Kimi, GLM, Qwen, Llama and several hundred others — through one API key. It is a separate provider: OpenRouter credentials are never sent to OpenAI or Anthropic, and an OpenAI key is never sent to OpenRouter.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OPENROUTER_API_KEY</span><span class="o">=</span><span class="s2">"sk-or-..."</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--provider<span class="w"> </span>openrouter
+</span></code></pre></div>
+<h3 id="choosing-which-models-appear">Choosing which models appear<a class="headerlink" href="#choosing-which-models-appear" title="Permanent link">&para;</a></h3>
+<p>Configure a short list rather than all several hundred. Those models appear as an <strong>OpenRouter</strong> group below Anthropic and OpenAI in the <code>/model</code> picker:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openrouter<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>--api-key<span class="w"> </span><span class="s2">"sk-or-..."</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>--models<span class="w"> </span><span class="s2">"google/gemini-3.7-flash,qwen/qwen3.8-27b,z-ai/glm-5.2"</span>
+</span></code></pre></div>
+<p>Or in <code>~/.openmed/provider_secrets.json</code> directly (as one key inside the single <code>provider</code> object — see <a href="#editing-the-file-directly">Editing the file directly</a>):</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">"openrouter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sk-or-v1-..."</span><span class="p">,</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="nt">"models"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">          </span><span class="s2">"google/gemini-3.7-flash"</span><span class="p">,</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">          </span><span class="s2">"qwen/qwen3.8-27b"</span><span class="p">,</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">          </span><span class="s2">"z-ai/glm-5.2"</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>qwen/qwen3.8-27b</code> is OpenMed's default OpenRouter model. Gemini is shown here because people ask for it, but see the warning below before using it for clinical work — Google's API terms prohibit that use.</p>
+<p>The list is stored as <code>models</code> in the <code>openrouter</code> section of <code>~/.openmed/provider_secrets.json</code> — see <a href="#editing-the-file-directly">Editing the file directly</a>. <code>OPENROUTER_MODELS</code> (comma-separated) overrides the stored list for one session, and <code>openmed config provider-set openrouter --unset-models</code> removes it. With nothing configured, OpenMed uses <code>qwen/qwen3.8-27b</code>.</p>
+<p>Browse what OpenRouter offers:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>openrouter-models<span class="w"> </span>--search<span class="w"> </span>gemini
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>openmed<span class="w"> </span>config<span class="w"> </span>openrouter-models<span class="w"> </span>--all<span class="w">      </span><span class="c1"># include models OpenMed cannot use</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>openmed<span class="w"> </span>config<span class="w"> </span>openrouter-models<span class="w"> </span>--refresh<span class="w">  </span><span class="c1"># bypass the 24h metadata cache</span>
+</span></code></pre></div>
+<h3 id="openrouter-environment-variables">OpenRouter environment variables<a class="headerlink" href="#openrouter-environment-variables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENROUTER_API_KEY</code></td>
+<td>The OpenRouter key. Required — OpenMed never falls back to another provider's key.</td>
+<td>unset</td>
+</tr>
+<tr>
+<td><code>OPENROUTER_MODELS</code></td>
+<td>Comma-separated model ids offered in <code>/model</code>; overrides the stored list</td>
+<td>stored list, else <code>qwen/qwen3.8-27b</code></td>
+</tr>
+<tr>
+<td><code>OPENMED_OPENROUTER_MODELS_TTL_SECONDS</code></td>
+<td>Lifetime of cached model metadata under <code>~/.openmed/cache/</code></td>
+<td><code>86400</code> (24h)</td>
+</tr>
+</tbody>
+</table>
+<p>The OpenRouter base URL is fixed to <code>https://openrouter.ai/api/v1</code>. For a self-hosted or gateway server, use the <a href="#custom-openai-compatible-endpoints">custom provider</a>.</p>
+<h3 id="recommended-models">Recommended models<a class="headerlink" href="#recommended-models" title="Permanent link">&para;</a></h3>
+<p>These are the models OpenMed has actually run through its own agent loop with the full 93-tool schema, cross-checked against OpenRouter's <a href="https://openrouter.ai/benchmarks/tau2-bench-airline">τ²-Bench Airline</a> (multi-turn tool use) and <a href="https://openrouter.ai/benchmarks/gpqa-diamond">GPQA Diamond</a> (reasoning) leaderboards.</p>
+<p>Open-weight — self-hostable, and the starting point for most users:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openrouter<span class="w"> </span>--models<span class="w"> </span><span class="s2">"\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="s2">qwen/qwen3.8-27b,\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="s2">z-ai/glm-5.2,\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="s2">qwen/qwen3.5-397b-a17b,\</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="s2">nvidia/nemotron-3-ultra-550b-a55b,\</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="s2">xiaomi/mimo-v2.5-pro,\</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="s2">qwen/qwen3.5-122b-a10b,\</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="s2">minimax/minimax-m3,\</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="s2">moonshotai/kimi-k3,\</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="s2">qwen/qwen3.8-2.4t-a95b,\</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="s2">deepseek/deepseek-v4-flash-0731,\</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="s2">deepseek/deepseek-v4-pro-0813"</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Licence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>qwen/qwen3.8-27b</code></td>
+<td>Apache-2.0</td>
+<td>Best value: τ²-Bench #3 overall, 1M context, vision</td>
+</tr>
+<tr>
+<td><code>z-ai/glm-5.2</code></td>
+<td>MIT</td>
+<td>Best all-round balance; low hallucination rate</td>
+</tr>
+<tr>
+<td><code>qwen/qwen3.5-397b-a17b</code></td>
+<td>open</td>
+<td>Strong on both tool use and reasoning</td>
+</tr>
+<tr>
+<td><code>nvidia/nemotron-3-ultra-550b-a55b</code></td>
+<td>permissive</td>
+<td>Fastest model tested</td>
+</tr>
+<tr>
+<td><code>xiaomi/mimo-v2.5-pro</code></td>
+<td>open</td>
+<td>Very well calibrated; 1M context</td>
+</tr>
+<tr>
+<td><code>qwen/qwen3.5-122b-a10b</code></td>
+<td>open</td>
+<td>Outstanding cost/capability, under a cent per turn</td>
+</tr>
+<tr>
+<td><code>minimax/minimax-m3</code></td>
+<td>open</td>
+<td>Best-calibrated model evaluated; GPQA top-10</td>
+</tr>
+<tr>
+<td><code>moonshotai/kimi-k3</code></td>
+<td>custom</td>
+<td>Strongest reasoning of any open model</td>
+</tr>
+<tr>
+<td><code>qwen/qwen3.8-2.4t-a95b</code></td>
+<td>bespoke</td>
+<td>Highest agentic score; licence is not permissive</td>
+</tr>
+<tr>
+<td><code>deepseek/deepseek-v4-flash-0731</code></td>
+<td>MIT</td>
+<td>Cheapest model listed ($0.0018/turn), 1M context — but see the DeepSeek warning below</td>
+</tr>
+<tr>
+<td><code>deepseek/deepseek-v4-pro-0813</code></td>
+<td>MIT</td>
+<td>τ²-Bench #8, GPQA #21 — <strong>verify every code it emits</strong>; see the DeepSeek warning below</td>
+</tr>
+</tbody>
+</table>
+<p>Closed, hosted-only:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x-ai/grok-4.6</code></td>
+<td>Best-placed non-OpenAI/Anthropic model on healthcare benchmarks</td>
+</tr>
+<tr>
+<td><code>qwen/qwen3.8-max</code></td>
+<td>Top agentic tier; rarely refuses clinical content</td>
+</tr>
+<tr>
+<td><code>amazon/nova-pro-v1</code></td>
+<td>Fastest closed model tested</td>
+</tr>
+<tr>
+<td><code>qwen/qwen3.7-max</code></td>
+<td>Best published clinical benchmark results of the closed set</td>
+</tr>
+<tr>
+<td><code>x-ai/grok-4.5</code></td>
+<td>Same posture as 4.6, roughly twice as fast</td>
+</tr>
+</tbody>
+</table>
+<p>Budget tiers that also passed cleanly: <code>upstage/solar-pro4</code>, <code>amazon/nova-lite-v1</code>, <code>google/gemma-4-26b-a4b-it</code>, <code>qwen/qwen3.6-35b-a3b</code>, <code>nvidia/nemotron-3.5-lightning</code>.</p>
+<p>Fast, well-calibrated additions from a volume campaign (2026-08-31). These are the base models, worth running free or paid:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cohere/north-mini-code</code></td>
+<td><strong>Fastest clean probe of any model tested</strong> (~10s), every clean run perfect</td>
+</tr>
+<tr>
+<td><code>inclusionai/ling-3.0-flash-fin</code></td>
+<td>Every clean run perfect, ~11s. <strong>Not</strong> <code>ling-3.0-flash</code>, which is excluded for hallucination — this is the <code>-fin</code> variant</td>
+</tr>
+<tr>
+<td><code>minimax/minimax-m2.7</code></td>
+<td>The reliable long-horizon pick. Slower (~21s)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trying-openmed-for-free">Trying OpenMed for free<a class="headerlink" href="#trying-openmed-for-free" title="Permanent link">&para;</a></h3>
+<p>Several of the models above are also served on a <code>:free</code> tier, so you can drive
+the whole 93-tool agent without spending anything. The numbers below come from
+<strong>5,500+ live runs</strong> of OpenMed's own agent loop against the free tiers, not
+from a leaderboard.</p>
+<p>Start with one line:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openrouter<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-or-..."</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>--models<span class="w"> </span><span class="s2">"minimax/minimax-m2.7:free,cohere/north-mini-code:free,inclusionai/ling-3.0-flash-fin:free"</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--provider<span class="w"> </span>openrouter<span class="w"> </span>--model<span class="w"> </span><span class="s2">"minimax/minimax-m2.7:free"</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Free model</th>
+<th>Clean runs</th>
+<th>Perfect</th>
+<th>Honest</th>
+<th>Median</th>
+<th>Long tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>minimax/minimax-m2.7:free</code></strong></td>
+<td>2320/2327</td>
+<td>92%</td>
+<td>100%</td>
+<td>21s</td>
+<td><strong>281/310</strong></td>
+</tr>
+<tr>
+<td><code>minimax/minimax-m3:free</code></td>
+<td>1580/1620</td>
+<td>72%</td>
+<td>100%</td>
+<td>18s</td>
+<td>154/163</td>
+</tr>
+<tr>
+<td><code>cohere/north-mini-code:free</code></td>
+<td>273/273</td>
+<td><strong>100%</strong></td>
+<td>100%</td>
+<td><strong>10s</strong></td>
+<td>see note</td>
+</tr>
+<tr>
+<td><code>inclusionai/ling-3.0-flash-fin:free</code></td>
+<td>271/271</td>
+<td><strong>100%</strong></td>
+<td>100%</td>
+<td>11s</td>
+<td>see note</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>minimax/minimax-m2.7:free</code> is the one to start with.</strong> It is the only free
+model that reliably finishes long, multi-step clinical work — 281 of 310
+sustained 10-case runs — while staying honest on every single clean run.</p>
+<p><code>cohere/north-mini-code:free</code> and <code>inclusionai/ling-3.0-flash-fin:free</code> are the
+fastest and were flawless on every clean short probe. Their long-horizon column
+is marked "see note" deliberately: their sustained runs did not complete in our
+testing, but they were cut short by the <strong>daily request cap</strong>, not by any
+observed failure of the model. Treat them as proven for short tasks and
+unproven for long ones.</p>
+<p><strong>Not honest, not calibrated — the same thing across every one of these:</strong> no
+free model fabricated a file's contents or a clinical fact in any clean run.
+That property is why these are listed at all; see the warning below about
+choosing on benchmark rank.</p>
+<div class="admonition warning">
+<p class="admonition-title"><code>nvidia/nemotron-3-ultra-550b-a55b:free</code> — use the paid tier</p>
+<p>The free tier of this model was usable in only <strong>23 of 386</strong> attempts, with
+a median of 63s, because its free capacity routes through a single
+congested upstream. The <em>paid</em> variant of the identical model scored
+80/80 perfect and completed 12/12 long runs at 20s. This is a serving
+problem, not a model problem — but on the free tier it will waste your
+daily allowance.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">What the free tier actually gives you</p>
+<p>OpenRouter allows <strong>1,000 free-model requests per day</strong> once an account has
+purchased at least $10 in credits, and <strong>50 per day</strong> before that. Free
+models cost nothing to run; the credit only raises the request ceiling.</p>
+<p>The allowance is a <strong>single pool shared across every free model</strong>, not a
+per-model quota — measured directly: once it is spent, models the account
+has never called return <code>remaining=0</code> with the same reset timestamp as the
+one that drained it. Adding more free models to your config therefore
+diversifies what you can run, but does <strong>not</strong> increase your daily budget.
+It resets at 00:00 UTC.</p>
+<p>A long agent run can use 50-80 requests, so long-horizon work exhausts the
+pool far faster than short tasks.</p>
+<p><strong>One exception worth knowing:</strong> a few <code>:free</code> models are served by
+providers with their own free capacity and do not draw on that shared pool
+— <code>minimax/minimax-m2.7:free</code> and <code>minimax/minimax-m3:free</code> both keep
+serving after it is exhausted. If you only configure one free model, make
+it one of those.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Read before choosing on benchmark rank alone</p>
+<p>Some of the highest-ranked and most-used models on OpenRouter are <strong>not</strong> suitable for clinical work, and OpenMed's own testing is why. A high leaderboard rank measures tool mechanics and reasoning, not calibration — a model can drive the whole 93-tool loop flawlessly and still state a confident, wrong clinical fact. Several providers' terms also forbid medical use outright — Google's Gemini API terms prohibit use "in clinical practice, to provide medical advice"; Z.AI's and Tencent's terms carry comparable restrictions, and Tencent's licence excludes the EU, UK and South Korea entirely. Moonshot's hosted API forbids processing HIPAA-defined PHI, so Kimi models should be self-hosted for patient data. A BAA with an upstream provider does not survive routing through OpenRouter.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">DeepSeek V4: listed, but check its output</p>
+<p><code>deepseek/deepseek-v4-flash-0731</code> and <code>deepseek/deepseek-v4-pro-0813</code> are listed above for their licence (MIT), their cost and their leaderboard placings — <code>pro-0813</code> is τ²-Bench <strong>#8</strong> and GPQA <strong>#21</strong>, and <code>flash-0731</code> is the cheapest entry on the list at roughly $0.0018 per turn.</p>
+<p>They are listed <strong>despite</strong> the DeepSeek family's published AA-Omniscience hallucination rates of <strong>91.7–94.1%</strong>, the highest of any model OpenMed recommends. Both pass our tool-discipline probe — that is the point: the probe proves a model can hold the loop and not invent a file's contents, and it does not prove calibration.</p>
+<p>In OpenMed's own repeated testing, <strong><code>pro-0813</code> returned ICD-10 <code>R03.0</code> instead of <code>I10</code> on four consecutive runs</strong> for a straightforward hypertension presentation, once describing the reading as "stage 2 hypertension" while coding <em>elevated blood pressure </em><em>without</em><em> a diagnosis of hypertension</em> — a self-contradiction. <code>flash-0731</code> answered correctly every time.</p>
+<p>If you need a DeepSeek model, prefer <strong><code>flash-0731</code></strong>. With either, treat generated codes, doses and clinical claims as drafts requiring review — which is what OpenMed's reviewer-gated workflow is for.</p>
+<p>Mistral was evaluated on request and <strong>not</strong> added: <code>mistral-medium-3-5</code> scores
+100/100 on our live agent probes but carries an 81.6% published hallucination
+rate — roughly double the range of every model on this list. A clean probe
+proves tool mechanics, not calibration.</p>
+<p>The full evidence table, including per-model probe results, hallucination rates and licence verification, is in <code>PLANS/openrouter-recommended-models.md</code>.</p>
+</div>
+<h3 id="not-every-openrouter-model-can-run-the-agent">Not every OpenRouter model can run the agent<a class="headerlink" href="#not-every-openrouter-model-can-run-the-agent" title="Permanent link">&para;</a></h3>
+<p>OpenRouter hosts image generators, audio models, and chat models without tool calling. OpenMed's tools are the product, so a model that cannot call tools cannot drive it. OpenMed reads each model's capabilities from OpenRouter's model metadata and <strong>refuses an incompatible model at startup with the reason</strong>, rather than failing part-way through a case:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>OpenRouter model 'google/lyria-3-pro-preview' cannot drive the agent:
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>no tool-calling support (required by the agent).
+</span></code></pre></div>
+<p>Capabilities are also enforced per request:</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool calling</td>
+<td>Required. Models without it are refused at startup.</td>
+</tr>
+<tr>
+<td>Text output</td>
+<td>Required. Image-only and audio-only models are refused.</td>
+</tr>
+<tr>
+<td>Image input</td>
+<td>Scanned documents and screenshots are sent only to vision models. On a text-only model the attachment is omitted and the message says so.</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>Taken from OpenRouter metadata, so compaction triggers at the model's real limit.</td>
+</tr>
+<tr>
+<td>Reasoning effort</td>
+<td>Clamped to the levels the model advertises, so <code>/model</code> never sends an effort the model rejects.</td>
+</tr>
+<tr>
+<td>Max output tokens</td>
+<td>Clamped to the model's provider cap.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>/model</code> picker shows these as chips per model (<code>vision · 1M ctx · reasoning</code>), and marks a model incompatible before you select it.</p>
+<h3 id="model-quality-is-your-call">Model quality is your call<a class="headerlink" href="#model-quality-is-your-call" title="Permanent link">&para;</a></h3>
+<p>OpenMed evaluates the curated OpenAI and Anthropic models it ships with. It does not evaluate the OpenRouter catalog. A model that passes the compatibility check can still be a poor fit for clinical work — weaker instruction-following, worse tool discipline, or a smaller effective context than its advertised window. Treat an OpenRouter model as unvalidated until you have evaluated it on your own cases. Every PHI, de-identification, and finalization gate behaves identically regardless of provider.</p>
+<p>Prompts you send — including any PHI in them — go to OpenRouter and on to whichever upstream provider serves that model. Check <a href="https://openrouter.ai/settings/privacy">OpenRouter's privacy settings</a> for how your data is handled and whether prompt logging is enabled on your account.</p>
+<hr />
+<h2 id="custom-openai-compatible-endpoints">Custom OpenAI-compatible endpoints<a class="headerlink" href="#custom-openai-compatible-endpoints" title="Permanent link">&para;</a></h2>
+<p>The <strong><code>custom</code> provider</strong> points OpenMed at servers you operate — vLLM,
+SGLang, llama.cpp, Ollama, LM Studio, or a company gateway. Serving engines
+launch <strong>one model per endpoint</strong>, so the configuration is a list of
+endpoints, each with its own base URL, optional credential, and the one model
+it serves. Selecting a model routes the session to the endpoint that declares
+it. The hosted providers (OpenAI, Anthropic, OpenRouter) deliberately have
+<strong>no</strong> base-URL configuration — a provider means one thing, and any stored
+base URL for them is ignored and stripped.</p>
+<p>Add one endpoint per model:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>custom<span class="w"> </span>--base-url<span class="w"> </span>http://host1:8000/v1<span class="w"> </span>--model<span class="w"> </span><span class="s2">"nvidia/Nemotron-3-Super-120B"</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>custom<span class="w"> </span>--base-url<span class="w"> </span>http://host2:8000/v1<span class="w"> </span>--model<span class="w"> </span><span class="s2">"Qwen/Qwen3-235B-A22B"</span><span class="w"> </span>--api-key<span class="w"> </span>sk-host2
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>custom<span class="w"> </span>--base-url<span class="w"> </span>http://host4:8000/v1<span class="w"> </span>--model<span class="w"> </span><span class="s2">"poolside/Laguna"</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>openmed<span class="w"> </span>config<span class="w"> </span>endpoint-doctor<span class="w"> </span>http://host1:8000/v1<span class="w">   </span><span class="c1"># validate each FIRST</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--provider<span class="w"> </span>custom<span class="w"> </span>--model<span class="w"> </span><span class="s2">"poolside/Laguna"</span>
+</span></code></pre></div>
+<p>Re-running with the same <code>--model</code> updates that endpoint (a stored key is
+kept unless you pass a new one); <code>--remove-model &lt;id&gt;</code> deletes it.</p>
+<p>Or in <code>~/.openmed/provider_secrets.json</code> directly — an <code>endpoints</code> list under
+the <code>custom</code> section:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="nt">"custom"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="nt">"endpoints"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">          </span><span class="p">{</span><span class="nt">"baseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://host1:8000/v1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nvidia/Nemotron-3-Super-120B"</span><span class="p">},</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">          </span><span class="p">{</span><span class="nt">"baseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://host2:8000/v1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Qwen/Qwen3-235B-A22B"</span><span class="p">,</span><span class="w"> </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{env:HOST2_KEY}"</span><span class="p">},</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">          </span><span class="p">{</span><span class="nt">"baseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://host4:8000/v1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poolside/Laguna"</span><span class="p">}</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>apiKey</code> is optional per endpoint (local servers are commonly keyless) and
+supports literal or <code>{env:VAR}</code> forms. The same one-object-one-<code>provider</code>-map
+rule from <a href="#editing-the-file-directly">Editing the file directly</a> applies.</p>
+<p>For a quick test without touching the file, environment variables declare one
+additional endpoint: <code>OPENMED_CUSTOM_BASE_URL</code>, <code>OPENMED_CUSTOM_MODEL</code>, and
+optionally <code>OPENMED_CUSTOM_API_KEY</code>. They win over a stored endpoint that
+declares the same model.</p>
+<p>What the provider does for you at startup:</p>
+<ul>
+<li><strong>Routes by model.</strong> Each session talks only to the endpoint declaring its
+  model, with that endpoint's own credential — keys never cross hosts, and
+  your <code>OPENAI_API_KEY</code> can never silently travel to your own server.</li>
+<li><strong>Consults the endpoint's <code>/models</code> listing.</strong> A model the server does not
+  actually serve fails immediately, naming what it does serve.</li>
+<li><strong>Reads the served context window</strong> (vLLM/SGLang <code>max_model_len</code>) for
+  automatic compaction. A server that reports none pins the window to
+  <em>unknown</em> — automatic compaction is off for that session (see
+  <a href="../configuration/#context-and-compaction">Context And Compaction</a>) and a
+  hosted catalog namesake can never supply a fabricated number.</li>
+<li><strong>Sends the safe request shape.</strong> Chat Completions only, <code>temperature</code>
+  omitted, streamed usage requested, and the runtime guard refuses a turn
+  whose "text" is really an unparsed tool call.</li>
+<li><strong>Refuses cleartext keys to remote hosts</strong> — plain <code>http://</code> with a stored
+  key is allowed only for localhost and private networks, enforced both in
+  the CLI and again at resolution so a hand-edited file cannot bypass it.</li>
+</ul>
+<p>Configured models appear as a <strong>Custom endpoint</strong> group in the <code>/model</code>
+picker, each row naming the host that serves it.</p>
+<div class="admonition note">
+<p class="admonition-title">What custom models are not</p>
+<p>OpenMed cannot vouch for a model it has never evaluated. Tool-calling
+discipline, clinical quality and safety behaviour are yours to validate —
+<code>endpoint-doctor</code> proves the plumbing, not the medicine. Per-model launch
+flags for the common engines, including the exact <code>--tool-call-parser</code>
+value (which fails <strong>silently</strong> when wrong), are in
+<code>PLANS/model-serving-matrix.md</code>.</p>
+</div>
+<hr />
+<h2 id="checking-an-endpoint-before-you-trust-it">Checking an endpoint before you trust it<a class="headerlink" href="#checking-an-endpoint-before-you-trust-it" title="Permanent link">&para;</a></h2>
+<p><code>openmed config endpoint-doctor</code> tells you whether an OpenAI-compatible server —
+your own vLLM, SGLang, llama.cpp or Ollama, or a gateway — can actually drive the
+agent. It makes no changes and is safe to run against anything.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>endpoint-doctor<span class="w"> </span>http://localhost:8000/v1
+</span></code></pre></div>
+<p>A healthy endpoint:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Endpoint: http://localhost:8000/v1
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Model:    openmed-local
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  [PASS] reachable: Connected to http://localhost:8000/v1.
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>  [PASS] auth: Credentials accepted.
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  [PASS] models: 1 model(s) served: openmed-local
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>  [PASS] context: Context window 262,144 tokens.
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  [PASS] streaming: Server streamed a response (SSE).
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>  [PASS] tools: Model emitted a streamed tool call.
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>  [PASS] tool_call_index: Tool-call deltas carry `index`.
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>  [PASS] temperature: Model accepts `temperature`.
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>Result: usable by OpenMed (2.4s)
+</span></code></pre></div>
+<p>Exit codes are <code>0</code> usable, <code>1</code> not usable, <code>2</code> bad input — so it works in CI.
+<code>--json</code> emits the same report as JSON. <code>--model</code> picks a specific model, and
+<code>--quick</code> sends one tool instead of OpenMed's full 93-tool schema (faster, but it
+will not surface large-tool-array failures).</p>
+<h3 id="what-it-checks-and-why">What it checks, and why<a class="headerlink" href="#what-it-checks-and-why" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Catches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reachable</code></td>
+<td>Wrong port, wrong scheme, DNS typo, TLS mismatch — each reported distinctly</td>
+</tr>
+<tr>
+<td><code>auth</code></td>
+<td>Missing or wrong API key (self-hosted servers 401; public catalogs do not)</td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td>Server up but serving nothing, or a listing that is not OpenAI-shaped</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>A window too small for OpenMed's ~25,300-token per-turn overhead</td>
+</tr>
+<tr>
+<td><code>streaming</code></td>
+<td>Gateways that buffer and break SSE — OpenMed only streams</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>Tool calling disabled, unsupported, or rejected at 93 tools</td>
+</tr>
+<tr>
+<td><code>leaked_tool_call</code></td>
+<td><strong>The safety check</strong> — a wrong tool-call parser returning tool syntax as prose</td>
+</tr>
+<tr>
+<td><code>tool_call_index</code></td>
+<td>Streamed deltas missing <code>index</code>, which breaks parallel calls</td>
+</tr>
+<tr>
+<td><code>finish_reason</code></td>
+<td>Shapes the runtime rejects, which would crash on the first tool turn</td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>Reasoning models that reject the parameter</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-failure-that-matters-most">The failure that matters most<a class="headerlink" href="#the-failure-that-matters-most" title="Permanent link">&para;</a></h3>
+<p>If the server's tool-call parser is missing or wrong, it returns the tool call as
+<strong>plain text</strong> with <code>tool_calls</code> empty and <code>finish_reason: "stop"</code>. There is no
+error, and in a clinical agent that text is indistinguishable from real content.
+The doctor fails the endpoint and names the fix:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>  [FAIL] leaked_tool_call: The model returned tool syntax as PLAIN TEXT
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>         (XML &lt;tool_call&gt; (Qwen 3.5+, GLM, MiniMax)) with no tool_calls
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>         (finish_reason='stop'). The server is not parsing tool calls.
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>          -&gt; The tool-call parser is missing or wrong. vLLM needs BOTH
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>          -&gt; --enable-auto-tool-choice AND --tool-call-parser &lt;name&gt; (there is no
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>          -&gt; 'auto'); SGLang needs --tool-call-parser. Use the value for this model
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>          -&gt; family — e.g. Qwen 3.5+ is `qwen3_coder`, NOT `hermes`.
+</span></code></pre></div>
+<p>It also catches the harder version of this, where a parser matches the <em>first</em>
+tool call and leaks the rest as text — the case that otherwise looks healthy.</p>
+<h3 id="context-the-quiet-killer">Context: the quiet killer<a class="headerlink" href="#context-the-quiet-killer" title="Permanent link">&para;</a></h3>
+<p>OpenMed sends ~93 tool schemas (~21,000 tokens) plus a ~4,500-token system prompt
+on <strong>every turn</strong>. A window below that truncates every request:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>  [FAIL] context: Context window is 16,384 tokens; OpenMed's tool schema alone
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>         is 20,791. Every request would be truncated.
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>          -&gt; Raise the served context to at least 65,536: vLLM --max-model-len 65536,
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>          -&gt; SGLang --context-length 65536, llama.cpp --ctx-size 65536 (its default is
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>          -&gt; 4096), Ollama OLLAMA_CONTEXT_LENGTH=65536 before `ollama serve`.
+</span></code></pre></div>
+<p>llama.cpp defaults to 4096, Ollama auto-scales and can land at 4k, and Google's
+own vLLM recipe for Gemma 4 ships 16384 — all below the floor.</p>
+<h3 id="serving-your-own-model">Serving your own model<a class="headerlink" href="#serving-your-own-model" title="Permanent link">&para;</a></h3>
+<p>Per-model launch flags, including the exact <code>--tool-call-parser</code> value for each
+family, are in <code>PLANS/model-serving-matrix.md</code>. The short version for the
+recommended single-GPU model:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>vllm<span class="w"> </span>serve<span class="w"> </span>Qwen/Qwen3.8-27B<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span>--served-model-name<span class="w"> </span>openmed-local<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span>--enable-auto-tool-choice<span class="w"> </span>--tool-call-parser<span class="w"> </span>qwen3_coder<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span>--reasoning-parser<span class="w"> </span>qwen3<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span>--max-model-len<span class="w"> </span><span class="m">65536</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--api-key<span class="w"> </span>sk-openmed-CHANGEME
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>openmed<span class="w"> </span>config<span class="w"> </span>endpoint-doctor<span class="w"> </span>http://localhost:8000/v1
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Credentials</p>
+<p>Prefer <code>OPENMED_ENDPOINT_API_KEY</code> over <code>--api-key</code>: arguments are visible in
+<code>ps</code> and shell history. The doctor refuses to send a key over cleartext
+<code>http://</code> to a non-local host, strips any <code>user:pass@</code> from the URL before
+printing anything, and never echoes the key into its output.</p>
+</div>
+<hr />
+<h2 id="web-search">Web search<a class="headerlink" href="#web-search" title="Permanent link">&para;</a></h2>
+<p>Web search is <strong>off by default on every provider</strong>, including OpenAI and ChatGPT
+OAuth, and is not a provider capability — it runs client-side so it behaves
+identically on Anthropic, OpenRouter or a local model. Enabling it sends search
+queries to a third-party vendor, so it is an explicit operator decision. See
+<a href="../web-search/">Web Search</a>.</p>
+<h2 id="how-a-provider-is-selected">How a provider is selected<a class="headerlink" href="#how-a-provider-is-selected" title="Permanent link">&para;</a></h2>
+<p>The TUI defaults to <code>gpt-5.6-terra</code> with medium reasoning. When multiple providers are configured, <strong>the model you select determines the provider</strong>:</p>
+<ul>
+<li><code>claude-*</code> models use Anthropic when Anthropic credentials are available.</li>
+<li>The supported GPT-5.5 and GPT-5.6 models use ChatGPT OAuth first when <code>~/.openmed/auth.json</code> exists, then fall back to the OpenAI key.</li>
+<li>Namespaced model ids (<code>vendor/model</code>, such as <code>google/gemini-3.7-flash</code>) use OpenRouter.</li>
+<li>With no credentials at all, the native fallback remains available.</li>
+</ul>
+<p>Choose the model at launch, or at runtime with <code>Ctrl+M</code> or <code>/model</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--model<span class="w"> </span>gpt-5.6-terra<span class="w"> </span>--reasoning-effort<span class="w"> </span>medium
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--provider<span class="w"> </span>openrouter<span class="w"> </span>--model<span class="w"> </span>qwen/qwen3.8-27b
+</span></code></pre></div>
+<p><code>--provider</code> forces a specific provider; omit it to let the model decide.</p>
+<h3 id="reasoning-effort">Reasoning effort<a class="headerlink" href="#reasoning-effort" title="Permanent link">&para;</a></h3>
+<p>The picker exposes model-specific values: <code>none</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>xhigh</code>, and <code>max</code> (GPT-5.6 and supported Anthropic models only). <code>extra_high</code> remains accepted as a compatibility alias and resolves to the highest compatible non-<code>max</code> OpenAI effort (<code>xhigh</code>).</p>
+<p>For OpenRouter models the effort is clamped to the levels that model actually advertises, so a selection is never rejected by the provider.</p>
+<div class="admonition note">
+<p class="admonition-title">Provider keys vs native medical services</p>
+<p>OpenAI, Anthropic, and OpenRouter keys are model-provider credentials. OpenMed's native medical services — extraction, PII, de-identification, terminology, coding — are a separate service plane with their own configuration. See <a href="../native-medical-services/">Native Medical Services</a>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="om-wrap om-pager" aria-label="Footer" >
+        
+          <a href="../profiles/" class="om-pager__link" aria-label="Previous: Profiles">
+            <div class="om-mono om-pager__k">← PREVIOUS</div>
+            <div class="om-pager__t">Profiles</div>
+          </a>
+        
+        
+          <a href="../configuration/" class="om-pager__link om-pager__link--next" aria-label="Next: Configuration">
+            <div class="om-mono om-pager__k">NEXT →</div>
+            <div class="om-pager__t">Configuration</div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="om-footer">
+    <div class="om-wrap om-footer__in">
+      <div class="om-footer__brand">
+        <img class="om-logo" src="/assets/images/logo.svg" width="22" height="22" alt="OpenMed">
+        <span class="om-mono om-footer__meta">OpenMed Agent · v0.3.0 · © OpenMed</span>
+      </div>
+      <nav class="om-footer__links" aria-label="Footer">
+        <a href="..">Docs</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/support/">Support</a>
+        <a href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Preview</a>
+        <a href="https://x.com/openmed_ai">X</a>
+        <a href="https://www.linkedin.com/company/openmed-ai/">LinkedIn</a>
+        <a href="https://github.com/openmed-labs/openmed-agent">GitHub</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tabs.link", "navigation.instant", "navigation.sections", "navigation.footer", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../overrides/docs-chrome.js"></script>
+      
+    
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"e87540559ece4a6abd994e004098b26a"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  </body>
+</html>

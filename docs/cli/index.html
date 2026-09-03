@@ -1,0 +1,1841 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+      
+      
+      
+        <link rel="canonical" href="https://agent.openmed.life/docs/cli/">
+      
+      
+        <link rel="prev" href="../getting-started/">
+      
+      
+        <link rel="next" href="../tui/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CLI Reference - OpenMed Agent</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../assets/styles/fonts.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/colors.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/typography.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/surfaces.css">
+    
+      <link rel="stylesheet" href="../overrides/docs.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("openmed-theme"); } catch (error) { theme = null; }
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      var root = document.documentElement;
+      root.setAttribute("data-theme", theme);
+      root.setAttribute("data-md-color-scheme", theme === "dark" ? "slate" : "default");
+    })();
+  </script>
+  
+  
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenMed Agent">
+  <meta property="og:title" content="CLI Reference — OpenMed Agent">
+  <meta property="og:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta property="og:url" content="https://agent.openmed.life/docs/cli/">
+  <meta property="og:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:secure_url" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="agent.openmed.life">
+  <meta name="twitter:url" content="https://agent.openmed.life/docs/cli/">
+  <meta name="twitter:title" content="CLI Reference — OpenMed Agent">
+  <meta name="twitter:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta name="twitter:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta name="twitter:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cli-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <header class="md-header om-nav" data-md-component="header">
+  <nav class="om-wrap om-nav__in" aria-label="Header">
+    <label class="om-drawerbtn" for="__drawer" aria-label="Open navigation">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </label>
+    <a href="/" class="om-brand" title="OpenMed Agent" data-md-component="logo">
+      <img class="om-logo" src="/assets/images/logo.svg" width="28" height="28" alt="OpenMed">
+      <span class="om-brand__word">openmed</span>
+      <span class="om-brand__ver om-mono">v0.3.0 preview</span>
+    </a>
+    <div class="om-nav__links">
+      <a class="om-nav__on" href="..">Docs</a>
+      <a href="/#runtime">Runtime</a>
+      <a href="/#services">Services</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#install">Install</a>
+    </div>
+    <div class="om-nav__acts">
+      
+        
+        
+          <label class="om-themebtn om-searchbtn" for="__search" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          </label>
+          <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      
+      <button class="om-themebtn" data-theme-toggle type="button" aria-label="Switch theme">
+        <svg class="om-themebtn__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+        <svg class="om-themebtn__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <a class="om-btn om-btn--accent om-btn--sm" href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Request Preview</a>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OpenMed Agent" class="md-nav__button md-logo" aria-label="OpenMed Agent" data-md-component="logo">
+      
+  <img src="../assets/images/logo.svg" alt="logo">
+
+    </a>
+    OpenMed Agent
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Product
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#top-level-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top-level commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch the agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-medical-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native medical services
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit traces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deterministic-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deterministic workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-and-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration and profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updates-and-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updates and diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent TUI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../native-medical-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Native Medical Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy & Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit Trail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#top-level-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top-level commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch the agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-medical-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native medical services
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit traces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deterministic-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deterministic workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-and-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration and profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updates-and-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updates and diagnostics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+    
+    <div class="om-mono om-crumb">DOCS — PRODUCT · CLI REFERENCE</div>
+  
+  
+                  
+
+
+
+<h1 id="cli-reference">CLI Reference<a class="headerlink" href="#cli-reference" title="Permanent link">&para;</a></h1>
+<p><code>openmed</code> is both the default TUI launcher and the command-line surface for authentication, configuration, MCP management, profiles, and updates.</p>
+<h2 id="top-level-commands">Top-level commands<a class="headerlink" href="#top-level-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openmed</code></td>
+<td>Launch the interactive TUI with the current defaults</td>
+</tr>
+<tr>
+<td><code>openmed agent</code></td>
+<td>Launch the TUI with explicit model, reasoning, skill, or PHI settings</td>
+</tr>
+<tr>
+<td><code>openmed --models</code></td>
+<td>List the TUI model catalog</td>
+</tr>
+<tr>
+<td><code>openmed login</code></td>
+<td>Start the Codex OAuth browser flow</td>
+</tr>
+<tr>
+<td><code>openmed codex ...</code></td>
+<td>Codex-specific auth commands</td>
+</tr>
+<tr>
+<td><code>openmed oauth ...</code></td>
+<td>Auth status/logout aliases</td>
+</tr>
+<tr>
+<td><code>openmed config ...</code></td>
+<td>Inspect or persist config values</td>
+</tr>
+<tr>
+<td><code>openmed mcp ...</code></td>
+<td>Add, enable, disable, or diagnose remote MCP servers</td>
+</tr>
+<tr>
+<td><code>openmed audit ...</code></td>
+<td>Configure and inspect opt-in private audit traces</td>
+</tr>
+<tr>
+<td><code>openmed update</code></td>
+<td>Check for or install updates</td>
+</tr>
+<tr>
+<td><code>openmed env</code></td>
+<td>Print environment/debug information</td>
+</tr>
+</tbody>
+</table>
+<h2 id="launch-the-agent">Launch the agent<a class="headerlink" href="#launch-the-agent" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Default launch</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>openmed
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Pick a model and reasoning effort</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>openmed<span class="w"> </span>--model<span class="w"> </span>gpt-5.6-terra
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--model<span class="w"> </span>gpt-5.6-terra<span class="w"> </span>--reasoning-effort<span class="w"> </span>medium
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--model<span class="w"> </span>gpt-5.6-sol<span class="w"> </span>--reasoning-effort<span class="w"> </span>high
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># List available models</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>openmed<span class="w"> </span>--models
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Start in consumer mode</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--agent<span class="w"> </span>consumer<span class="w"> </span>--skill<span class="w"> </span>analyzing-health-data
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># Start in care-coordination mode</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--agent<span class="w"> </span>coordination<span class="w"> </span>--skill<span class="w"> </span>care-coordination
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># Preload a built-in or user skill</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>openmed<span class="w"> </span>agent<span class="w"> </span>--skill<span class="w"> </span>reviewing-prior-auth
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># Start with all configured MCP servers enabled</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>openmed<span class="w"> </span>--mcp-enabled
+</span></code></pre></div>
+<h3 id="agent-flags">Agent flags<a class="headerlink" href="#agent-flags" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Current behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--model</code></td>
+<td>Model name passed into the active SDK. Default: <code>gpt-5.6-terra</code></td>
+</tr>
+<tr>
+<td><code>--models</code></td>
+<td>Print available TUI models and exit</td>
+</tr>
+<tr>
+<td><code>--reasoning-effort</code></td>
+<td>Model-aware reasoning effort; default: <code>medium</code>; GPT-5.6 supports <code>none</code> through <code>max</code></td>
+</tr>
+<tr>
+<td><code>--skill</code></td>
+<td>Preload a skill by ID</td>
+</tr>
+<tr>
+<td><code>--phi-mode</code></td>
+<td>Session PHI label: <code>full</code>, <code>deid</code>, or <code>strict</code></td>
+</tr>
+<tr>
+<td><code>--agent</code></td>
+<td>Agent mode: <code>clinical</code>, <code>consumer</code>, <code>coordination</code>, or <code>default</code></td>
+</tr>
+<tr>
+<td><code>--provider</code></td>
+<td>Force a provider: <code>openai</code>, <code>anthropic</code>, or <code>openrouter</code>. Omit to select from the model and configured auth</td>
+</tr>
+<tr>
+<td><code>--mcp-enabled</code></td>
+<td>Enable all configured MCP servers before launch</td>
+</tr>
+</tbody>
+</table>
+<p><code>default</code> currently resolves to the <code>clinical</code> agent profile. The CLI, TUI, and runtime expose three built-in modes: <code>clinical</code>, <code>consumer</code>, and <code>coordination</code>.</p>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>Recommended auth commands:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># OAuth auth</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>openmed<span class="w"> </span>login
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Status</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>openmed<span class="w"> </span>codex<span class="w"> </span>status
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>openmed<span class="w"> </span>oauth<span class="w"> </span>status
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Logout</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>openmed<span class="w"> </span>codex<span class="w"> </span><span class="nb">logout</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>openmed<span class="w"> </span>codex<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--all
+</span></code></pre></div>
+<p>Current storage behavior:</p>
+<ul>
+<li><code>openmed login</code> writes <code>~/.openmed/auth.json</code></li>
+<li><code>openmed login --global</code> is accepted for backward compatibility, but it is now a no-op flag</li>
+<li>Auth detection uses <code>~/.openmed/auth.json</code></li>
+<li>Project-local <code>./auth.json</code> is deprecated and ignored</li>
+</ul>
+<p>Provider credentials — API keys, <code>~/.openmed/provider_secrets.json</code>, and the OpenRouter model list — are documented on the <a href="../providers/">Providers</a> page. The commands are:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openai<span class="w">     </span>--api-key<span class="w"> </span><span class="s2">"sk-..."</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>anthropic<span class="w">  </span>--api-key<span class="w"> </span><span class="s2">"sk-ant-..."</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>openrouter<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-or-..."</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--models<span class="w"> </span><span class="s2">"google/gemini-3.7-flash,qwen/qwen3.8-27b,z-ai/glm-5.2"</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-show
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>openmed<span class="w"> </span>config<span class="w"> </span>openrouter-models<span class="w"> </span>--search<span class="w"> </span>gemini<span class="w">   </span><span class="c1"># browse the OpenRouter catalog</span>
+</span></code></pre></div>
+<p>Each also accepts <code>--unset-api-key</code>; <code>provider-set openrouter</code> additionally accepts <code>--unset-models</code>. Environment variables <code>OPENAI_API_KEY</code>, <code>ANTHROPIC_API_KEY</code>, and <code>OPENROUTER_API_KEY</code> are equivalent and take precedence over the file.</p>
+<p>Provider config is loaded once per process. If you edit the file manually, restart OpenMed.</p>
+<h2 id="model-selection">Model selection<a class="headerlink" href="#model-selection" title="Permanent link">&para;</a></h2>
+<p>The TUI model switcher currently exposes:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claude-opus-4-7</code></td>
+<td>Claude Opus 4.7</td>
+</tr>
+<tr>
+<td><code>claude-sonnet-4-6</code></td>
+<td>Anthropic provider default</td>
+</tr>
+<tr>
+<td><code>claude-haiku-4-5-20251001</code></td>
+<td>Claude Haiku 4.5</td>
+</tr>
+<tr>
+<td><code>gpt-5.6-sol</code></td>
+<td>Flagship GPT-5.6 model</td>
+</tr>
+<tr>
+<td><code>gpt-5.6-terra</code></td>
+<td>Default balanced GPT-5.6 model</td>
+</tr>
+<tr>
+<td><code>gpt-5.6-luna</code></td>
+<td>Fast, cost-efficient GPT-5.6 model</td>
+</tr>
+<tr>
+<td><code>gpt-5.5</code></td>
+<td>GPT-5.5 model</td>
+</tr>
+<tr>
+<td><code>gpt-5.6</code></td>
+<td>Alias for <code>gpt-5.6-terra</code>; defaults to medium reasoning</td>
+</tr>
+</tbody>
+</table>
+<p>With an OpenRouter key configured, the switcher adds an <strong>OpenRouter</strong> group listing your configured models (<code>--models</code>, <code>OPENROUTER_MODELS</code>, or the <code>google/gemini-3.7-flash</code> default) with capability chips such as <code>vision · 1M ctx · reasoning</code>. Models that cannot call tools are marked incompatible and refused at startup.</p>
+<p>At runtime you can switch models with <code>Ctrl+M</code> or <code>/model</code>.</p>
+<p>The picker flow is:</p>
+<ol>
+<li>Model</li>
+<li>Reasoning effort</li>
+<li>Reasoning summary on supported models</li>
+</ol>
+<p>GPT-5.5 offers <code>none</code>, <code>low</code>, <code>medium</code>, <code>high</code>, and <code>xhigh</code>. The GPT-5.6
+models add <code>max</code>. Choosing <code>none</code> skips the reasoning-summary step. The app
+defaults to GPT-5.6 Terra with medium reasoning and thinking display off.</p>
+<h2 id="native-medical-services">Native medical services<a class="headerlink" href="#native-medical-services" title="Permanent link">&para;</a></h2>
+<p>Many OpenMed capabilities are native tools from the agent's perspective, even when they call configured HTTP services behind the scenes.</p>
+<ul>
+<li><code>extract_entities</code>, <code>extract_pii</code>, <code>deidentify_text</code>, and the batch extraction helpers use the native extraction service plane</li>
+<li>PubMed, ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, HCC, RAF, and terminology/crosswalk tools use the native coding and terminology service plane</li>
+<li>Preview builds use OpenMed-hosted native services without extra local setup</li>
+</ul>
+<p>These are native OpenMed tools. They are not MCP tools.</p>
+<h2 id="audit-traces">Audit traces<a class="headerlink" href="#audit-traces" title="Permanent link">&para;</a></h2>
+<p>Audit is off by default. When enabled, OpenMed writes one private trace per agent run to the configured destination.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Private HF dataset, recommended for versioned history</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OPENMED_AUDIT_HF_TOKEN</span><span class="o">=</span>hf_...
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>openmed<span class="w"> </span>audit<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--destination<span class="w"> </span>hf_dataset<span class="w"> </span>--dataset<span class="w"> </span><span class="s2">"&lt;user-or-org&gt;/openmed-traces"</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Local-only audit traces</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>openmed<span class="w"> </span>audit<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--destination<span class="w"> </span><span class="nb">local</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Inspect status and traces</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>openmed<span class="w"> </span>audit<span class="w"> </span>status
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>openmed<span class="w"> </span>audit<span class="w"> </span>show<span class="w"> </span>--last<span class="w"> </span><span class="m">10</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>openmed<span class="w"> </span>audit<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&lt;run_id&gt;<span class="w"> </span>--out<span class="w"> </span>trace.json
+</span></code></pre></div>
+<p>Useful audit commands:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openmed audit enable</code></td>
+<td>Create or configure the audit destination and write <code>~/.openmed/audit.json</code></td>
+</tr>
+<tr>
+<td><code>openmed audit disable</code></td>
+<td>Disable audit writes without deleting config</td>
+</tr>
+<tr>
+<td><code>openmed audit pause</code> / <code>resume</code></td>
+<td>Temporarily pause or resume audit writes</td>
+</tr>
+<tr>
+<td><code>openmed audit verify</code></td>
+<td>Smoke-test the configured destination</td>
+</tr>
+<tr>
+<td><code>openmed audit show --last N</code></td>
+<td>List recent traces</td>
+</tr>
+<tr>
+<td><code>openmed audit show &lt;run_id&gt;</code></td>
+<td>Print one trace JSON</td>
+</tr>
+<tr>
+<td><code>openmed audit export &lt;run_id&gt;</code></td>
+<td>Write one trace to a local JSON file</td>
+</tr>
+<tr>
+<td><code>openmed audit local-list</code></td>
+<td>List local fallback traces</td>
+</tr>
+<tr>
+<td><code>openmed audit local-sync</code></td>
+<td>Push local fallback traces to the configured HF dataset</td>
+</tr>
+</tbody>
+</table>
+<p>Default audit mode stores full private transcript and tool payloads. Use <code>openmed audit set-phi-payload preview</code>, <code>fingerprint</code>, or <code>none</code> for smaller records. See <a href="../audit/">Audit Trail</a>.</p>
+<h2 id="deterministic-workflows">Deterministic workflows<a class="headerlink" href="#deterministic-workflows" title="Permanent link">&para;</a></h2>
+<p>The repo currently ships 15 deterministic workflows. You normally invoke them through natural language in the TUI or inspect them with <code>/workflows</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Workflow ID</th>
+<th>Purpose</th>
+<th>Required inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>appeal_review</code></td>
+<td>Review denied appeals against evidence requirements</td>
+<td><code>note_paths</code>, <code>denial_codes</code>, <code>procedure_cpt</code></td>
+</tr>
+<tr>
+<td><code>chart_summary</code></td>
+<td>Build evidence-linked chart summary cards and artifacts</td>
+<td><code>note_path</code></td>
+</tr>
+<tr>
+<td><code>claims_explainer</code></td>
+<td>Explain FHIR EOB data in plain language</td>
+<td><code>eob_path</code></td>
+</tr>
+<tr>
+<td><code>clinical_inbox_triage</code></td>
+<td>Triage patient message threads into urgent, routine, or admin routing with reply drafts</td>
+<td><code>thread_path</code></td>
+</tr>
+<tr>
+<td><code>clinical_documentation</code></td>
+<td>Convert visit transcripts into structured clinical notes</td>
+<td><code>note_path</code></td>
+</tr>
+<tr>
+<td><code>coding_audit</code></td>
+<td>Audit submitted ICD-10 codes for specificity and compliance</td>
+<td><code>submitted_codes_path</code>, <code>note_paths</code></td>
+</tr>
+<tr>
+<td><code>consumer_summary</code></td>
+<td>Summarize normalized consumer record imports with timeline, trends, questions, narrative, and reconciliation notes</td>
+<td><code>records_path</code> or <code>manifest_path</code></td>
+</tr>
+<tr>
+<td><code>discharge_handoff</code></td>
+<td>Build patient instructions, clinician summary, PCP handoff, and follow-up tasks from a discharge pack</td>
+<td><code>discharge_path</code></td>
+</tr>
+<tr>
+<td><code>health_summary</code></td>
+<td>Parse Apple Health data, analyze trends, and emit FHIR output</td>
+<td><code>health_export_path</code></td>
+</tr>
+<tr>
+<td><code>icd10_hcc_coding</code></td>
+<td>Build a coding package with validation, mappings, and claims context</td>
+<td><code>note_paths</code>, <code>submitted_codes_path</code></td>
+</tr>
+<tr>
+<td><code>med_rec_discrepancy</code></td>
+<td>Detect medication reconciliation discrepancies</td>
+<td><code>note_path</code></td>
+</tr>
+<tr>
+<td><code>prior_auth_review</code></td>
+<td>Review prior auth requests against codes and LCD/NCD criteria</td>
+<td><code>note_paths</code>, <code>procedure_cpt</code>, <code>diagnosis_icd10</code></td>
+</tr>
+<tr>
+<td><code>structured_extraction_fhir_diff</code></td>
+<td>Extract entities, build a FHIR bundle, and diff it</td>
+<td><code>note_paths</code></td>
+</tr>
+</tbody>
+</table>
+<p>Common workflow behavior:</p>
+<ul>
+<li>All 13 support draft preview</li>
+<li>Models create drafts only. The TUI classifies each request as draft or finalized delivery with the small auxiliary-model path: explicit finalized requests are committed from the exact immutable snapshot in the same run; explicit draft requests and requests with no delivery wording stop at the draft. Natural follow-ups can approve an active draft without a run ID. The host still supplies a one-use exact-payload grant, and snapshots expire after 24 hours by default</li>
+<li>Final output directories must be new, empty, or an existing OpenMed-owned bundle for the same workflow; unsafe or arbitrary nonempty destinations are rejected before finalization</li>
+<li><code>clinical_inbox_triage</code> and <code>discharge_handoff</code> also require real <code>review_metadata</code> at final write; the UI collects it when needed</li>
+<li><code>consumer_summary</code>, <code>clinical_inbox_triage</code>, and <code>discharge_handoff</code> are local review/generation flows; there is no outbound send or external-system writeback path in these Wave 1 / Wave 2 lanes</li>
+<li>Finalized runs write provenance data</li>
+<li>Case runs can be listed and diffed through the workflow tool surface</li>
+</ul>
+<p>Default output roots:</p>
+<ul>
+<li>Artifacts: <code>/tmp/openmed/artifacts/</code></li>
+<li>Case runs: <code>/tmp/openmed/cases/</code></li>
+</ul>
+<p>Override them with <code>OPENMED_WORKFLOW_ARTIFACTS_DIR</code> and <code>OPENMED_WORKFLOW_CASES_DIR</code>.</p>
+<h2 id="configuration-and-profiles">Configuration and profiles<a class="headerlink" href="#configuration-and-profiles" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>show
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>openmed<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>timeout<span class="w"> </span><span class="m">600</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>openmed<span class="w"> </span>config<span class="w"> </span>profiles
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>openmed<span class="w"> </span>config<span class="w"> </span>profile-show<span class="w"> </span>dev
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>openmed<span class="w"> </span>config<span class="w"> </span>profile-use<span class="w"> </span>prod
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>openmed<span class="w"> </span>config<span class="w"> </span>profile-save<span class="w"> </span>myprofile
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>openmed<span class="w"> </span>config<span class="w"> </span>profile-delete<span class="w"> </span>myprofile
+</span></code></pre></div>
+<p>See <a href="../configuration/">Configuration</a> for environment variables and <a href="../profiles/">Profiles</a> for the built-in presets.</p>
+<h2 id="mcp-management">MCP management<a class="headerlink" href="#mcp-management" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>openmed<span class="w"> </span>mcp<span class="w"> </span>list
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>openmed<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>guidelines_hub<span class="w"> </span>https://example.com/mcp<span class="w"> </span>--name<span class="w"> </span><span class="s2">"Guidelines Hub"</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>openmed<span class="w"> </span>mcp<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>guidelines_hub
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>openmed<span class="w"> </span>mcp<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--all
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>openmed<span class="w"> </span>mcp<span class="w"> </span>disable<span class="w"> </span>guidelines_hub
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>openmed<span class="w"> </span>mcp<span class="w"> </span>disable<span class="w"> </span>--all
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>openmed<span class="w"> </span>mcp<span class="w"> </span>set-url<span class="w"> </span>guidelines_hub<span class="w"> </span>https://new-url.example.com/mcp
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>openmed<span class="w"> </span>mcp<span class="w"> </span>doctor<span class="w"> </span>guidelines_hub
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>openmed<span class="w"> </span>mcp<span class="w"> </span>doctor<span class="w"> </span>--all
+</span></code></pre></div>
+<p>MCP is the extension surface for remote systems that OpenMed does not already ship natively.</p>
+<h2 id="updates-and-diagnostics">Updates and diagnostics<a class="headerlink" href="#updates-and-diagnostics" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>openmed<span class="w"> </span>update
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>openmed<span class="w"> </span>update<span class="w"> </span>--check
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>openmed<span class="w"> </span>env
+</span></code></pre></div>
+<p><code>openmed update</code> can either check for updates or install them, depending on flags and installation mode. <code>openmed env</code> is the quickest way to capture local environment details for debugging.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="om-wrap om-pager" aria-label="Footer" >
+        
+          <a href="../getting-started/" class="om-pager__link" aria-label="Previous: Getting Started">
+            <div class="om-mono om-pager__k">← PREVIOUS</div>
+            <div class="om-pager__t">Getting Started</div>
+          </a>
+        
+        
+          <a href="../tui/" class="om-pager__link om-pager__link--next" aria-label="Next: Agent TUI">
+            <div class="om-mono om-pager__k">NEXT →</div>
+            <div class="om-pager__t">Agent TUI</div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="om-footer">
+    <div class="om-wrap om-footer__in">
+      <div class="om-footer__brand">
+        <img class="om-logo" src="/assets/images/logo.svg" width="22" height="22" alt="OpenMed">
+        <span class="om-mono om-footer__meta">OpenMed Agent · v0.3.0 · © OpenMed</span>
+      </div>
+      <nav class="om-footer__links" aria-label="Footer">
+        <a href="..">Docs</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/support/">Support</a>
+        <a href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Preview</a>
+        <a href="https://x.com/openmed_ai">X</a>
+        <a href="https://www.linkedin.com/company/openmed-ai/">LinkedIn</a>
+        <a href="https://github.com/openmed-labs/openmed-agent">GitHub</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tabs.link", "navigation.instant", "navigation.sections", "navigation.footer", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../overrides/docs-chrome.js"></script>
+      
+    
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"e87540559ece4a6abd994e004098b26a"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  </body>
+</html>
