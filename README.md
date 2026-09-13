@@ -1,121 +1,81 @@
 # OpenMed Agent
 
-> **The clinical agent that runs in your terminal — deterministic medical workflows, native coding and terminology tools, reviewable output.**
+> Clinical AI in your terminal — medical workflows, coding and terminology tools, and reviewable output.
 
-OpenMed Agent gives clinicians, healthcare operators, and technical teams a terminal-native workspace for the work that sits between the chart and the claim: prior authorization and appeals, coding audit, clinical documentation, care coordination, and consumer health summaries.
+OpenMed Agent helps clinicians, healthcare operators, and technical teams work with clinical records, prior authorizations, appeals, coding, documentation, and care coordination. Choose a model provider, describe the task, and review the resulting plans, citations, and workflow artifacts.
 
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-preview-orange.svg)](#preview-status)
-[![Docs](https://img.shields.io/badge/docs-agent.openmed.life-black.svg)](https://agent.openmed.life/docs)
+**Latest release: [v0.3.0](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.3.0)** · [All release notes](https://github.com/openmed-labs/openmed-agent/releases) · [Documentation](https://agent.openmed.life/docs/)
 
-> [!NOTE]
-> OpenMed Agent is in preview. The product surface is real and usable today; the hosted medical-service tier is still evolving. See [Preview status](#preview-status).
+OpenMed Agent is in preview. This repository provides product information and public release notes. Installation instructions are shared with approved evaluators through the [preview access page](https://agent.openmed.life/).
 
-## Install
+## What's new
 
-```bash
-# macOS / Linux
-curl -fsSL "<install.sh URL shared during preview>" | bash
+- **More model choices:** OpenRouter and custom OpenAI-compatible endpoints, including servers such as vLLM and SGLang, alongside OpenAI and Anthropic.
+- **A searchable model picker:** provider groups, Favorites, and Recent models, with `Ctrl+F` to favorite a model. `openmed --models` lists models available through your configured providers.
+- **Smoother long sessions:** more compact plans and reasoning, improved scrolling and session recovery, and better handling of context limits and temporary provider errors.
+- **Easier workflow handoffs:** request drafts or ready-to-deliver outputs in natural language, continue an active draft with a follow-up, and inspect clickable citations.
+- **Expanded coding tools:** CCSR classification, comorbidity analysis, RxHCC and ESRD risk models, and Orphanet rare-disease mappings.
+- **Simpler updates and sign-in:** update checks in the terminal, in-place macOS updates, and improved ChatGPT sign-in and recovery.
 
-# Windows
-irm "<install.ps1 URL shared during preview>" | iex
-```
+See the [v0.3.0 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.3.0) for the latest changes and the [release history](https://github.com/openmed-labs/openmed-agent/releases) for earlier additions and fixes.
 
-Install URLs are shared with evaluators during preview — [request access](https://agent.openmed.life).
+## Get started
 
-## Quickstart
+Use the installation instructions supplied with your preview access, then run:
 
 ```bash
-openmed login   # Authenticate with OAuth
-openmed         # Launch the agent
-openmed --help  # Full CLI reference
+openmed login          # Sign in with ChatGPT
+openmed                # Open the terminal workspace
+openmed --models       # List available models
+openmed --help         # Show CLI commands
 ```
 
-Or bring your own key:
+You can also configure your own OpenAI, Anthropic, or OpenRouter API key, or connect a custom OpenAI-compatible server. Follow the [provider setup guide](https://agent.openmed.life/docs/providers/).
+
+GPT-5.6 Terra at medium reasoning is the default for this preview. Switch the model, reasoning effort, skill, and agent mode from the terminal interface.
+
+To check for or install an update:
 
 ```bash
-openmed config provider-set openai --api-key "sk-..."
-openmed config provider-set anthropic --api-key "sk-ant-..."
+openmed --check-update
+openmed update
 ```
 
-Runs on GPT-5.5 / GPT-5.6 and Claude models. `gpt-5.6-terra` at medium reasoning is the default; switch model, reasoning effort, skill, and agent mode from the TUI or with `openmed agent`.
+[Getting started](https://agent.openmed.life/docs/getting-started/) · [CLI reference](https://agent.openmed.life/docs/cli/) · [Terminal interface](https://agent.openmed.life/docs/tui/)
 
-## What it does
+## Clinical and operational capabilities
 
-OpenMed Agent combines LLM reasoning with deterministic workflows and native medical tools. Describe the task in natural language, and the agent can:
+| Area | What you can do |
+| --- | --- |
+| Prior authorization and appeals | Review requests, coverage criteria, and denial evidence; prepare reviewable drafts. |
+| Coding and claims | Audit ICD-10 coding, inspect HCC and RAF context, use clinical classification and risk-model tools, and explain EOB or claims data. |
+| Clinical documentation | Turn notes or transcripts into structured clinical documentation and SOAP-style drafts. |
+| Care coordination | Triage inbox threads, prepare patient replies, create discharge and PCP handoffs, and organize follow-up tasks. |
+| Consumer health | Summarize Apple Health, Health Connect, C-CDA, FHIR exports, and lab files; inspect timelines, trends, and visit-preparation questions. |
+| Clinical text and evidence | Extract entities, de-identify text, search PubMed, and use coding and terminology lookups. |
 
-- Review prior authorization and appeal cases against structured criteria
-- Audit ICD-10 coding with HCC and RAF context
-- Explain EOB and claims data in plain language
-- Extract entities or de-identify clinical text
-- Summarize consumer health records from Apple Health, Health Connect export, C-CDA, FHIR export, and labs files
-- Triage inbox threads, draft reviewer-safe replies, and generate discharge handoffs
-- Search PubMed and use protected terminology services for ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, HCC, and RAF
+Medical tools cover ICD-10, CPT, SNOMED CT, LOINC, RxNorm, MedlinePlus, HCC, CCSR, comorbidities, RxHCC, ESRD, and Orphanet. Availability depends on the medical services configured for your installation.
 
-## What ships in preview
+## Work in a reviewable workspace
 
-- `62` native tools
-- `13` deterministic workflows with draft/finalize
-- `13` built-in skills
-- `4` agent modes: `clinical`, `consumer`, `coordination`, `plan`
-- `104` demo scenarios covering every capability area
+- **Draft and finalize:** inspect workflow previews, artifacts, citations, and differences before completing a workflow.
+- **Saved sessions:** return to conversations with their plans and previous tool results available for follow-up work.
+- **Files and citations:** use `@` file and directory completion, select response text, and copy code blocks with `/copy`.
+- **Project instructions and skills:** use `OPENMED.md` for workspace guidance and select built-in or custom skills for domain work.
+- **Permissions:** configure tool approval behavior for your workspace.
+- **Optional MCP:** connect additional medical or institutional tools.
+- **Optional web search:** enable client-side search when needed; it is off by default.
 
-## Key capabilities
+[Skills](https://agent.openmed.life/docs/skills/) · [Configuration](https://agent.openmed.life/docs/configuration/) · [Web search](https://agent.openmed.life/docs/web-search/)
 
-### Protected medical services
+## Preview and data handling
 
-- **Clinical extraction** — entity extraction, PII detection, and de-identification through protected service endpoints
-- **Terminology and coding** — ICD-10, CPT, SNOMED, LOINC, RxNorm, MedlinePlus, HCC, and RAF, with validation, crosswalks, and PubMed-backed lookup
-- **Configurable deployment boundary** — the operator runtime stays local while medical-service endpoints can be moved across hosted, cloud, or customer-managed environments
+Sessions and generated artifacts are stored on the machine running OpenMed. Model requests and medical-service calls use your configured providers and endpoints. Choosing a local model does not make connected medical services offline.
 
-### Clinical and operational workflows
+During preview, some medical services are operated by OpenMed. Service availability and integration details may change as the preview develops. PHI handling modes are workflow settings; they do not provide a blanket privacy guarantee. Review clinical outputs before use.
 
-- **Prior authorization and appeals** — review requests against deterministic criteria and structured evidence
-- **Coding audit** — specificity review, compliance flags, HCC mapping, and RAF impact
-- **Claims explanation** — patient-friendly EOB and billing explanations with clear next steps
-- **Clinical documentation** — structured SOAP-style documentation from notes or transcripts
-- **Care coordination** — inbox triage, reviewer-safe patient drafts, discharge and PCP handoffs, follow-up tasks
-- **Consumer health** — record normalization, timeline and trend analysis, visit-prep questions, narratives, reconciliation, optional education topics, and optional FHIR output
-
-### Agent runtime
-
-- **Project instructions** — drop an `OPENMED.md` in your project root to shape agent behavior per workspace
-- **Permission policy** — rule-based `auto` / `acceptall` / `denyall` / `plan` modes, with per-tool allow, deny, and ask rules from project or user settings
-- **Tool safety classification** — every tool carries `is_read_only`, `is_concurrent_safe`, and `is_destructive` metadata used by the permission system
-- **Oversized result handling** — large tool outputs persist to disk automatically, leaving compact stubs in context
-- **Runtime diagnostics** — `/config` shows effective settings, loaded sources, and active project instructions
-
-### Agent experience
-
-- **Interactive TUI** — sessions, themes, model and skill switching, and workflow execution in the terminal
-- **Draft and finalize** — reviewable cards, artifacts, provenance, and workflow diffs
-- **Skills** — built-in clinical skills that shape how the agent approaches domain work
-- **Plan auto-advance** — structured plans with deterministic, tool-based progress tracking
-- **Session persistence** — save, restore, fork, and roll back conversations
-- **Optional MCP** — connect external medical or institutional systems without changing the native tool surface
-- **Self-update** — built-in binary updates with release checks
-
-## Preview status
-
-- The product surface is real and usable today
-- The hosted medical-service tier is still evolving
-- Some service-backed capabilities are operated by OpenMed during preview rather than fully self-serve
-- Workflow, deployment, and integration details may continue to tighten as the product hardens
-
-During preview, OpenMed operates the protected clinical-service endpoints so evaluators do not have to deploy extraction and terminology infrastructure themselves.
-
-## Where the boundary sits
-
-The operator runtime — sessions, artifacts, project instructions, and permission rules — stays on your machine. Medical capabilities call configured protected endpoints when those paths are invoked, and those endpoints can be moved across hosted, cloud, or customer-managed environments.
-
-Three things worth stating plainly:
-
-- **Not fully offline.** Invoking a protected capability means a call to a configured endpoint.
-- **PHI handling modes are settings, not guarantees.** They are operator-visible workflow controls, not a blanket promise that every code path enforces the same policy.
-- **No telemetry.** No built-in analytics or phone-home tracking ships with the product.
-
-Reviewability is a core product characteristic: final clinical artifacts and care-coordination outputs are designed to be inspected before use.
+[Native medical services](https://agent.openmed.life/docs/native-medical-services/) · [Privacy and security](https://agent.openmed.life/docs/privacy/)
 
 ---
 
-[Website](https://agent.openmed.life) · [Documentation](https://agent.openmed.life/docs) · [X/Twitter](https://x.com/openmed_ai) · [LinkedIn](https://www.linkedin.com/company/openmed-ai/)
+[Website](https://agent.openmed.life/) · [Documentation](https://agent.openmed.life/docs/) · [Releases](https://github.com/openmed-labs/openmed-agent/releases) · [Repository license](LICENSE)
