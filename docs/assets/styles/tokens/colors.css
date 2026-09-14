@@ -1,0 +1,120 @@
+/* OpenMed Agent — color tokens ("clinical grade" design system).
+   Light is the default scope; dark activates under [data-theme="dark"].
+
+   ACCENT ENGINE: every accent-tinted value derives from --om-accent-base via
+   oklch relative color (Chrome 119+ / Safari 16.4+ / Firefox 128+). Change ONE
+   hex to retint an entire site (used for per-site accents across OpenMed
+   properties). Chroma is clamped so any base stays calm and clinical;
+   lightness is fixed per role for guaranteed contrast.
+
+   FALLBACKS: custom properties cannot use the two-declaration fallback trick
+   (an unsupported value poisons the var at computed-value time instead of
+   falling back), so the engine lives in an @supports block below. The static
+   values here were computed for #FF823A — if a sibling site changes
+   --om-accent-base it must recompute these ten hexes for old browsers, or
+   accept default-orange fallbacks there. */
+
+:root {
+  /* accent engine — set this one value per site */
+  --om-accent-base: #FF823A;
+
+  /* static fallbacks (pre-computed from #FF823A) */
+  --om-accent: #C04B00;          /* text/labels/links on light */
+  --om-accent-strong: #A12D00;   /* hover/pressed */
+  --om-accent-bright: #FF8A45;   /* on ink/terminal surfaces */
+  --om-accent-deep: #3B1400;     /* text on accent-bright fills */
+  --om-wash: #FFE3D2;            /* tinted chip/badge background */
+
+  /* neutrals */
+  --om-bg: #F4F7F8;
+  --om-surface: #FFFFFF;
+  --om-surface-2: #F8FAFA;
+  --om-ink: #0E1116;
+  --om-body: #4C5860;
+  --om-dim: #5C6870;
+  --om-faint: #9AA6AD;
+  --om-line: #DEE5E7;
+  --om-line-2: #E2E9EA;
+
+  /* chips + controls */
+  --om-chip-bg: #FFFFFF;
+  --om-chip-bd: #DCE4E6;
+  --om-chip-fg: #3E4A52;
+  --om-btn-ink-bg: #0E1116;
+  --om-btn-ink-fg: #FFFFFF;
+  --om-btn-accent-bg: #C04B00;
+  --om-btn-accent-fg: #FFFFFF;
+  --om-machine-chip-bg: #E7EDEE;
+  --om-machine-chip-fg: #0E1116;
+  --om-dash: #B9C6C9;
+
+  /* status — reserved for "awaiting review" states only */
+  --om-review: #D9A441;
+
+  /* terminal palette — theme-INVARIANT; the terminal is always ink */
+  --om-term-bg: #0E1116;
+  --om-term-header: #131A21;
+  --om-term-bd: #1B232B;
+  --om-term-line: #202A33;
+  --om-term-fg: #E3E8EC;
+  --om-term-fg-2: #D8DEE3;
+  --om-term-body: #B9C2CA;
+  --om-term-dim: #5F6C7A;
+  --om-term-faint: #3E4A55;
+  --om-term-label: #6A7682;
+  --om-term-chip-bg: #371C0D;
+  --om-term-chip-bd: #5D331D;
+  --om-term-shadow: 0 28px 56px -28px rgba(14, 17, 22, 0.45);
+}
+
+[data-theme="dark"] {
+  --om-accent: #FF8A45;
+  --om-accent-strong: #FFA461;
+  --om-wash: rgba(255, 138, 69, 0.12);
+
+  --om-bg: #0B0E13;
+  --om-surface: #10151C;
+  --om-surface-2: #141B23;
+  --om-ink: #E6EBEE;
+  --om-body: #97A3AD;
+  --om-dim: #7C8894;
+  --om-faint: #5A6672;
+  --om-line: #1E2630;
+  --om-line-2: #1A222B;
+
+  --om-chip-bg: #121920;
+  --om-chip-bd: #26313C;
+  --om-chip-fg: #9AA6B2;
+  --om-btn-ink-bg: #E6EBEE;
+  --om-btn-ink-fg: #0B0E13;
+  --om-btn-accent-bg: #E26A1E;
+  --om-btn-accent-fg: #280D02;
+  --om-machine-chip-bg: #1C242C;
+  --om-machine-chip-fg: #C9D3DB;
+  --om-dash: #2E3A44;
+
+  --om-term-bd: #242E38;
+  --om-term-shadow: 0 32px 64px -28px rgba(0, 0, 0, 0.7);
+}
+
+/* the accent engine — derived roles follow --om-accent-base (do not hand-pick) */
+@supports (color: oklch(from red l c h)) {
+  :root {
+    --om-accent: oklch(from var(--om-accent-base) 0.56 min(c, 0.17) h);
+    --om-accent-strong: oklch(from var(--om-accent-base) 0.47 min(c, 0.17) h);
+    --om-accent-bright: oklch(from var(--om-accent-base) 0.76 min(c, 0.17) h);
+    --om-accent-deep: oklch(from var(--om-accent-base) 0.25 min(c, 0.07) h);
+    --om-wash: oklch(from var(--om-accent-base) 0.94 min(c, 0.045) h);
+    --om-btn-accent-bg: oklch(from var(--om-accent-base) 0.56 min(c, 0.17) h);
+    --om-term-chip-bg: oklch(from var(--om-accent-base) 0.26 min(c, 0.05) h);
+    --om-term-chip-bd: oklch(from var(--om-accent-base) 0.37 min(c, 0.07) h);
+  }
+
+  [data-theme="dark"] {
+    --om-accent: oklch(from var(--om-accent-base) 0.76 min(c, 0.17) h);
+    --om-accent-strong: oklch(from var(--om-accent-base) 0.84 min(c, 0.17) h);
+    --om-wash: oklch(from var(--om-accent-base) 0.76 min(c, 0.17) h / 0.12);
+    --om-btn-accent-bg: oklch(from var(--om-accent-base) 0.66 min(c, 0.17) h);
+    --om-btn-accent-fg: oklch(from var(--om-accent-base) 0.2 min(c, 0.05) h);
+  }
+}
