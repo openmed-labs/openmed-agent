@@ -4,20 +4,20 @@
 
 OpenMed Agent helps clinicians, healthcare operators, and technical teams work with clinical records, prior authorizations, appeals, coding, documentation, and care coordination. Choose a model provider, describe the task, and review the resulting plans, citations, and workflow artifacts.
 
-**Latest release: [v0.3.0](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.3.0)** · [All release notes](https://github.com/openmed-labs/openmed-agent/releases) · [Documentation](https://agent.openmed.life/docs/)
+**Latest release: [v0.4.0](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.4.0)** · [All release notes](https://github.com/openmed-labs/openmed-agent/releases) · [Documentation](https://agent.openmed.life/docs/)
 
 OpenMed Agent is in preview. This repository provides product information and public release notes. Installation instructions are shared with approved evaluators through the [preview access page](https://agent.openmed.life/).
 
 ## What's new
 
-- **More model choices:** OpenRouter and custom OpenAI-compatible endpoints, including servers such as vLLM and SGLang, alongside OpenAI and Anthropic.
-- **A searchable model picker:** provider groups, Favorites, and Recent models, with `Ctrl+F` to favorite a model. `openmed --models` lists models available through your configured providers.
-- **Smoother long sessions:** more compact plans and reasoning, improved scrolling and session recovery, and better handling of context limits and temporary provider errors.
-- **Easier workflow handoffs:** request drafts or ready-to-deliver outputs in natural language, continue an active draft with a follow-up, and inspect clickable citations.
-- **Expanded coding tools:** CCSR classification, comorbidity analysis, RxHCC and ESRD risk models, and Orphanet rare-disease mappings.
-- **Simpler updates and sign-in:** update checks in the terminal, in-place macOS updates, and improved ChatGPT sign-in and recovery.
+- **Clinical file review:** choose language, identifiers to redact and terms to preserve, then inspect the result before saving. PDF and image drafts are available where supported by the configured service.
+- **Batch files:** process selected text fields in CSV and JSONL with progress, cancellation and resume.
+- **Explicit file privacy controls:** choose off, on or auto. File privacy is off by default and the selected mode is retained when resuming a session.
+- **Smoother sessions:** improved long-session recovery, file exports, tool-loop handling, streamed scrolling and pasted input.
 
-See the [v0.3.0 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.3.0) for the latest changes and the [release history](https://github.com/openmed-labs/openmed-agent/releases) for earlier additions and fixes.
+Clinical redaction and OCR remain preview features and require review. Batch processing changes only the selected field; other columns may still contain identifiers.
+
+See the [v0.4.0 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.4.0) for the latest changes and the [release history](https://github.com/openmed-labs/openmed-agent/releases) for earlier additions and fixes.
 
 ## Get started
 
