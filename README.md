@@ -10,7 +10,7 @@ OpenMed Agent is in preview. This repository provides product information and pu
 
 ## What's new
 
-- **Clinical file review:** choose language, identifiers to redact and terms to preserve, then inspect the result before saving. PDF and image drafts are available where supported by the configured service.
+- **Clinical file review:** choose language, redaction method, and patient or clinician details, then inspect the result before saving. PDF and image drafts are available where supported by the configured service.
 - **Batch files:** process selected text fields in CSV and JSONL with progress, cancellation and resume.
 - **Explicit file privacy controls:** choose off, on or auto. File privacy is off by default and the selected mode is retained when resuming a session.
 - **Smoother sessions:** improved long-session recovery, file exports, tool-loop handling, streamed scrolling and pasted input.
