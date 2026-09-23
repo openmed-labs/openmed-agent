@@ -1,0 +1,1755 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+      
+      
+      
+        <link rel="canonical" href="https://agent.openmed.life/docs/privacy/">
+      
+      
+        <link rel="prev" href="../clinical-nlp/">
+      
+      
+        <link rel="next" href="../audit/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Privacy & Security - OpenMed Agent</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../assets/styles/fonts.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/colors.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/typography.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/surfaces.css">
+    
+      <link rel="stylesheet" href="../overrides/docs.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("openmed-theme"); } catch (error) { theme = null; }
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      var root = document.documentElement;
+      root.setAttribute("data-theme", theme);
+      root.setAttribute("data-md-color-scheme", theme === "dark" ? "slate" : "default");
+    })();
+  </script>
+  
+  
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenMed Agent">
+  <meta property="og:title" content="Privacy & Security — OpenMed Agent">
+  <meta property="og:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta property="og:url" content="https://agent.openmed.life/docs/privacy/">
+  <meta property="og:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:secure_url" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="agent.openmed.life">
+  <meta name="twitter:url" content="https://agent.openmed.life/docs/privacy/">
+  <meta name="twitter:title" content="Privacy & Security — OpenMed Agent">
+  <meta name="twitter:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta name="twitter:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta name="twitter:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#privacy-security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <header class="md-header om-nav" data-md-component="header">
+  <nav class="om-wrap om-nav__in" aria-label="Header">
+    <label class="om-drawerbtn" for="__drawer" aria-label="Open navigation">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </label>
+    <a href="/" class="om-brand" title="OpenMed Agent" data-md-component="logo">
+      <img class="om-logo" src="/assets/images/logo.svg" width="28" height="28" alt="OpenMed">
+      <span class="om-brand__word">openmed</span>
+      <span class="om-brand__ver om-mono">v0.4.0 preview</span>
+    </a>
+    <div class="om-nav__links">
+      <a class="om-nav__on" href="..">Docs</a>
+      <a href="/#runtime">Runtime</a>
+      <a href="/#services">Services</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#install">Install</a>
+    </div>
+    <div class="om-nav__acts">
+      
+        
+        
+          <label class="om-themebtn om-searchbtn" for="__search" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          </label>
+          <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      
+      <button class="om-themebtn" data-theme-toggle type="button" aria-label="Switch theme">
+        <svg class="om-themebtn__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+        <svg class="om-themebtn__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <a class="om-btn om-btn--accent om-btn--sm" href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Request Preview</a>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OpenMed Agent" class="md-nav__button md-logo" aria-label="OpenMed Agent" data-md-component="logo">
+      
+  <img src="../assets/images/logo.svg" alt="logo">
+
+    </a>
+    OpenMed Agent
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Product
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent TUI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../native-medical-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Native Medical Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clinical-nlp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clinical NLP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy & Security
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy & Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approval-and-review-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approval And Review Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clinical-file-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clinical file review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumable-batch-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumable batch files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phi-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PHI Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Audit Trail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Guidance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit Trail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approval-and-review-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approval And Review Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clinical-file-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clinical file review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumable-batch-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumable batch files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phi-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PHI Modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Audit Trail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Guidance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+    
+    <div class="om-mono om-crumb">DOCS — TRUST · PRIVACY & SECURITY</div>
+  
+  
+                  
+
+
+
+<h1 id="privacy-security">Privacy &amp; Security<a class="headerlink" href="#privacy-security" title="Permanent link">&para;</a></h1>
+<p>OpenMed is built for environments where operators need to see what the system is doing, where data is stored, and which external services are in the loop. This page describes the product as it exists today, not an idealized future control plane.</p>
+<h2 id="runtime-boundary">Runtime boundary<a class="headerlink" href="#runtime-boundary" title="Permanent link">&para;</a></h2>
+<p>OpenMed itself runs locally. The TUI, session files, plans, cards, workflow artifacts, and local file operations all happen on your machine.</p>
+<p>That does <strong>not</strong> mean every clinical capability is fully offline. Many medical functions depend on remote service boundaries:</p>
+<ul>
+<li>The model provider (<code>openmed login</code> / <code>OPENAI_API_KEY</code> / <code>ANTHROPIC_API_KEY</code> / <code>OPENROUTER_API_KEY</code> / <code>MIMO_API_KEY</code>, or a configured custom endpoint)</li>
+<li>OpenMed's native medical service plane for extraction, PII, de-identification, terminology, education, HCC, and RAF tooling</li>
+<li>User-added remote MCP endpoints</li>
+</ul>
+<p>If you configure OpenRouter, prompts for general agent reasoning go to OpenRouter and on to whichever upstream provider serves the model you selected — one more hop than a direct OpenAI or Anthropic key. Review <a href="https://openrouter.ai/settings/privacy">OpenRouter's privacy settings</a> for how they handle and log your data. Provider credentials are never mixed: an OpenRouter key is only ever sent to OpenRouter, and an OpenAI or Anthropic key is never sent there.</p>
+<p>With the MiMo provider, model requests go directly to
+<code>https://token-plan-ams.xiaomimimo.com/v1</code> using your <code>tp</code> token-plan key.
+This is hosted inference; a token-plan subscription does not make the model
+local or offline. Workflow helper requests use the same provider and selected
+model. MiMo does not borrow another provider's credentials.</p>
+<p>OpenMed does not assume every task belongs on the same remote boundary. General agent reasoning uses the configured model provider, while extraction, PII, de-identification, terminology, HCC, and RAF paths can run on dedicated protected medical-service planes. This split is designed to improve control, throughput, and cost efficiency for sensitive or high-volume clinical processing. The actual privacy and compliance posture still depends on where those services are hosted and governed.</p>
+<h2 id="approval-and-review-model">Approval And Review Model<a class="headerlink" href="#approval-and-review-model" title="Permanent link">&para;</a></h2>
+<p>OpenMed does not stop for a modal approval before every tool call.</p>
+<p>What happens today:</p>
+<ul>
+<li>Deterministic workflows use a separate draft/finalize lifecycle, where final writes require an explicit host action plus a verified immutable draft snapshot</li>
+<li>Final workflow bundles are staged privately and committed atomically only to a new, empty, or matching OpenMed-owned output directory; protected state and arbitrary nonempty directories fail closed</li>
+<li>Approval dialogs for approval-gated tools such as <code>edit_file</code> are currently wired on the OpenAI SDK path</li>
+<li>Read/search/extraction tools can run without a modal approval step, but their execution is still surfaced in the TUI with plans, tool-call messages, and results</li>
+</ul>
+<p>If you need a stricter approval policy than that, the current docs should not imply you already have it.</p>
+<h2 id="clinical-file-review">Clinical file review<a class="headerlink" href="#clinical-file-review" title="Permanent link">&para;</a></h2>
+<p>Start with the <a href="../clinical-nlp/">Clinical NLP guide</a> for examples, redaction
+methods, language controls, PDF/image drafts and resumable batches.</p>
+<p>For dedicated redaction, give <code>deidentify_text</code> the source <code>file_path</code> and requested
+<code>output_path</code> directly. The tool reads supported content internally, sends it to the
+configured NLP service, and returns counts, status and the output path. Reading
+the raw file into the conversation first can disclose it to the chat model.</p>
+<p>File privacy is <strong>off by default</strong>. Select its mode with a host command:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/privacy-chat off</code></td>
+<td>Disable file privacy restrictions. Prompts do not turn them on.</td>
+</tr>
+<tr>
+<td><code>/privacy-chat on</code></td>
+<td>Activate restrictions immediately. <code>/privacy-chat</code> is a shorthand.</td>
+</tr>
+<tr>
+<td><code>/privacy-chat auto</code></td>
+<td>Clear any active restriction and wait for a recognized file privacy request.</td>
+</tr>
+</tbody>
+</table>
+<p>You can change modes in the same session after the current turn finishes or stops.
+The command alone changes the setting without sending a model request. To also
+send a request, append it: <code>/privacy-chat on Deidentify /path/note.txt</code>. The older
+<code>/privacy-chat Deidentify /path/note.txt</code> form still enables privacy and sends the
+request. Attachments and file aliases are retained.</p>
+<p>Only opt-in <code>auto</code> mode uses local phrase recognition. Familiar explicit prompts
+such as “Deidentify /path/note.txt” and “Mask personal info” with an attached file
+activate the restriction. Actions such as "extract" must directly refer to personal
+identifiers. Extracting clinical entities and mentioning patient identifiers
+elsewhere in a report request does not activate it. Recognition does not cover
+every language or wording; select <code>on</code> when it misses a request. Once triggered,
+<code>auto</code> stays active across follow-ups until you select <code>off</code> or reselect <code>auto</code>.</p>
+<p>Once active, the host allows only <code>inspect_file</code>, <code>deidentify_text</code>, <code>extract_pii</code>,
+<code>deidentify_batch</code> and <code>update_plan</code> from its trusted built-in implementations.
+General readers, code execution, external tools and provider built-ins are blocked,
+including guessed tool calls and generic auto-approval. Attachments reach the chat
+model as paths only. The setting persists across follow-ups, model changes, session
+resume and forks, including whether <code>auto</code> has already activated. <code>off</code> restores
+the tools allowed by the other session controls; it does not change PHI or access
+mode. A fresh conversation with <code>/clear</code> starts with file privacy off. Ordinary
+model requests and SDK history resets cannot release an active restriction.</p>
+<p>SDK applications select <code>SDKConfig(file_privacy="off")</code> (the default),
+<code>SDKConfig(file_privacy="on")</code> or <code>SDKConfig(file_privacy="auto")</code>. The legacy
+<code>SDKConfig(file_privacy_mode=True)</code> opt-in still means <code>on</code>. Existing saved sessions
+with an active legacy restriction reopen with it on; sessions without a setting
+start off. Unknown saved modes fall back to off; an actual legacy boolean <code>true</code>
+still restores the restriction. Malformed legacy flags do not enable privacy.</p>
+<p>This restriction covers subsequent tool dispatch and attachment payloads. It does
+not scrub raw text pasted into a prompt, earlier conversation content or existing
+system instructions, and cannot undo earlier reads or tool side effects. A tool
+already running when the restriction activates has its later result, exception and
+progress withheld. Global FULL, DEID and STRICT modes remain separate controls.
+The dedicated privacy tools still send source content to the configured NLP service.</p>
+<p>The v2 clinical profile accepts automatic or explicit language (<code>de</code>, <code>DE</code>,
+<code>de-DE</code>), patient/clinician roles, redaction categories and clinical preservation.
+It supports mask, remove, localized replacement, managed keyed hashing and explicit
+date shifting. The full date of birth is redacted. A higher detection threshold
+can leave more identifiers visible; it is not a general safety setting.</p>
+<p>Unqualified model/language routes require explicit <code>review_mode=true</code> opt-in and
+return <code>needs_review</code>. These outputs are drafts for inspection, not clinically
+validated anonymization. Partial coverage and failed processing do not write an
+output. Writes are atomic and owner-only; source collisions and existing outputs
+are rejected unless a separate output is explicitly authorized for replacement.</p>
+<p>In the TUI, <code>/privacy</code> opens a local review screen with language, method, role and
+category controls. It requires FULL mode and never changes PHI mode itself. Preview
+text stays outside the chat transcript and audit payload. “Save shown output”
+writes that exact preview, rejects a changed source and makes no second model call.
+Cancel closes an active preview request. The natural-language tool schema exposes
+these controls; a tool
+<code>preview=true</code> result is displayed in a transient local screen.</p>
+<p>PDF, PNG and JPEG input is supported by the document <strong>preview</strong> endpoint when
+the configured service has document ingestion enabled. Files are limited to
+8,000,000 bytes and eight pages; the service also enforces image-pixel, OCR-word
+and text limits. Set <code>review_mode=true</code> explicitly. The default output is <code>.txt</code>.
+The tool sends the file bytes directly to the configured NLP service without
+reading the file into the chat. It does not parse documents locally.</p>
+<p>Default document output is an <strong>OCR text draft</strong>. OCR can
+omit or change identifiers and clinical text, including entire blank-recognition
+pages. Compare the draft with every source page before sharing. Document results
+retain <code>complete=false</code>, <code>source_content_completeness=unverified</code> and
+<code>recognized_text_complete=true</code>: the last flag describes processing of recognized
+text only. Failures or incomplete recognized-text processing produce no file.
+The original document is unchanged, including its metadata and text layers.</p>
+<p>For a binary mask draft, use <code>export_format="pdf"</code> with PDF input and a <code>.pdf</code>
+output path, or <code>export_format="png"</code> with PNG/JPEG input and a <code>.png</code> output
+path. These exports require <code>method="mask"</code>. The service burns padded whole-word
+masks into fresh page images and returns an image-only PDF or lossless PNG with
+no source metadata or searchable text layer. It verifies decoded pixels; the
+Agent checks the returned byte hash, format, page geometry and mask receipt
+against the OCR map before saving up to 32 MB atomically with owner-only access.
+These checks do not establish that OCR or identifier detection found everything.</p>
+<p>Use <code>ocr_languages=["de"]</code>, <code>["en"]</code> or <code>["de", "en"]</code> (the default) to select
+OCR packs. This is separate from <code>language</code>/<code>lang</code>, which controls privacy routing.
+The <code>/privacy</code> screen exposes both language controls and an output-format selector.
+Its text area is an <strong>OCR text preview</strong>, including when binary export is selected.
+“Save draft for review” writes the returned binary after checking the source path,
+bytes and format again, without another model call. “Open saved file” checks that
+the file still matches the saved hash and opens it in the system viewer. Inspect
+all exported pages alongside the source. Changing controls invalidates the preview.
+Tool <code>preview=true</code> saves no file and displays only OCR text, never the binary.
+Clinical/OCR qualification remains unfinished. These controls require a configured
+service with document previews enabled; the hosted preview supports them.</p>
+<p>Both file review and normal privacy tools use hosted NLP when configured with a
+hosted service. This is distinct from chat-model disclosure and does not make the
+operation local or offline. The global preflight retains explicit mode selection
+and rejects review-required or incomplete v1 adapter results.</p>
+<h2 id="resumable-batch-files">Resumable batch files<a class="headerlink" href="#resumable-batch-files" title="Permanent link">&para;</a></h2>
+<p><code>deidentify_batch</code> and <code>/privacy-batch</code> process UTF-8 text, CSV or JSONL through
+the configured hosted NLP service. Choose the source, output, checkpoint, format
+and selected text column/field. The current preview supports up to 1,000 records,
+20 MB per source and 100,000 characters per selected field. The TUI requires an
+explicit existing FULL mode; review mode starts unchecked.</p>
+<p>For example: “Deidentify the <code>clinical_text</code> column of <code>/path/notes.csv</code> into
+<code>/path/notes.masked.csv</code>. Use <code>/path/notes.batch.json</code> as the checkpoint. Mask
+patient and clinician identifiers, language de. I accept an unqualified draft
+for review.” The agent passes file paths directly to the tool. Source text and
+transformed text do not appear in its summary.</p>
+<p>Only the selected field is sent to NLP. Other fields remain local and are
+preserved in the output; they can still contain identifiers. Each row has a
+status. Pending and failed selected fields are blank. Plain-text output is
+written only when a complete usable result exists. Review-required results
+remain drafts, even when every row has finished processing.</p>
+<p>New runs require new output and checkpoint paths. Both are written atomically
+with owner-only permissions on macOS/Linux. The checkpoint stores opaque row
+IDs, offsets, counts, hashes and job cursors; source/output text, keys and policy
+term values are excluded. A persistent <code>.lock</code> file holds only a fixed marker.
+Keep the original input, requested output and checkpoint together for resume.</p>
+<p>Cancel saves completed rows and requests cancellation of active service work.
+Resume with the same paths and controls; only rows without a saved outcome are
+resubmitted after cancellation, job expiry or service restart. Resume rejects
+changed source/output bytes, owner, deployment, model, policy or hashing-key
+identity. A cooperating writer lock prevents simultaneous use of one checkpoint.
+Recovery reconciles interruptions between output and journal writes; it is not
+a transaction with unrelated programs editing the same files.</p>
+<p>The remote job holds data in process memory until deletion or expiry (currently
+15 minutes). The coordinator requests deletion after saving outputs; a lost
+connection can leave remote data until expiry. Managed authentication is refreshed
+between job requests. A timeout leaves the saved job identity available for an
+explicit resume. Bulk resume requires an attested service deployment and does not
+fall back to the legacy API. Neither hosted German qualification nor production
+promotion is implied by this workflow.</p>
+<h2 id="phi-modes">PHI Modes<a class="headerlink" href="#phi-modes" title="Permanent link">&para;</a></h2>
+<p>OpenMed exposes three PHI modes in the CLI and TUI:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Current meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>full</code></td>
+<td>General-purpose clinical workflow context</td>
+</tr>
+<tr>
+<td><code>deid</code></td>
+<td>Indicates a de-identification-first posture where the workflow/path supports it</td>
+</tr>
+<tr>
+<td><code>strict</code></td>
+<td>Indicates a conservative handling posture for highly sensitive runs</td>
+</tr>
+</tbody>
+</table>
+<p>Important caveat:</p>
+<p>The current PHI mode setting is visible in the UI and persisted in session state, but it should <strong>not</strong> be treated as a universal enforcement layer by itself. Actual data handling depends on:</p>
+<ul>
+<li>Which tool path or workflow you invoke</li>
+<li>Whether that path explicitly calls <code>deidentify_text</code> or another de-identification step</li>
+<li>Which remote boundaries are in use for model, native medical-service, or MCP access</li>
+</ul>
+<p>In other words: treat PHI mode as operator-visible workflow context, not as a standalone compliance guarantee.</p>
+<h2 id="local-storage">Local Storage<a class="headerlink" href="#local-storage" title="Permanent link">&para;</a></h2>
+<p>OpenMed writes local state to files such as:</p>
+<ul>
+<li><code>~/.openmed/sessions/</code> for persisted TUI sessions</li>
+<li><code>~/.openmed/sessions/&lt;session&gt;/draft_snapshots/</code> for private, immutable workflow drafts awaiting explicit finalization. The directory is owner-only, each snapshot expires after 24 hours by default (<code>OPENMED_DRAFT_SNAPSHOT_TTL_SECONDS</code>), and snapshots are removed after successful finalization, session clear/rollback, or session deletion. Non-session callers use the same default policy under <code>~/.openmed/draft_snapshots/</code></li>
+<li><code>/tmp/openmed/artifacts/</code> and <code>/tmp/openmed/cases/</code> by default for workflow outputs</li>
+<li><code>~/.config/openmed/</code> for config, MCP metadata, profiles, and user skills</li>
+<li><code>~/.openmed/auth.json</code> for OAuth credentials</li>
+<li><code>~/.openmed/audit.json</code> and <code>~/.openmed/traces/</code> only when optional audit traces are enabled or HF audit writes fall back locally</li>
+</ul>
+<h2 id="optional-audit-trail">Optional Audit Trail<a class="headerlink" href="#optional-audit-trail" title="Permanent link">&para;</a></h2>
+<p>Audit traces are opt-in and off by default. When enabled, they write directly from the user's machine to the configured private destination:</p>
+<ul>
+<li>private Hugging Face Dataset repo</li>
+<li>private Hugging Face Storage Bucket</li>
+<li>local-only trace directory</li>
+</ul>
+<p>OpenMed does not send audit traces to OpenMed-owned infrastructure. Once audit is enabled, the default audit payload mode is <code>payload</code>, which stores the full private transcript and tool payloads in the configured destination. Use <code>preview</code>, <code>fingerprint</code>, or <code>none</code> when you need a smaller or less revealing trace.</p>
+<p><code>phi_payload</code> is separate from PHI mode:</p>
+<ul>
+<li>PHI mode describes the operator posture for the run</li>
+<li><code>phi_payload</code> controls what the audit trace stores</li>
+</ul>
+<p>Use <code>openmed audit status</code> and <code>/audit</code> to see the active audit posture. See <a href="../audit/">Audit Trail</a> for setup and trace contents.</p>
+<h2 id="token-storage">Token Storage<a class="headerlink" href="#token-storage" title="Permanent link">&para;</a></h2>
+<p><code>openmed login</code> stores credentials locally:</p>
+<ul>
+<li><code>openmed login</code> writes <code>~/.openmed/auth.json</code></li>
+<li>Project-local <code>./auth.json</code> is deprecated and ignored</li>
+</ul>
+<p>The current implementation writes a normal local JSON file and sets restrictive file permissions where supported by the operating system. Teams with stricter requirements should still rely on OS-level access controls.</p>
+<h2 id="network-access">Network Access<a class="headerlink" href="#network-access" title="Permanent link">&para;</a></h2>
+<p>OpenMed can access the network for:</p>
+<ul>
+<li><strong>Model traffic</strong> — prompts/responses with the configured LLM provider</li>
+<li><strong>OAuth and auth validation</strong> — browser login flow plus token validation/status checks when invoked</li>
+<li><strong>Native medical services</strong> — extraction, PII, de-identification, terminology, education, HCC, and RAF tooling</li>
+<li><strong>Optional audit writes</strong> — private HF dataset or bucket writes only if <code>openmed audit enable</code> has been configured</li>
+<li><strong>Remote MCP servers</strong> — only if you configure them</li>
+<li><strong>Self-update</strong> — release checks/downloads when you run <code>openmed update</code></li>
+<li><strong>Connectivity checks</strong> — commands such as <code>openmed mcp doctor</code></li>
+</ul>
+<p>Outside those paths, the local runtime remains local.</p>
+<p>See <a href="../native-medical-services/">Native Medical Services</a> for the deployment patterns behind those service planes.</p>
+<h2 id="no-telemetry">No Telemetry<a class="headerlink" href="#no-telemetry" title="Permanent link">&para;</a></h2>
+<p>OpenMed Agent itself does not include in-product analytics, usage tracking, or background crash reporting. Public marketing and documentation pages may use lightweight site analytics to understand aggregate visitor traffic.</p>
+<p>That statement does not cover third-party services you intentionally configure. Once you point OpenMed at a model provider, customer-managed native medical-service plane, or remote MCP server, the privacy and retention posture of that service becomes part of your real deployment boundary.</p>
+<h2 id="practical-guidance">Practical Guidance<a class="headerlink" href="#practical-guidance" title="Permanent link">&para;</a></h2>
+<p>If you need the most defensible deployment story today:</p>
+<ol>
+<li>Keep sessions and artifacts on managed local storage</li>
+<li>Treat <code>~/.openmed/auth.json</code> as the single OAuth credential file and protect the user account that owns it</li>
+<li>For customer-managed deployments, run native medical services on infrastructure you control or have vetted contractually</li>
+<li>Treat PHI mode as operator context, and verify the exact tool/data path for any sensitive workflow</li>
+<li>Use draft/finalize workflows so reviewers can inspect outputs before final writes</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="om-wrap om-pager" aria-label="Footer" >
+        
+          <a href="../clinical-nlp/" class="om-pager__link" aria-label="Previous: Clinical NLP">
+            <div class="om-mono om-pager__k">← PREVIOUS</div>
+            <div class="om-pager__t">Clinical NLP</div>
+          </a>
+        
+        
+          <a href="../audit/" class="om-pager__link om-pager__link--next" aria-label="Next: Audit Trail">
+            <div class="om-mono om-pager__k">NEXT →</div>
+            <div class="om-pager__t">Audit Trail</div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="om-footer">
+    <div class="om-wrap om-footer__in">
+      <div class="om-footer__brand">
+        <img class="om-logo" src="/assets/images/logo.svg" width="22" height="22" alt="OpenMed">
+        <span class="om-mono om-footer__meta">OpenMed Agent · v0.4.0 · © OpenMed</span>
+      </div>
+      <nav class="om-footer__links" aria-label="Footer">
+        <a href="..">Docs</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/support/">Support</a>
+        <a href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Preview</a>
+        <a href="https://x.com/openmed_ai">X</a>
+        <a href="https://www.linkedin.com/company/openmed-ai/">LinkedIn</a>
+        <a href="https://github.com/openmed-labs/openmed-agent">GitHub</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tabs.link", "navigation.instant", "navigation.sections", "navigation.footer", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../overrides/docs-chrome.js"></script>
+      
+    
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"e87540559ece4a6abd994e004098b26a"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  </body>
+</html>
