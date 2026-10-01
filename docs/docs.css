@@ -1,0 +1,663 @@
+/* ============================================================
+   OpenMed docs — "clinical grade" reskin of MkDocs Material.
+   Layered on the token files (assets/styles/tokens/*.css, loaded
+   ahead of this file via mkdocs extra_css). Visual reference:
+   specs/design/site-redesign/docs/.
+   ============================================================ */
+
+/* ---------- map Material's palette vars onto the tokens ---------- */
+:root,
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: var(--om-bg);
+  --md-default-fg-color: var(--om-ink);
+  --md-default-fg-color--light: var(--om-body);
+  --md-default-fg-color--lighter: var(--om-dim);
+  --md-default-fg-color--lightest: var(--om-faint);
+  --md-primary-fg-color: var(--om-surface);
+  --md-accent-fg-color: var(--om-accent);
+  --md-typeset-a-color: var(--om-accent);
+  --md-code-bg-color: var(--om-chip-bg);
+  --md-code-fg-color: var(--om-ink);
+}
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--om-bg);
+  --md-default-fg-color: var(--om-ink);
+  --md-default-fg-color--light: var(--om-body);
+  --md-default-fg-color--lighter: var(--om-dim);
+  --md-default-fg-color--lightest: var(--om-faint);
+  --md-primary-fg-color: var(--om-surface);
+  --md-accent-fg-color: var(--om-accent);
+  --md-typeset-a-color: var(--om-accent);
+  --md-code-bg-color: var(--om-chip-bg);
+  --md-code-fg-color: var(--om-ink);
+}
+
+/* ---------- base ---------- */
+/* keyboard affordance (the handoff omits focus styles; required for a11y) */
+:focus-visible {
+  outline: 2px solid var(--om-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+html { background: var(--om-bg); }
+body {
+  background: var(--om-bg);
+  color: var(--om-ink);
+  font-family: var(--om-font-sans);
+  transition: var(--om-transition);
+}
+.om-mono { font-family: var(--om-font-mono); }
+
+.md-grid { max-width: var(--om-page-max); }
+
+/* ---------- header (custom partial: overrides/partials/header.html) ---------- */
+.md-header.om-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--om-surface);
+  border-bottom: 1px solid var(--om-line);
+  box-shadow: none;
+  color: var(--om-ink);
+  transition: var(--om-transition);
+}
+.om-wrap { max-width: var(--om-page-max); margin: 0 auto; padding: 0 var(--om-gutter); }
+.om-nav__in { display: flex; align-items: center; gap: 28px; height: 64px; }
+.om-brand { display: flex; align-items: center; gap: 11px; color: var(--om-ink); text-decoration: none; }
+.om-brand:hover { color: var(--om-ink); }
+.om-brand__word { font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
+.om-brand__ver {
+  font-family: var(--om-font-mono);
+  font-size: 11px;
+  color: var(--om-dim);
+  background: var(--om-surface-2);
+  border: 1px solid var(--om-chip-bd);
+  border-radius: var(--om-radius-tag);
+  padding: 2px 7px;
+}
+.om-logo { display: block; border-radius: 8px; }
+html[data-theme="dark"] .om-logo { outline: 1px solid var(--om-line); }
+.om-nav__links { display: flex; gap: 22px; margin-left: auto; }
+.om-nav__links a { font-size: 14px; font-weight: 500; color: var(--om-chip-fg); text-decoration: none; }
+.om-nav__links a:hover, .om-nav__links a.om-nav__on { color: var(--om-accent); }
+.om-nav__acts { display: flex; gap: 10px; align-items: center; }
+.om-themebtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--om-chip-bd);
+  border-radius: var(--om-radius-control);
+  cursor: pointer;
+  background: var(--om-chip-bg);
+  color: var(--om-dim);
+  transition: var(--om-transition);
+  padding: 0;
+}
+.om-themebtn:hover { border-color: var(--om-accent); color: var(--om-accent); }
+.om-themebtn__sun { display: none; }
+html[data-theme="dark"] .om-themebtn__sun { display: block; }
+html[data-theme="dark"] .om-themebtn__moon { display: none; }
+.om-btn {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 600;
+  border-radius: var(--om-radius-control);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--om-transition);
+  text-decoration: none;
+}
+.om-btn--accent { background: var(--om-btn-accent-bg); color: var(--om-btn-accent-fg); }
+.om-btn--accent:hover { background: var(--om-accent-strong); color: var(--om-btn-accent-fg); }
+.om-btn--sm { font-size: 13px; padding: 8px 14px; }
+.om-drawerbtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--om-chip-bd);
+  border-radius: var(--om-radius-control);
+  cursor: pointer;
+  background: var(--om-chip-bg);
+  color: var(--om-dim);
+}
+.om-drawerbtn:hover { border-color: var(--om-accent); color: var(--om-accent); }
+/* the standalone search icon only opens the overlay on small screens;
+   at >=60em Material shows the inline form, so hide the icon there */
+@media screen and (min-width: 60em) {
+  .om-searchbtn { display: none; }
+}
+
+/* ---------- search (Material component, chip-token skin) ---------- */
+.md-search { margin-left: 0; }
+.md-search__form {
+  background: var(--om-chip-bg);
+  border: 1px solid var(--om-chip-bd);
+  border-radius: var(--om-radius-control);
+  height: 36px;
+  box-shadow: none;
+}
+.md-search__form:hover { border-color: var(--om-accent); background: var(--om-chip-bg); }
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+  background: var(--om-surface);
+  border-color: var(--om-accent);
+  border-radius: var(--om-radius-control) var(--om-radius-control) 0 0;
+}
+.md-search__input {
+  font-family: var(--om-font-mono);
+  font-size: 12.5px;
+  color: var(--om-ink);
+}
+.md-search__input::placeholder { color: var(--om-faint); }
+.md-search__input + .md-search__icon { color: var(--om-dim); }
+.md-search__output {
+  border-radius: 0 0 var(--om-radius-control) var(--om-radius-control);
+  box-shadow: 0 12px 28px -12px rgba(14, 17, 22, 0.35);
+}
+.md-search__scrollwrap { background: var(--om-surface); }
+.md-search-result__meta {
+  background: var(--om-surface-2);
+  color: var(--om-dim);
+  font-family: var(--om-font-mono);
+  font-size: 11px;
+}
+.md-search-result__link { transition: var(--om-transition); }
+.md-search-result__link:focus, .md-search-result__link:hover { background: var(--om-surface-2); }
+.md-search-result .md-typeset h1 { font-size: 14.5px; font-weight: 600; margin: 0; color: var(--om-ink); }
+.md-search-result .md-typeset { color: var(--om-body); font-size: 13px; }
+.md-search-result mark { color: var(--om-accent); background: none; }
+
+/* ---------- layout: sidebars + content ---------- */
+.md-main__inner { margin-top: 0; }
+.md-sidebar { width: 236px; }
+.md-sidebar--secondary { width: 196px; }
+.md-content { max-width: 800px; min-width: 0; }
+.md-content__inner { padding-top: 40px; padding-bottom: 72px; margin-bottom: 0; }
+.md-content__inner::before { display: none; }
+
+/* ---------- primary sidebar (snav) ---------- */
+.md-nav { font-size: 13.5px; }
+.md-nav--primary .md-nav__title[for="__drawer"],
+.md-nav--primary > .md-nav__title { display: none; }
+.md-nav--primary .md-nav__item--section { margin: 26px 0 8px; }
+.md-nav--primary .md-nav__item--section:first-child { margin-top: 0; }
+.md-nav--primary .md-nav__item--section > .md-nav__link,
+.md-nav--primary .md-nav__item--section > .md-nav__container {
+  font-family: var(--om-font-mono);
+  font-size: var(--om-tag-size);
+  letter-spacing: var(--om-microlabel-ls);
+  text-transform: uppercase;
+  color: var(--om-faint);
+  margin-bottom: 8px;
+  pointer-events: auto;
+}
+.md-nav__item { padding: 0; }
+.md-nav__link {
+  margin: 0;
+  padding: 6px 14px 6px 0;
+  border-left: 2px solid transparent;
+  color: var(--om-chip-fg);
+  font-weight: 500;
+  transition: var(--om-transition);
+}
+.md-nav__link:hover { color: var(--om-accent); }
+/* Material's --active marks the current PAGE here. Scoped to the primary nav
+   on purpose: the same class also lands on the table-of-contents copy nested
+   inside this drawer, and styling both lights two rows at once. The TOC gets
+   its own accent below, driven by data-om-current. */
+.md-nav--primary .md-nav__link--active,
+.md-nav--primary .md-nav__link--active .md-ellipsis {
+  color: var(--om-accent);
+}
+.md-nav--primary .md-nav__item .md-nav__link--active {
+  border-left-color: var(--om-accent);
+  padding-left: 12px;
+}
+.md-nav__icon { display: none; }
+.md-nav--primary .md-nav__list .md-nav__list .md-nav__link { padding-left: 0; }
+.md-nav--primary .md-nav__list .md-nav__list .md-nav__link--active { padding-left: 12px; }
+
+/* ---------- toc (ON THIS PAGE) ---------- */
+.md-nav--secondary .md-nav__title {
+  font-family: var(--om-font-mono);
+  font-size: var(--om-tag-size);
+  letter-spacing: var(--om-microlabel-ls);
+  color: var(--om-faint);
+  background: transparent;
+  box-shadow: none;
+  padding: 0 0 10px;
+}
+.md-nav--secondary .md-nav__link {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--om-dim);
+  padding: 4px 0;
+  border-left: none;
+}
+.md-nav--secondary .md-nav__link:hover { color: var(--om-accent); }
+/* Current section comes from data-om-current (docs-chrome.js), not Material's
+   --active: Material only switches once the heading is hidden behind the
+   sticky header, which highlights the section above the one being read. */
+.md-sidebar--secondary .md-nav__link[data-om-current],
+.md-sidebar--secondary .md-nav__link[data-om-current] .md-ellipsis {
+  color: var(--om-accent);
+}
+/* The drawer carries a second copy of the TOC. Keep the current-section cue,
+   but without the accent, so the drawer still shows exactly one highlight —
+   the current page. */
+.md-nav--primary .md-nav--secondary .md-nav__link--active,
+.md-nav--primary .md-nav--secondary .md-nav__link--active .md-ellipsis {
+  color: inherit;
+}
+.md-nav--primary .md-nav--secondary .md-nav__item .md-nav__link--active {
+  border-left-color: transparent;
+  padding-left: 0;
+}
+.md-nav--primary .md-nav--secondary .md-nav__link[data-om-current] {
+  color: var(--om-body);
+  font-weight: 600;
+}
+
+/* ---------- article typography ---------- */
+.om-crumb {
+  font-family: var(--om-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--om-accent);
+  margin: 0 0 16px;
+}
+.md-typeset { font-size: 14.5px; line-height: 1.7; color: var(--om-body); }
+.md-typeset h1 {
+  margin: 0 0 14px;
+  font-size: 38px;
+  line-height: 1.12;
+  letter-spacing: -0.024em;
+  font-weight: 600;
+  color: var(--om-ink);
+}
+.md-typeset h1 + p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--om-body);
+  margin: 0 0 8px;
+}
+.md-typeset h2 {
+  margin: 40px 0 0;
+  padding-top: 28px;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+  color: var(--om-ink);
+  border-top: 1px solid var(--om-line-2);
+}
+.md-typeset h2:first-of-type { border-top: none; margin-top: 24px; padding-top: 0; }
+.md-typeset h3 { margin: 30px 0 0; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--om-ink); }
+.md-typeset h4 { margin: 24px 0 0; font-size: 14.5px; font-weight: 600; color: var(--om-ink); }
+.md-typeset p { margin: 14px 0 0; }
+.md-typeset ul, .md-typeset ol { margin: 12px 0 0; }
+.md-typeset li { margin: 6px 0; }
+.md-typeset strong { color: var(--om-ink); font-weight: 600; }
+.md-typeset hr { border: none; border-top: 1px solid var(--om-line-2); margin: 36px 0 0; }
+.md-typeset a { color: var(--om-accent); }
+.md-typeset a:hover { color: var(--om-accent-strong); text-decoration: underline; }
+/* prose links need a non-color cue (WCAG link-in-text-block) — a quiet
+   offset underline keeps the ledger look */
+.md-typeset p > a, .md-typeset li > a, .md-typeset td > a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.md-typeset .headerlink { color: var(--om-faint); opacity: 0; transition: var(--om-transition); }
+.md-typeset :hover > .headerlink { opacity: 1; }
+
+/* inline code as chips */
+.md-typeset code {
+  font-family: var(--om-font-mono);
+  font-size: 12.5px;
+  color: var(--om-ink);
+  background: var(--om-chip-bg);
+  border: 1px solid var(--om-chip-bd);
+  border-radius: var(--om-radius-tag);
+  padding: 1px 6px;
+  word-break: normal;
+  box-shadow: none;
+}
+.md-typeset h1 code, .md-typeset h2 code, .md-typeset h3 code { font-size: 0.8em; }
+.md-typeset a code { color: var(--om-accent); }
+
+/* ---------- code blocks (ink, theme-invariant) ---------- */
+.md-typeset .highlight {
+  background: var(--om-term-bg);
+  border: 1px solid var(--om-term-bd);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 16px 0 0;
+}
+.om-cb__hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  background: var(--om-term-header);
+  border-bottom: 1px solid var(--om-term-bd);
+}
+.om-cb__lang {
+  font-family: var(--om-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #8A96A2; /* term-dim fails AA on the header bar */
+  text-transform: uppercase;
+}
+.md-typeset .highlight pre {
+  margin: 0;
+  padding: 14px 16px;
+  background: transparent;
+  border-radius: 0;
+}
+.md-typeset .highlight pre code {
+  font-family: var(--om-font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #D8DEE3;
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+/* Material's own copy button (md-clipboard in <=9.4, md-code__button in
+   newer releases) is replaced by .om-cb__copy in the header bar */
+.md-typeset .highlight .md-clipboard,
+.md-typeset .highlight .md-code__button { display: none !important; }
+.om-cb__copy {
+  font-family: var(--om-font-mono);
+  font-size: 11px;
+  color: #8A96A2; /* term-dim fails AA; this is an interactive control */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: var(--om-transition);
+}
+.om-cb__copy:hover { color: var(--om-accent-bright); }
+/* pygments on ink — one palette for both themes.
+   Comments use #7C8894 (not term-dim) to clear WCAG AA on #0E1116. */
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .ch { color: #7C8894; }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr { color: var(--om-accent-bright); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb { color: #A8C6A1; }
+.highlight .nb, .highlight .nf, .highlight .nc { color: #D8DEE3; }
+.highlight .n, .highlight .nx, .highlight .p, .highlight .o { color: #B9C2CA; }
+.highlight .m, .highlight .mi, .highlight .mf { color: #C9A26D; }
+.highlight .gp { color: var(--om-accent-bright); }
+.highlight .nv, .highlight .vg { color: #B9C2CA; }
+.highlight .nt, .highlight .na, .highlight .nl { color: #9DB8DE; } /* AA-safe blue on ink */
+
+/* ---------- tables ---------- */
+.md-typeset__scrollwrap { margin: 0; }
+.md-typeset__table { display: block; margin: 18px 0 0; padding: 0; overflow-x: auto; }
+.md-typeset table:not([class]) {
+  display: table;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 13.5px;
+  background: transparent;
+}
+.md-typeset table:not([class]) th {
+  font-family: var(--om-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--om-dim);
+  background: transparent;
+  border-bottom: 2px solid var(--om-ink);
+  padding: 0 18px 8px 0;
+  white-space: nowrap;
+  min-width: 0;
+}
+.md-typeset table:not([class]) td {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--om-body);
+  border-top: none;
+  border-bottom: 1px solid var(--om-line-2);
+  padding: 10px 18px 10px 0;
+  vertical-align: top;
+}
+.md-typeset table:not([class]) th:last-child,
+.md-typeset table:not([class]) td:last-child { padding-right: 0; }
+.md-typeset table:not([class]) td strong { color: var(--om-ink); }
+.md-typeset table:not([class]) tbody tr:hover { background: transparent; box-shadow: none; }
+
+/* ---------- admonitions (hairline card + mono accent eyebrow) ----------
+   !important beats Material's per-type rules (.admonition.note etc.) that
+   would otherwise repaint borders/icons in type colors — the design uses
+   NO colored admonition variants, only the hairline card. */
+.md-typeset .admonition, .md-typeset details {
+  border: 1px solid var(--om-line) !important;
+  border-radius: var(--om-radius-control);
+  background: var(--om-surface) !important;
+  box-shadow: none;
+  padding: 14px 18px 16px;
+  margin: 18px 0 0;
+  font-size: 13.5px;
+  color: var(--om-body);
+}
+.md-typeset .admonition-title, .md-typeset summary {
+  font-family: var(--om-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--om-accent) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 0 2px 0;
+  margin: 0;
+  font-weight: 400;
+}
+.md-typeset .admonition-title::before, .md-typeset summary::before { display: none !important; }
+.md-typeset .admonition-title::after, .md-typeset summary::after { display: none !important; }
+.md-typeset .admonition p, .md-typeset details p { font-size: 13.5px; }
+.md-typeset .admonition > p:first-of-type, .md-typeset details > p:first-of-type { margin-top: 8px; }
+
+/* ---------- details / FAQ (native disclosure, +/- marker) ---------- */
+.md-typeset details { overflow: hidden; padding: 0; }
+.md-typeset details summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  font-family: var(--om-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--om-ink);
+}
+.md-typeset details summary::-webkit-details-marker { display: none; }
+.md-typeset details summary::before {
+  content: "+" !important;
+  display: block !important;
+  position: static !important;
+  font-family: var(--om-font-mono);
+  color: var(--om-accent) !important;
+  font-size: 14px;
+  width: 14px !important;
+  height: auto !important;
+  flex: none;
+  background: none !important;
+  background-color: transparent !important;
+  mask: none !important;
+  -webkit-mask: none !important;
+}
+.md-typeset details[open] summary::before { content: "–" !important; }
+.md-typeset details summary:hover { color: var(--om-accent); }
+.md-typeset details > *:not(summary) { margin-left: 42px; margin-right: 18px; }
+.md-typeset details > p:last-child, .md-typeset details > div:last-child { margin-bottom: 16px; }
+
+/* ---------- tabs (pymdownx.tabbed alternate style) ---------- */
+.md-typeset .tabbed-set {
+  margin: 16px 0 0;
+  border: 1px solid var(--om-line);
+  border-radius: var(--om-radius-control);
+  background: var(--om-surface);
+  overflow: hidden;
+}
+.md-typeset .tabbed-labels {
+  background: var(--om-surface-2);
+  border-bottom: 1px solid var(--om-line);
+  box-shadow: none;
+}
+.md-typeset .tabbed-labels > label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--om-dim);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 11px 16px;
+  transition: var(--om-transition);
+}
+.md-typeset .tabbed-labels > label:hover { color: var(--om-accent); }
+.md-typeset .tabbed-set > input:checked + .tabbed-labels > label,
+.js .md-typeset .tabbed-labels > label[aria-selected="true"] {
+  color: var(--om-accent);
+}
+.md-typeset .tabbed-labels--linked > label > a { color: inherit; padding: 0; }
+.md-typeset .tabbed-content { padding: 2px 18px 18px; }
+.js .md-typeset .tabbed-labels::before {
+  background: var(--om-accent);
+  height: 2px;
+}
+
+/* ---------- docs-home widgets (dgrid links + plane cards) ---------- */
+.om-dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; margin: 20px 0 0; }
+.om-dlink {
+  border-top: 1px solid var(--om-line-2);
+  padding: 16px 0;
+  text-decoration: none !important;
+  display: block;
+  transition: var(--om-transition);
+}
+.om-dlink:hover { border-top-color: var(--om-accent); }
+.om-dlink .k {
+  font-family: var(--om-font-mono);
+  font-size: var(--om-tag-size);
+  letter-spacing: var(--om-microlabel-ls);
+  color: var(--om-faint);
+  margin-bottom: 5px;
+}
+.om-dlink .tt { font-size: 15px; font-weight: 600; color: var(--om-ink); margin-bottom: 4px; }
+.om-dlink .tt em { font-style: normal; color: var(--om-accent); }
+.om-dlink .ds { font-size: 13px; line-height: 1.5; color: var(--om-body); }
+.om-pgrid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0 0; }
+.om-plane {
+  background: var(--om-surface-2);
+  border: 1px solid var(--om-line);
+  border-radius: var(--om-radius-card);
+  padding: 20px 22px;
+}
+.om-plane .e {
+  font-family: var(--om-font-mono);
+  font-size: var(--om-microlabel-size);
+  letter-spacing: var(--om-microlabel-ls);
+  color: var(--om-accent);
+  margin-bottom: 8px;
+}
+.om-plane h3 { margin: 0 0 6px !important; font-size: 16px; }
+.om-plane p { margin: 0 0 12px; font-size: 13.5px; }
+.om-plane .kv { display: flex; gap: 8px; flex-wrap: wrap; }
+.om-plane .kv span {
+  font-family: var(--om-font-mono);
+  font-size: var(--om-tag-size);
+  color: var(--om-chip-fg);
+  border: 1px solid var(--om-chip-bd);
+  border-radius: var(--om-radius-badge);
+  padding: 2px 7px;
+  background: var(--om-chip-bg);
+}
+
+/* ---------- pager + footer ---------- */
+.md-footer { background: transparent; color: inherit; }
+.om-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-top: 1px solid var(--om-line-2);
+  margin-top: 36px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.om-pager__link { text-decoration: none; display: block; }
+.om-pager__k { font-family: var(--om-font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--om-faint); margin-bottom: 4px; }
+.om-pager__t { font-size: 14.5px; font-weight: 600; color: var(--om-ink); transition: var(--om-transition); }
+.om-pager__link:hover .om-pager__t { color: var(--om-accent); }
+.om-pager__link--next { text-align: right; }
+.om-footer {
+  border-top: 1px solid var(--om-line);
+  background: var(--om-surface);
+  transition: var(--om-transition);
+}
+.om-footer__in { padding-top: 22px; padding-bottom: 22px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.om-footer__brand { display: flex; align-items: center; gap: 10px; }
+.om-footer__meta { font-family: var(--om-font-mono); font-size: 12px; color: var(--om-dim); }
+.om-footer__links { display: flex; gap: 18px; margin-left: auto; flex-wrap: wrap; }
+.om-footer__links a { font-size: 13px; font-weight: 500; color: var(--om-chip-fg); text-decoration: none; }
+.om-footer__links a:hover { color: var(--om-accent); }
+
+/* ---------- hide Material chrome we do not use ---------- */
+.md-top { display: none; }
+.md-tabs { display: none; }
+
+/* ---------- responsive ---------- */
+/* Below Material's drawer breakpoint (76.2344em ≈ 1220px) the sidebar is a
+   drawer, exactly as on mobile — the in-between "forced sidebar" band was
+   removed by design: the wide layout stays unchanged, then the layout goes
+   straight to the drawer. The drawer button therefore must be visible for the
+   whole drawer range, not just phone widths. */
+@media screen and (max-width: 76.2344em) {
+  .om-drawerbtn { display: flex; }
+}
+@media screen and (min-width: 76.25em) {
+  .om-drawerbtn { display: none; }
+}
+@media screen and (max-width: 56.1875em) {
+  .om-wrap { padding-left: 20px; padding-right: 20px; }
+  .om-nav__links, .om-brand__ver, .om-brand__word { display: none !important; }
+  .om-nav__in { gap: 12px; }
+  .om-nav__acts { margin-left: auto; }
+  .om-drawerbtn { display: flex; }
+  .md-typeset h1 { font-size: 29px; }
+  .md-typeset h2 { font-size: 21px; }
+  .om-pager { grid-template-columns: 1fr; }
+  .om-pager__link--next { text-align: left; }
+  .om-footer__links { margin-left: 0; }
+  .om-dgrid, .om-pgrid { grid-template-columns: 1fr; }
+}
+
+/* the TOC rail only exists on wide viewports (handoff hides it <1180;
+   Material's own breakpoint is 1220 — align with Material) */
+@media screen and (max-width: 76.2344em) {
+  .md-sidebar--secondary { display: none !important; }
+}
+
+/* drawer look when it is a drawer (mobile) */
+@media screen and (max-width: 76.2344em) {
+  .md-nav--primary { background: var(--om-surface); }
+  .md-nav--primary .md-nav__title { background: var(--om-surface); color: var(--om-ink); }
+  .md-nav--primary .md-nav__item { border-top: none; }
+  .md-nav--primary .md-nav__link { padding-left: 16px; }
+  .md-nav--primary .md-nav__item .md-nav__link--active { padding-left: 14px; }
+}
+
+/* sidebar spacing on desktop */
+.md-sidebar__scrollwrap { padding: 36px 0 48px; }
+.md-sidebar--primary .md-sidebar__scrollwrap { border-right: 1px solid var(--om-line-2); }
+.md-sidebar--secondary .md-sidebar__scrollwrap { border-right: none; }
