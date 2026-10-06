@@ -4,20 +4,20 @@
 
 OpenMed Agent helps clinicians, healthcare operators, and technical teams work with clinical records, prior authorizations, appeals, coding, documentation, and care coordination. Choose a model provider, describe the task, and review the resulting plans, citations, and workflow artifacts.
 
-**Latest release: [v0.5.0](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.5.0)** · [All release notes](https://github.com/openmed-labs/openmed-agent/releases) · [Documentation](https://agent.openmed.life/docs/)
+**Latest release: [v0.6.0](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.6.0)** · [All release notes](https://github.com/openmed-labs/openmed-agent/releases) · [Documentation](https://agent.openmed.life/docs/)
 
 OpenMed Agent is in preview. This repository provides product information and public release notes. Installation instructions are shared with approved evaluators through the [preview access page](https://agent.openmed.life/).
 
 ## What's new
 
-- **Doubleword real-time:** stream responses and use agent tools in the TUI with `openmed agent --provider doubleword`.
-- **Async flex:** submit individual background requests, close the terminal, and retrieve the results later using the saved ID. On-demand priority requests are also available through the CLI.
-- **24-hour batches:** validate and submit independent JSONL requests, retrieve available results, resume waiting, or request cancellation. Use this for backlogs and overnight work that can trade latency for lower inference cost.
-- **Clearer model selection:** eleven Doubleword generation models are included, with a configurable list, provider labels in search results, and context limits for automatic compaction.
+- **Updated model picker:** choose GPT-6.1 Sol, GPT-6 Astra, GPT-6 Sol, or GPT-6 Luna. GPT-6.1 Sol with medium reasoning is the default.
+- **Reasoning controls:** available effort levels follow the selected model. Existing `none` settings use `low` with GPT-6.1 Sol and GPT-6 Astra.
+- **Saved models:** GPT-5.6 IDs and the `gpt-5.6` alias are retired. Update saved selections to a current model ID; explicit GPT-5.5 selections remain available with an OpenAI API key.
+- **Clearer setup and coding guidance:** provider setup tabs support keyboard selection, and the medical-service guide distinguishes code validity, membership, billability, and HCC reference context.
 
-All three modes share one key. The command selects the mode: the TUI is real-time, while async and batch jobs use the CLI. Direct request files do not execute agent tools or automatically de-identify input.
+Doubleword supports real-time agent work, async flex requests, and 24-hour batches with one key. The TUI is real-time; async and batch jobs use the CLI. Direct request files do not execute agent tools or automatically de-identify input.
 
-See the [v0.5.0 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.5.0), the [three-mode quickstart](https://agent.openmed.life/docs/providers/), and the [release history](https://github.com/openmed-labs/openmed-agent/releases).
+See the [v0.6.0 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.6.0), the [provider guide](https://agent.openmed.life/docs/providers/), and the [release history](https://github.com/openmed-labs/openmed-agent/releases).
 
 ## Get started
 
@@ -32,7 +32,7 @@ openmed --help         # Show CLI commands
 
 You can also configure your own OpenAI, Anthropic, OpenRouter, MiMo, or Doubleword API key, or connect a custom OpenAI-compatible server. Follow the [provider setup guide](https://agent.openmed.life/docs/providers/).
 
-GPT-5.6 Terra at medium reasoning is the default for this preview. Switch the model, reasoning effort, skill, and agent mode from the terminal interface.
+GPT-6.1 Sol at medium reasoning is the default for this preview. Switch the model, reasoning effort, skill, and agent mode from the terminal interface.
 
 To check for or install an update:
 
