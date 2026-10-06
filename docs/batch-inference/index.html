@@ -1,0 +1,1862 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+      
+      
+      
+        <link rel="canonical" href="https://agent.openmed.life/docs/batch-inference/">
+      
+      
+        <link rel="prev" href="../providers/">
+      
+      
+        <link rel="next" href="../configuration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Batch Inference - OpenMed Agent</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../assets/styles/fonts.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/colors.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/typography.css">
+    
+      <link rel="stylesheet" href="../assets/styles/tokens/surfaces.css">
+    
+      <link rel="stylesheet" href="../overrides/docs.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("openmed-theme"); } catch (error) { theme = null; }
+      if (theme !== "dark" && theme !== "light") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      var root = document.documentElement;
+      root.setAttribute("data-theme", theme);
+      root.setAttribute("data-md-color-scheme", theme === "dark" ? "slate" : "default");
+    })();
+  </script>
+  
+  
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenMed Agent">
+  <meta property="og:title" content="Batch Inference — OpenMed Agent">
+  <meta property="og:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta property="og:url" content="https://agent.openmed.life/docs/batch-inference/">
+  <meta property="og:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:secure_url" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="agent.openmed.life">
+  <meta name="twitter:url" content="https://agent.openmed.life/docs/batch-inference/">
+  <meta name="twitter:title" content="Batch Inference — OpenMed Agent">
+  <meta name="twitter:description" content="Terminal-native medical AI for inspectable workflows and configurable remote services.">
+  <meta name="twitter:image" content="https://agent.openmed.life/og.png?v=0.1.0">
+  <meta name="twitter:image:alt" content="OpenMed Agent social preview showing a terminal-native clinical workflow plan and visible tool execution.">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#batch-inference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <header class="md-header om-nav" data-md-component="header">
+  <nav class="om-wrap om-nav__in" aria-label="Header">
+    <label class="om-drawerbtn" for="__drawer" aria-label="Open navigation">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </label>
+    <a href="/" class="om-brand" title="OpenMed Agent" data-md-component="logo">
+      <img class="om-logo" src="/assets/images/logo.svg" width="28" height="28" alt="OpenMed">
+      <span class="om-brand__word">openmed</span>
+      <span class="om-brand__ver om-mono">v0.6.0 preview</span>
+    </a>
+    <div class="om-nav__links">
+      <a class="om-nav__on" href="..">Docs</a>
+      <a href="/#runtime">Runtime</a>
+      <a href="/#services">Services</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#install">Install</a>
+    </div>
+    <div class="om-nav__acts">
+      
+        
+        
+          <label class="om-themebtn om-searchbtn" for="__search" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          </label>
+          <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      
+      <button class="om-themebtn" data-theme-toggle type="button" aria-label="Switch theme">
+        <svg class="om-themebtn__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+        <svg class="om-themebtn__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <a class="om-btn om-btn--accent om-btn--sm" href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Request Preview</a>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OpenMed Agent" class="md-nav__button md-logo" aria-label="OpenMed Agent" data-md-component="logo">
+      
+  <img src="../assets/images/logo.svg" alt="logo">
+
+    </a>
+    OpenMed Agent
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Product
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent TUI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Inference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Inference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-a-24-hour-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why use a 24-hour batch?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-useful-overnight-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A useful overnight workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-doubleword" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Doubleword
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-jsonl-input-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a JSONL input file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submit-and-resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submit and resume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-results-and-local-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial results and local files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits-and-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits and endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider adapters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-demos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository demos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deepseek-workflow-stress-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeepSeek workflow stress demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../native-medical-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Native Medical Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clinical-nlp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clinical NLP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Trust
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy & Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit Trail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="ON THIS PAGE">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      ON THIS PAGE
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-a-24-hour-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why use a 24-hour batch?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-useful-overnight-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A useful overnight workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-doubleword" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Doubleword
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-jsonl-input-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a JSONL input file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submit-and-resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submit and resume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-results-and-local-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial results and local files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits-and-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits and endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provider-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider adapters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-demos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository demos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deepseek-workflow-stress-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeepSeek workflow stress demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+    
+    <div class="om-mono om-crumb">DOCS — PRODUCT · BATCH INFERENCE</div>
+  
+  
+                  
+
+
+
+<h1 id="batch-inference">Batch Inference<a class="headerlink" href="#batch-inference" title="Permanent link">&para;</a></h1>
+<p>OpenMed can submit a large set of independent inference requests to a remote
+batch provider, return immediately, and resume the job from another process.
+Version <strong>0.5.0</strong> supports <strong>Doubleword</strong>. OpenMed keeps the batch lifecycle
+provider-neutral so providers with a different wire format can be added without
+changing the CLI or local job format.</p>
+<p>For interactive streaming or individual async requests, see
+<a href="../providers/#doubleword">Doubleword real-time and Responses</a>. All modes share the same key.</p>
+<p>Batch inference is separate from the interactive Agent TUI. It does not run
+OpenMed tools or a multi-turn agent loop. Each JSONL row is one direct
+chat-completions or embeddings request.</p>
+<p>There is no Doubleword batch screen or <code>/batch</code> command in the TUI in 0.5.0.
+Run <code>openmed batch</code> in a second terminal while using the TUI. Its existing
+<code>/privacy-batch</code> command is a separate clinical privacy workflow.</p>
+<h2 id="why-use-a-24-hour-batch">Why use a 24-hour batch?<a class="headerlink" href="#why-use-a-24-hour-batch" title="Permanent link">&para;</a></h2>
+<p>Use batching when you have many independent records and can trade response time
+for a lower inference price. Your submission returns a job ID immediately;
+the provider schedules the work and you collect the results later. <code>24h</code> is the
+completion window for each submitted batch, not a mandatory 24-hour sleep or a
+promise that a multi-stage workflow will finish overnight.</p>
+<table>
+<thead>
+<tr>
+<th>Workload</th>
+<th>One request per</th>
+<th>What you collect later</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrospective coding-quality review</td>
+<td>Closed encounter plus prepared NLP/ICD-10/HCC evidence</td>
+<td>Draft discrepancies and a human-review queue</td>
+</tr>
+<tr>
+<td>Scheduled research-corpus screening</td>
+<td>Abstract or document chunk</td>
+<td>Inclusion labels, evidence quotes, and reasons for review</td>
+</tr>
+<tr>
+<td>Backlog document enrichment</td>
+<td>Previously collected document</td>
+<td>Structured metadata or a draft summary</td>
+</tr>
+<tr>
+<td>Offline regression evaluation</td>
+<td>Fixed synthetic test case</td>
+<td>Model outputs to grade and compare with earlier runs</td>
+</tr>
+</tbody>
+</table>
+<p>These workloads tolerate delayed results. A live consultation, urgent triage,
+an interactive TUI turn, or an action waiting on the next model response usually
+needs a synchronous provider instead.</p>
+<p>For a concrete price illustration, Doubleword's
+<a href="https://docs.doubleword.ai/inference-api/models/deepseek-ai-deepseek-v4-1-flash">DeepSeek V4.1 Flash model page</a>
+listed 24-hour batch input/output at $0.08/$0.30 per million tokens on
+2026-09-28, versus $0.15/$0.60 for realtime where available. A workload with
+1 million uncached input tokens and 100,000 output tokens would therefore be
+about $0.11 in batch versus $0.21 realtime. This is an illustration, not a quote:
+check current prices, availability, cached tokens, and actual usage. Native NLP
+and coding service calls have their own costs; batching does not discount them.</p>
+<h2 id="a-useful-overnight-workflow">A useful overnight workflow<a class="headerlink" href="#a-useful-overnight-workflow" title="Permanent link">&para;</a></h2>
+<p>For a chart backlog, prepare each encounter's permitted source text and run the
+NLP, code-validation, and HCC reference lookups first. Keep their real outputs,
+failures, model year, and provenance. Package that evidence into one independent
+DeepSeek request per encounter asking for a source-grounded audit draft. Submit
+the file, close your terminal, and collect the review queue the next day.
+Separate unsupported diagnoses and missing service evidence for human review;
+do not automatically turn model drafts into claims or clinical decisions.
+Pin the coding model, payment year, and service reference-data version for the
+workload. Check representative HCC mappings against the corresponding official
+reference release: a successful tool response or echoed model name does not
+verify the underlying mapping data or RAF calculation. Keep that validation
+separate from checks that the model followed its instructions.</p>
+<p>The source checkout has a runnable example of this exact single-window pattern:</p>
+<p>These demo scripts require the development checkout, <code>python-dotenv</code>, a Doubleword
+key, and working <a href="../native-medical-services/">native medical services</a> for the
+NLP/coding steps. Doubleword credentials alone do not provision those services.
+Without them, the receipts show missing evidence; they do not become a successful
+end-to-end medical-service demonstration.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_overnight_audit.py
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Native-service calls only; inspect evidence before paying for generation:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_overnight_audit.py<span class="w"> </span>--prepare
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Or prepare and submit six synthetic encounter audits, then exit:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_overnight_audit.py<span class="w"> </span>--submit
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Later, collect the saved run into review-queue.json and REPORT.md:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_overnight_audit.py<span class="w"> </span>--collect<span class="w"> </span>artifacts/doubleword-overnight-audit/&lt;run&gt;
+</span></code></pre></div>
+<p>The runner calls configured NLP, ICD-10 lookup/validation, HCC, RAF, CCSR and
+comorbidity services first. Its HCC/RAF results are explicitly labeled mechanical
+references for unreviewed imported codes, including suspect codes, so the model
+can audit the import rather than mistake a mapping for clinical support. It saves
+every service receipt and the six independent requests under
+<code>artifacts/doubleword-overnight-audit/</code>. Service failures remain visible in the
+evidence. <code>--submit</code> prints a job ID and returns; it does not keep a model/tool
+loop running. For a prepared file, submit the printed JSONL path directly to
+avoid collecting the same service evidence again.
+When using the CLI to submit a prepared file, associate its returned job ID on
+the first collection:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_overnight_audit.py<span class="w"> </span>--collect<span class="w"> </span>artifacts/doubleword-overnight-audit/&lt;run&gt;<span class="w"> </span>--job-id<span class="w"> </span>&lt;job-id&gt;
+</span></code></pre></div>
+<p>The collector verifies that the job's input digest matches the prepared file.
+<code>--collect</code> refreshes the existing job, downloads available rows, and builds a
+review queue without resubmitting. Its report includes row status, finish reasons,
+selected synthetic-fixture checks, token usage, and an estimated generation cost.
+It also spot-checks six HCC mapping entries against a pinned CMS 2025 V28 sample,
+separately from the model's audit checks. Zero checked entries means no matching
+reference results were available; even a passing spot check does not validate
+the full service dataset, hierarchy, coefficients, or RAF score.
+Pending rows remain pending; a partial report is not a completed audit.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>openmed<span class="w"> </span>batch<span class="w"> </span>validate<span class="w"> </span>overnight-audit.jsonl
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>openmed<span class="w"> </span>batch<span class="w"> </span>submit<span class="w"> </span>overnight-audit.jsonl<span class="w"> </span>--description<span class="w"> </span><span class="s2">"closed-encounter review"</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Save the returned job ID. Later, or from a scheduled job:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>openmed<span class="w"> </span>batch<span class="w"> </span>status<span class="w"> </span>&lt;job-id&gt;
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>openmed<span class="w"> </span>batch<span class="w"> </span>results<span class="w"> </span>&lt;job-id&gt;<span class="w"> </span>--json
+</span></code></pre></div>
+<p>Build each row with <code>body.model</code> set to <code>deepseek-ai/DeepSeek-V4.1-Flash</code>, stable
+<code>custom_id</code> values, and a suitable output-token limit. Join results to source
+records by <code>custom_id</code>, never by output order. Inspect row errors as well as the
+overall job status, and retry only explicitly failed records after reconciliation.
+The CLI sends the JSONL you prepare; it does not automatically gather medical
+evidence or execute tools.</p>
+<p>A model-driven tool loop needs a local orchestrator to execute returned tool
+calls and then submit another batch with the receipts. Every dependent batch has
+its own completion window: nine serial stages could span nine such windows.
+For economical overnight processing, prepare deterministic service evidence
+before the batch and minimize dependent model stages. Use the multi-stage demo
+below to test failure handling, not as a next-morning completion guarantee.</p>
+<h2 id="configure-doubleword">Configure Doubleword<a class="headerlink" href="#configure-doubleword" title="Permanent link">&para;</a></h2>
+<p>Set the key in the environment:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">DOUBLEWORD_API_KEY</span><span class="o">=</span><span class="s2">"sk-..."</span>
+</span></code></pre></div>
+<p>Or store it in OpenMed's private provider-secret file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-set<span class="w"> </span>doubleword<span class="w"> </span>--api-key<span class="w"> </span><span class="s2">"sk-..."</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>openmed<span class="w"> </span>config<span class="w"> </span>provider-show
+</span></code></pre></div>
+<p>Alternatively, this <code>~/.openmed/provider_secrets.json</code> entry references the
+exported environment variable (replace the reference with a literal key to
+store it in the file):</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">"doubleword"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{env:DOUBLEWORD_API_KEY}"</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The environment variable takes precedence over the stored value. The
+Doubleword endpoint is fixed to <code>https://api.doubleword.ai/v1</code>; there is no
+base-URL setting for this hosted provider. OpenMed sends this key only to that
+host and never writes it into batch state, result files, or CLI output.
+Batch commands use this file for credentials. Its optional interactive <code>models</code>
+list does not rewrite the models in your JSONL. <code>openmed batch submit</code> selects batch
+processing; an individual flex request uses <code>openmed responses submit</code> instead.
+There is no async flag to set in provider secrets. Merge the <code>doubleword</code> entry
+inside an existing <code>provider</code> object when other providers are configured.</p>
+<h2 id="create-a-jsonl-input-file">Create a JSONL input file<a class="headerlink" href="#create-a-jsonl-input-file" title="Permanent link">&para;</a></h2>
+<p>Save the following two lines as <code>requests.jsonl</code>. Each line is an independent OpenAI-style request. <code>custom_id</code> must be unique in
+the file and is how you join a result back to its source record.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>{"custom_id":"case-001","method":"POST","url":"/v1/chat/completions","body":{"model":"deepseek-ai/DeepSeek-V4.1-Flash","messages":[{"role":"user","content":"Return only the word OK."}],"max_tokens":4096}}
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>{"custom_id":"case-002","method":"POST","url":"/v1/chat/completions","body":{"model":"deepseek-ai/DeepSeek-V4.1-Flash","messages":[{"role":"user","content":"Return only the word READY."}],"max_tokens":4096}}
+</span></code></pre></div>
+<p>Use a model ID available to your Doubleword account. OpenMed does not replace,
+route, or silently correct model IDs inside the request body.
+For reasoning models, the output budget also covers reasoning tokens. A tiny
+budget can produce <code>finish_reason: "length"</code> with no final text even when the
+request succeeds; inspect each result's finish reason and message content.</p>
+<p>Validate before spending credits:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openmed<span class="w"> </span>batch<span class="w"> </span>validate<span class="w"> </span>requests.jsonl
+</span></code></pre></div>
+<p>Validation is local and does not require a key or network connection. It checks
+UTF-8 JSONL structure, unique IDs, request method, endpoint consistency,
+<code>body.model</code>, file size, request count, and disallows nested streaming.</p>
+<h2 id="submit-and-resume">Submit and resume<a class="headerlink" href="#submit-and-resume" title="Permanent link">&para;</a></h2>
+<p>Submission uploads the file, creates the remote batch, saves the returned IDs,
+and exits. It does not wait for the provider to finish.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>openmed<span class="w"> </span>batch<span class="w"> </span>submit<span class="w"> </span>requests.jsonl<span class="w"> </span>--description<span class="w"> </span><span class="s2">"nightly extraction"</span>
+</span></code></pre></div>
+<p>The command prints an OpenMed local job ID such as
+<code>batch-20260927T210000Z-12ab34cd</code>. Use either that local ID or the Doubleword
+batch ID with subsequent commands:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>openmed<span class="w"> </span>batch<span class="w"> </span>status<span class="w">  </span>batch-20260927T210000Z-12ab34cd
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>openmed<span class="w"> </span>batch<span class="w"> </span>results<span class="w"> </span>batch-20260927T210000Z-12ab34cd
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>openmed<span class="w"> </span>batch<span class="w"> </span><span class="nb">wait</span><span class="w">    </span>batch-20260927T210000Z-12ab34cd
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>openmed<span class="w"> </span>batch<span class="w"> </span>cancel<span class="w">  </span>batch-20260927T210000Z-12ab34cd
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>openmed<span class="w"> </span>batch<span class="w"> </span>list
+</span></code></pre></div>
+<p><code>status</code> refreshes provider state. <code>results</code> refreshes state and downloads any
+new output and error records. <code>wait</code> polls, downloads partial results as they
+become available, and stops at <code>completed</code>, <code>failed</code>, <code>expired</code>, or <code>cancelled</code>.
+Stopping <code>wait</code> with Ctrl+C affects only the local waiter; the remote job remains
+resumable. Cancellation is a best-effort provider request, and results already
+processed remain downloadable.</p>
+<p>To submit and wait in one command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>openmed<span class="w"> </span>batch<span class="w"> </span>submit<span class="w"> </span>requests.jsonl<span class="w"> </span>--wait<span class="w"> </span>--poll-interval<span class="w"> </span><span class="m">10</span>
+</span></code></pre></div>
+<p>For automation, every command that returns a job accepts <code>--json</code>. A bounded
+wait can be resumed later:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>openmed<span class="w"> </span>batch<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>&lt;job-id&gt;<span class="w"> </span>--timeout<span class="w"> </span><span class="m">900</span><span class="w"> </span>--json
+</span></code></pre></div>
+<p>Wait intervals must be finite and at least one second; timeouts must be finite
+and positive. Omitting <code>--timeout</code> waits without a local deadline. A single HTTP
+request can outlast that deadline until its network timeout expires. Invalid
+wait options are rejected before submission. <code>submit --wait</code> prints the saved
+job ID to stderr before waiting, including when <code>--json</code> is selected.</p>
+<p><code>wait</code> and <code>submit --wait</code> exit <code>0</code> for a completed job with no reported failed
+rows, <code>1</code> for unsuccessful terminal outcomes or row failures, <code>2</code> for validation,
+provider, or wait-timeout errors, and <code>130</code> on Ctrl+C. Commands such as <code>status</code>
+return <code>0</code> when the inspection succeeds, even if the inspected job has failed.
+Always inspect both the batch status and per-row errors.</p>
+<h2 id="partial-results-and-local-files">Partial results and local files<a class="headerlink" href="#partial-results-and-local-files" title="Permanent link">&para;</a></h2>
+<p>Doubleword exposes output and error files while a job is still processing.
+OpenMed uses the provider's <code>X-Last-Line</code> cursor to request later chunks and
+also deduplicates records by <code>custom_id</code>, so repeating <code>results</code> does not append
+the same row twice.</p>
+<p>One process at a time can update a job. Concurrent updates return a busy error;
+retry after the other command finishes its current request. Result files are
+replaced atomically before cursors are saved, so interrupted local writes can be
+retried without leaving partial JSON lines.</p>
+<p>By default, one job lives at:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>~/.openmed/batches/&lt;local-job-id&gt;/
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>├── job.json
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├── input.jsonl
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>├── output.jsonl     # appears after the first successful result
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>└── errors.jsonl     # appears after the first failed result
+</span></code></pre></div>
+<p>The job directory is mode <code>0700</code>; state, input, and result files are mode
+<code>0600</code>. <code>job.json</code> contains provider IDs, status, counts, result cursors,
+timestamps, models, and the input digest. It never contains the API key or an
+authorization header. Override the root with <code>OPENMED_BATCH_DIR</code> when a job
+store belongs on a different encrypted or managed volume.</p>
+<p>Keep the local job directory until you have retrieved the records you need.
+Remote result files have an expiry timestamp in the provider response and may
+not remain downloadable indefinitely.</p>
+<p>If submission fails after the provider may have accepted it, check Doubleword's
+dashboard before submitting again. A local <code>submission_failed</code> state does not
+prove no remote job exists; paid creation requests are never retried automatically.</p>
+<h2 id="limits-and-endpoints">Limits and endpoints<a class="headerlink" href="#limits-and-endpoints" title="Permanent link">&para;</a></h2>
+<p>The Doubleword adapter enforces the provider's published input limits before
+upload:</p>
+<table>
+<thead>
+<tr>
+<th>Contract</th>
+<th>Current value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maximum input file</td>
+<td>200 MiB</td>
+</tr>
+<tr>
+<td>Maximum requests</td>
+<td>50,000 JSONL rows</td>
+</tr>
+<tr>
+<td>Maximum <code>custom_id</code> length</td>
+<td>64 characters</td>
+</tr>
+<tr>
+<td>Completion window</td>
+<td><code>24h</code></td>
+</tr>
+<tr>
+<td>Supported row URLs</td>
+<td><code>/v1/chat/completions</code>, <code>/v1/embeddings</code></td>
+</tr>
+</tbody>
+</table>
+<p>Select embeddings explicitly, and use the same URL in every row:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>openmed<span class="w"> </span>batch<span class="w"> </span>validate<span class="w"> </span>embeddings.jsonl<span class="w"> </span>--endpoint<span class="w"> </span>/v1/embeddings
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>openmed<span class="w"> </span>batch<span class="w"> </span>submit<span class="w"> </span>embeddings.jsonl<span class="w"> </span>--endpoint<span class="w"> </span>/v1/embeddings
+</span></code></pre></div>
+<p>See Doubleword's <a href="https://docs.doubleword.ai/inference-api/batch-inference">Batch Inference documentation</a>
+for its live service contract and <a href="https://app.doubleword.ai/models">model catalog</a>
+for account-visible model IDs.</p>
+<h2 id="data-boundary">Data boundary<a class="headerlink" href="#data-boundary" title="Permanent link">&para;</a></h2>
+<p>Submitting a file sends every row body to Doubleword and to the infrastructure
+serving the selected model. The local copy is private on disk, but it is not
+automatically de-identified. Do not assume TUI PHI mode or the file-privacy
+workflow transforms batch JSONL; prepare the body content for the remote
+provider before submission and apply your organization's data-use, retention,
+region, and provider-agreement requirements.</p>
+<h2 id="provider-adapters">Provider adapters<a class="headerlink" href="#provider-adapters" title="Permanent link">&para;</a></h2>
+<p>The durable job store and CLI use a small adapter contract: capabilities,
+submit, status, cancel, and incremental result retrieval. Doubleword implements
+the file-backed OpenAI Batch shape. Doubleword is the only enabled batch provider
+in 0.5.0; OpenRouter batching is outside this release's scope.</p>
+<h2 id="repository-demos">Repository demos<a class="headerlink" href="#repository-demos" title="Permanent link">&para;</a></h2>
+<p>From a source checkout, the demo runner defaults to offline validation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_batch_demo.py
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_batch_demo.py<span class="w"> </span>--submit<span class="w"> </span>--wait
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_batch_demo.py<span class="w"> </span>--kind<span class="w"> </span>embeddings<span class="w"> </span>--submit<span class="w"> </span>--wait
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_batch_demo.py<span class="w"> </span>--resume<span class="w"> </span>&lt;job-id&gt;
+</span></code></pre></div>
+<p>Each submitted demo has two synthetic rows. The runner saves each input and a
+submission receipt under a fresh <code>artifacts/doubleword-batch-demo/</code> directory.
+It uses the actual CLI and prints model answers or embedding dimensions. Its
+wait is bounded to 300 seconds by default; resume a pending job later instead
+of submitting it again. The full walkthrough lives in the repository demo
+library at <code>PLANS/DEMOS/13-doubleword-batching.md</code>.</p>
+<p>For maintainers, mocked contract tests run with the ordinary unit suite. The
+opt-in real-service test spends credits on one synthetic chat row and one
+embedding row:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">OPENMED_DOUBLEWORD_BATCH_LIVE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>python3<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-q<span class="w"> </span>tests/integration/test_doubleword_batch_live.py
+</span></code></pre></div>
+<p>Override its default model IDs with <code>DOUBLEWORD_BATCH_CHAT_MODEL</code> and
+<code>DOUBLEWORD_BATCH_EMBEDDING_MODEL</code> when the account catalog changes.</p>
+<h2 id="deepseek-workflow-stress-demo">DeepSeek workflow stress demo<a class="headerlink" href="#deepseek-workflow-stress-demo" title="Permanent link">&para;</a></h2>
+<p>When interpreting service evidence, distinguish request success from supported
+coding. NLP entity spans may include negated or family-history mentions. A code
+validator's <code>valid</code> field may describe syntax while <code>exists</code> and <code>billable</code> are
+false. A successful HCC lookup only says how a code maps; it does not establish
+that the encounter supports that code. Keep these fields and the original note
+in the review evidence instead of converting every successful service call into
+an accepted diagnosis.</p>
+<p>The source checkout includes a separate synthetic retrospective coding-audit
+stress run using <strong>DeepSeek V4.1 Flash</strong>, with real configured NLP and coding
+services. It exercises nine dependent batches across six encounters: NLP,
+ICD-10 search, exact lookup, validation, HCC, RAF, CCSR/comorbidity, audit, and
+an adversarial recheck. The model chooses tool arguments; the local demo executes
+only the stage's allowed read-only tools and returns actual receipts.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Preview the bounded run without network calls</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_workflow_stress.py
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1"># Run the model batches and configured medical services</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_workflow_stress.py<span class="w"> </span>--run
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1"># Continue a pending run without submitting completed stages again</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>python3<span class="w"> </span>scripts/demo/run_doubleword_workflow_stress.py<span class="w"> </span>--resume<span class="w"> </span>artifacts/doubleword-workflow-stress/&lt;run&gt;
+</span></code></pre></div>
+<p>This harness requires the existing native-service credentials in addition to
+<code>DOUBLEWORD_API_KEY</code>. It records missing credentials, outages, invalid arguments,
+row errors, truncated outputs, omitted calls, and selected fixture failures.
+The default wait limit is 600 seconds per stage; timing out preserves the job
+for a later resume. <code>--timeout</code> changes the local wait only. The local orchestrator
+must run again for dependent stages to progress after it exits.</p>
+<p>The cap is 54 model requests with at most 4096 generated tokens per request,
+100 KB per request body, and 160 tool calls. Receipts, raw result files, final
+audits, and <code>REPORT.md</code> live under <code>artifacts/doubleword-workflow-stress/</code>.
+This is a bounded failure-discovery exercise over synthetic notes, not a clinical
+evaluation or a guarantee of correctness on a production chart backlog.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="om-wrap om-pager" aria-label="Footer" >
+        
+          <a href="../providers/" class="om-pager__link" aria-label="Previous: Providers">
+            <div class="om-mono om-pager__k">← PREVIOUS</div>
+            <div class="om-pager__t">Providers</div>
+          </a>
+        
+        
+          <a href="../configuration/" class="om-pager__link om-pager__link--next" aria-label="Next: Configuration">
+            <div class="om-mono om-pager__k">NEXT →</div>
+            <div class="om-pager__t">Configuration</div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="om-footer">
+    <div class="om-wrap om-footer__in">
+      <div class="om-footer__brand">
+        <img class="om-logo" src="/assets/images/logo.svg" width="22" height="22" alt="OpenMed">
+        <span class="om-mono om-footer__meta">OpenMed Agent · v0.6.0 · © OpenMed</span>
+      </div>
+      <nav class="om-footer__links" aria-label="Footer">
+        <a href="..">Docs</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/support/">Support</a>
+        <a href="https://waitlist.openmed.life/" target="_blank" rel="noopener noreferrer">Preview</a>
+        <a href="https://x.com/openmed_ai">X</a>
+        <a href="https://www.linkedin.com/company/openmed-ai/">LinkedIn</a>
+        <a href="https://github.com/openmed-labs/openmed-agent">GitHub</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tabs.link", "navigation.instant", "navigation.sections", "navigation.footer", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../overrides/docs-chrome.js"></script>
+      
+    
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"e87540559ece4a6abd994e004098b26a"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  </body>
+</html>

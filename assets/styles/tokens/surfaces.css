@@ -1,0 +1,28 @@
+/* OpenMed Agent — surface, radius, spacing, motion tokens. */
+
+:root {
+  /* radii — tight, engineered; nothing pill-shaped */
+  --om-radius-card: 10px;
+  --om-radius-control: 6px;   /* buttons, inputs, command chips */
+  --om-radius-tag: 4px;       /* chips, version badge */
+  --om-radius-badge: 3px;     /* mini tags, terminal chips */
+
+  /* borders — 1px hairlines everywhere; 2px only for ledger underlines/top rules */
+  --om-border: 1px solid var(--om-line);
+  --om-rule-strong: 2px solid var(--om-ink);
+
+  /* layout */
+  --om-page-max: 1240px;
+  --om-gutter: 40px;
+  --om-section-pad: 64px;     /* top padding of every numbered section */
+  --om-gap-card: 20px;        /* between sibling cards */
+  --om-gap-col: 40px;         /* between ledger columns */
+
+  /* responsive — single breakpoint; below it grids collapse to one column,
+     gutters 40→20, H1 54→38, H2 34→27 (see readme.md "Responsive") */
+  --om-bp-mobile: 900px; /* reference value; use in @media (max-width:900px) */
+
+  /* motion — quiet fades only; no bounces, no slides */
+  --om-transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  --om-type-in: tfade 0.35s ease forwards; /* terminal line reveal */
+}
