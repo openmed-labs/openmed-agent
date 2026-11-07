@@ -4,35 +4,35 @@
 
 OpenMed Agent helps clinicians, healthcare operators, and technical teams work with clinical records, prior authorizations, appeals, coding, documentation, and care coordination. Choose a model provider, describe the task, and review the resulting plans, citations, and workflow artifacts.
 
-**Latest release: [v0.6.0](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.6.0)** · [All release notes](https://github.com/openmed-labs/openmed-agent/releases) · [Documentation](https://agent.openmed.life/docs/)
+**Latest release: [v1.0.3](https://github.com/openmed-labs/openmed-agent/releases/tag/v1.0.3)** · [All release notes](https://github.com/openmed-labs/openmed-agent/releases) · [Documentation](https://agent.openmed.life/docs/)
 
-OpenMed Agent is in preview. This repository provides product information and public release notes. Installation instructions are shared with approved evaluators through the [preview access page](https://agent.openmed.life/).
+OpenMed Agent 1.0 is the final release line, and v1.0.3 is its last maintenance update. No further versions are planned, and there is no obligation to provide updates or support. This repository provides product information and public release notes. Your install link is sent with your access invitation; if you do not have one, [request access](https://waitlist.openmed.life/).
 
-## What's new
+## What's new in 1.0
 
-- **Updated model picker:** choose GPT-6.1 Sol, GPT-6 Astra, GPT-6 Sol, or GPT-6 Luna. GPT-6.1 Sol with medium reasoning is the default.
-- **Reasoning controls:** available effort levels follow the selected model. Existing `none` settings use `low` with GPT-6.1 Sol and GPT-6 Astra.
-- **Saved models:** GPT-5.6 IDs and the `gpt-5.6` alias are retired. Update saved selections to a current model ID; explicit GPT-5.5 selections remain available with an OpenAI API key.
-- **Clearer setup and coding guidance:** provider setup tabs support keyboard selection, and the medical-service guide distinguishes code validity, membership, billability, and HCC reference context.
+- **Headless runs:** `openmed agent --once` runs one request through the agent and its tools, then exits with a clean answer, an optional JSON receipt, and documented exit codes.
+- **Newer models without an update:** use OpenAI and Anthropic model IDs newer than the built-in list, and save a default with `openmed config model-set`.
+- **API keys first:** an OpenAI API key is the recommended way to use OpenAI models. ChatGPT sign-in remains available as an experimental option.
+- **Service interruptions are reported:** reviews stop with a clear error, and coding workflows mark their output DEGRADED, instead of deciding from missing reference data.
+- **Risk scores are labelled as estimates**, with the model, payment year, segment, and demographics used.
+- **DEID mode is enforced:** in DEID and STRICT modes, workflows that read local files and tools that return raw record content are refused.
 
-Doubleword supports real-time agent work, async flex requests, and 24-hour batches with one key. The TUI is real-time; async and batch jobs use the CLI. Direct request files do not execute agent tools or automatically de-identify input.
-
-See the [v0.6.0 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v0.6.0), the [provider guide](https://agent.openmed.life/docs/providers/), and the [release history](https://github.com/openmed-labs/openmed-agent/releases).
+See the [v1.0.3 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v1.0.3), the [v1.0.0 notes](https://github.com/openmed-labs/openmed-agent/releases/tag/v1.0.0), the [provider guide](https://agent.openmed.life/docs/providers/), and the [release history](https://github.com/openmed-labs/openmed-agent/releases).
 
 ## Get started
 
-Use the installation instructions supplied with your preview access, then run:
+Install with the link from your access invitation, then run:
 
 ```bash
-openmed login          # Sign in with ChatGPT
+openmed config provider-set openai --api-key "sk-..."   # Or another provider's key
 openmed                # Open the terminal workspace
 openmed --models       # List available models
 openmed --help         # Show CLI commands
 ```
 
-You can also configure your own OpenAI, Anthropic, OpenRouter, MiMo, or Doubleword API key, or connect a custom OpenAI-compatible server. Follow the [provider setup guide](https://agent.openmed.life/docs/providers/).
+You can use an OpenAI, Anthropic, OpenRouter, MiMo, or Doubleword API key, or connect a custom OpenAI-compatible server. Follow the [provider setup guide](https://agent.openmed.life/docs/providers/).
 
-GPT-6.1 Sol at medium reasoning is the default for this preview. Switch the model, reasoning effort, skill, and agent mode from the terminal interface.
+GPT-6.1 Sol at medium reasoning is the default. Switch the model, reasoning effort, skill, and agent mode from the terminal interface, or save your own default with `openmed config model-set`.
 
 To check for or install an update:
 
@@ -41,7 +41,7 @@ openmed --check-update
 openmed update
 ```
 
-[Getting started](https://agent.openmed.life/docs/getting-started/) · [CLI reference](https://agent.openmed.life/docs/cli/) · [Terminal interface](https://agent.openmed.life/docs/tui/)
+[Getting started](https://agent.openmed.life/docs/getting-started/) · [Long-term use](https://agent.openmed.life/docs/long-term-use/) · [CLI reference](https://agent.openmed.life/docs/cli/) · [Headless workflows](https://agent.openmed.life/docs/headless-agent/) · [Terminal interface](https://agent.openmed.life/docs/tui/)
 
 ## Clinical and operational capabilities
 
@@ -68,11 +68,11 @@ Medical tools cover ICD-10, CPT, SNOMED CT, LOINC, RxNorm, MedlinePlus, HCC, CCS
 
 [Skills](https://agent.openmed.life/docs/skills/) · [Configuration](https://agent.openmed.life/docs/configuration/) · [Web search](https://agent.openmed.life/docs/web-search/)
 
-## Preview and data handling
+## Data handling
 
 Sessions and generated artifacts are stored on the machine running OpenMed. Model requests and medical-service calls use your configured providers and endpoints. Choosing a local model does not make connected medical services offline.
 
-During preview, some medical services are operated by OpenMed. Service availability and integration details may change as the preview develops. PHI handling modes are workflow settings; they do not provide a blanket privacy guarantee. Review clinical outputs before use.
+Some medical services are operated by OpenMed and are provided as available; you can point either service at your own compatible server instead. DEID and STRICT modes restrict what reaches the model, but de-identification is automated and can miss identifiers. Review clinical outputs before use.
 
 [Native medical services](https://agent.openmed.life/docs/native-medical-services/) · [Privacy and security](https://agent.openmed.life/docs/privacy/)
 
